@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>КОНСУЛТ — Решаваме проблеми. Постигаме резултати.</title>
+<meta name="description" content="Консултантска фирма в сферата на решаването на проблеми. Правни консултации, мрежа от специалисти и ангажимент към резултата.">
+<style>
+  :root {
+    --navy: #0e1a2b;
+    --navy-2: #14233a;
+    --navy-3: #1b2f4d;
+    --gold: #c9a24b;
+    --gold-light: #e0c583;
+    --ink: #1c2430;
+    --text: #3d4a5c;
+    --muted: #7b8794;
+    --bg: #ffffff;
+    --bg-soft: #f5f7fa;
+    --border: #e3e8ee;
+    --radius: 14px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { font-family: Georgia, 'Times New Roman', serif; color: var(--ink); line-height: 1.25; }
+  img { max-width: 100%; }
+  a { color: inherit; }
+  .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+  /* ===== Header ===== */
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(14, 26, 43, 0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .nav {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 72px;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none;
+  }
+  .logo-mark {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: linear-gradient(135deg, var(--gold), #a8823a);
+    display: grid; place-items: center;
+    font-family: Georgia, serif; font-weight: bold; font-size: 20px; color: var(--navy);
+  }
+  .logo-text { color: #fff; font-family: Georgia, serif; font-size: 20px; letter-spacing: 2px; }
+  .logo-text small { display: block; font-family: 'Segoe UI', sans-serif; font-size: 10px; letter-spacing: 3px; color: var(--gold-light); text-transform: uppercase; }
+  nav ul { display: flex; gap: 32px; list-style: none; }
+  nav ul a {
+    color: rgba(255,255,255,0.85); text-decoration: none; font-size: 15px;
+    transition: color .2s;
+  }
+  nav ul a:hover { color: var(--gold-light); }
+  .nav-cta {
+    background: var(--gold); color: var(--navy) !important; font-weight: 600;
+    padding: 10px 22px; border-radius: 8px; transition: background .2s;
+  }
+  .nav-cta:hover { background: var(--gold-light); color: var(--navy); }
+  .burger { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+  .burger span { display: block; width: 24px; height: 2px; background: #fff; margin: 5px 0; transition: .3s; }
+
+  /* ===== Hero ===== */
+  .hero {
+    background:
+      radial-gradient(ellipse at 80% 20%, rgba(201,162,75,0.12), transparent 50%),
+      radial-gradient(ellipse at 10% 90%, rgba(27,47,77,0.9), transparent 60%),
+      linear-gradient(160deg, var(--navy) 0%, var(--navy-2) 60%, var(--navy-3) 100%);
+    color: #fff;
+    padding: 190px 0 130px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 56px 56px;
+    pointer-events: none;
+  }
+  .hero .container { position: relative; z-index: 1; }
+  .hero-badge {
+    display: inline-block; padding: 8px 18px; border: 1px solid rgba(201,162,75,0.5);
+    border-radius: 100px; color: var(--gold-light); font-size: 13px; letter-spacing: 2px;
+    text-transform: uppercase; margin-bottom: 28px;
+  }
+  .hero h1 {
+    color: #fff; font-size: clamp(34px, 5.5vw, 58px); max-width: 780px;
+    margin-bottom: 24px;
+  }
+  .hero h1 em { font-style: normal; color: var(--gold); }
+  .hero p.lead {
+    font-size: 19px; color: rgba(255,255,255,0.78); max-width: 640px; margin-bottom: 40px;
+  }
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 15px 34px; border-radius: 10px;
+    text-decoration: none; font-size: 16px; font-weight: 600;
+    transition: transform .15s, box-shadow .15s, background .2s;
+  }
+  .btn-gold { background: var(--gold); color: var(--navy); box-shadow: 0 8px 24px rgba(201,162,75,0.35); }
+  .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-ghost { border: 1px solid rgba(255,255,255,0.35); color: #fff; }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold-light); transform: translateY(-2px); }
+
+  .hero-stats {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    margin-top: 80px; max-width: 720px;
+  }
+  .stat { border-left: 2px solid var(--gold); padding-left: 20px; }
+  .stat b { display: block; font-size: 32px; font-family: Georgia, serif; color: #fff; }
+  .stat span { color: rgba(255,255,255,0.65); font-size: 14px; }
+
+  /* ===== Sections ===== */
+  section { padding: 96px 0; }
+  .section-tag {
+    color: var(--gold); font-size: 13px; letter-spacing: 3px; text-transform: uppercase;
+    font-weight: 600; display: block; margin-bottom: 14px;
+  }
+  .section-title { font-size: clamp(28px, 4vw, 40px); margin-bottom: 18px; }
+  .section-sub { max-width: 640px; font-size: 17px; color: var(--muted); margin-bottom: 56px; }
+
+  /* About */
+  .about-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 64px; align-items: center; }
+  .about-text p { margin-bottom: 18px; font-size: 17px; }
+  .about-card {
+    background: linear-gradient(160deg, var(--navy), var(--navy-3));
+    border-radius: var(--radius); padding: 44px; color: #fff;
+    box-shadow: 0 24px 60px rgba(14,26,43,0.25);
+  }
+  .about-card h3 { color: var(--gold-light); font-size: 22px; margin-bottom: 20px; }
+  .about-card ul { list-style: none; }
+  .about-card li {
+    padding: 13px 0 13px 34px; position: relative;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.85); font-size: 15.5px;
+  }
+  .about-card li:last-child { border-bottom: none; }
+  .about-card li::before {
+    content: "✓"; position: absolute; left: 0; top: 12px;
+    color: var(--gold); font-weight: bold;
+  }
+
+  /* Services */
+  .bg-soft { background: var(--bg-soft); }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .card {
+    background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 36px 30px; transition: transform .2s, box-shadow .2s;
+  }
+  .card:hover { transform: translateY(-6px); box-shadow: 0 18px 44px rgba(14,26,43,0.10); }
+  .card-icon {
+    width: 56px; height: 56px; border-radius: 14px;
+    background: linear-gradient(135deg, rgba(201,162,75,0.15), rgba(201,162,75,0.28));
+    display: grid; place-items: center; font-size: 26px; margin-bottom: 22px;
+  }
+  .card h3 { font-size: 20px; margin-bottom: 12px; }
+  .card p { font-size: 15.5px; color: var(--muted); }
+
+  /* Process */
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; counter-reset: step; }
+  .step { position: relative; padding-top: 8px; }
+  .step-num {
+    font-family: Georgia, serif; font-size: 54px; color: transparent;
+    -webkit-text-stroke: 1.5px var(--gold); line-height: 1; margin-bottom: 16px;
+  }
+  .step h3 { font-size: 19px; margin-bottom: 10px; }
+  .step p { font-size: 15px; color: var(--muted); }
+
+  /* Why us */
+  .why { background: linear-gradient(160deg, var(--navy), var(--navy-2)); color: #fff; }
+  .why .section-title { color: #fff; }
+  .why .section-sub { color: rgba(255,255,255,0.7); }
+  .why-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .why-item {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10);
+    border-radius: var(--radius); padding: 30px;
+  }
+  .why-item h3 { color: var(--gold-light); font-size: 19px; margin-bottom: 10px; }
+  .why-item p { color: rgba(255,255,255,0.75); font-size: 15.5px; }
+
+  /* Contact */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px; }
+  .contact-info h3 { font-size: 22px; margin-bottom: 18px; }
+  .contact-info p { color: var(--muted); margin-bottom: 28px; }
+  .contact-line {
+    display: flex; align-items: center; gap: 14px; margin-bottom: 18px; font-size: 16px;
+  }
+  .contact-line .ci {
+    width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
+    background: rgba(201,162,75,0.15); display: grid; place-items: center; font-size: 20px;
+  }
+  .contact-line a { color: var(--ink); text-decoration: none; font-weight: 600; }
+  .contact-line a:hover { color: var(--gold); }
+  form {
+    background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 40px; box-shadow: 0 14px 40px rgba(14,26,43,0.07);
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  label { display: block; font-size: 14px; font-weight: 600; color: var(--ink); margin: 0 0 6px; }
+  input, textarea {
+    width: 100%; padding: 13px 16px; border: 1px solid var(--border); border-radius: 10px;
+    font-family: inherit; font-size: 15px; color: var(--ink); background: var(--bg-soft);
+    margin-bottom: 20px; transition: border-color .2s;
+  }
+  input:focus, textarea:focus { outline: none; border-color: var(--gold); background: #fff; }
+  textarea { min-height: 130px; resize: vertical; }
+  .form-note { font-size: 13px; color: var(--muted); margin-top: 14px; }
+
+  /* Footer */
+  footer { background: var(--navy); color: rgba(255,255,255,0.6); padding: 40px 0; font-size: 14px; }
+  .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  footer a { color: var(--gold-light); text-decoration: none; }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 900px) {
+    .cards, .steps, .why-grid { grid-template-columns: repeat(2, 1fr); }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    nav ul {
+      position: fixed; top: 72px; right: -100%; width: min(320px, 80vw); height: calc(100vh - 72px);
+      background: var(--navy-2); flex-direction: column; padding: 32px; gap: 8px;
+      transition: right .3s; border-left: 1px solid rgba(255,255,255,0.1);
+    }
+    nav ul.open { right: 0; }
+    nav ul a { display: block; padding: 12px 0; font-size: 17px; }
+    .nav-cta { text-align: center; margin-top: 12px; }
+    .burger { display: block; }
+  }
+  @media (max-width: 560px) {
+    .cards, .steps, .why-grid, .form-row, .hero-stats { grid-template-columns: 1fr; }
+    section { padding: 72px 0; }
+    .hero { padding: 150px 0 90px; }
+    form { padding: 28px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a class="logo" href="#top">
+      <span class="logo-mark">К</span>
+      <span class="logo-text">КОНСУЛТ<small>Решения &amp; Резултати</small></span>
+    </a>
+    <nav>
+      <button class="burger" id="burger" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+      <ul id="menu">
+        <li><a href="#about">За нас</a></li>
+        <li><a href="#services">Услуги</a></li>
+        <li><a href="#process">Как работим</a></li>
+        <li><a href="#why">Защо ние</a></li>
+        <li><a class="nav-cta" href="#contact">Свържете се</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="top">
+  <div class="container">
+    <span class="hero-badge">Консултантска фирма · Решаване на проблеми</span>
+    <h1>Вашият проблем има решение. <em>Ние го намираме.</em></h1>
+    <p class="lead">
+      Консултираме, анализираме и се ангажираме с разрешаването на вашия казус —
+      с подкрепата на мрежа от доказани специалисти и професионалисти в множество сфери.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-gold" href="#contact">Запитване сега</a>
+      <a class="btn btn-ghost" href="#services">Нашите услуги</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><b>Мрежа</b><span>от специалисти във всяка сфера</span></div>
+      <div class="stat"><b>Правна</b><span>експертиза по всеки казус</span></div>
+      <div class="stat"><b>Резултат</b><span>ангажираме се докрай</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <div class="container">
+    <span class="section-tag">За нас</span>
+    <h2 class="section-title">Партньорът, на когото разчитате, когато залогът е висок</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          Ние сме консултантска фирма, специализирана в <strong>решаването на проблеми</strong>.
+          Каквото и предизвикателство да стои пред вас — правно, бизнес или личностно —
+          нашата задача е да намерим верния път към целта.
+        </p>
+        <p>
+          Разполагаме с множество контакти със <strong>специалисти и професионалисти</strong>
+          в най-различни области. Това ни позволява за всеки казус да съберем точния екип
+          от експерти, който ситуацията изисква.
+        </p>
+        <p>
+          Консултираме в <strong>правен характер</strong> и, в зависимост от случая,
+          <strong>се ангажираме лично с разрешаването на проблема</strong> — от първия анализ
+          до постигнатия резултат.
+        </p>
+      </div>
+      <div class="about-card">
+        <h3>Клиентите се обръщат към нас, за да са сигурни, че:</h3>
+        <ul>
+          <li>целите, които са си поставили, ще бъдат постигнати</li>
+          <li>казусът им е в ръцете на точните специалисти</li>
+          <li>получават ясна правна оценка на ситуацията</li>
+          <li>има кой да поеме ангажимент за резултата</li>
+          <li>дискретността и доверието са гарантирани</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section class="bg-soft" id="services">
+  <div class="container">
+    <span class="section-tag">Услуги</span>
+    <h2 class="section-title">С какво можем да ви бъдем полезни</h2>
+    <p class="section-sub">
+      Подходът ни е индивидуален — всеки казус е различен и изисква различна комбинация
+      от експертиза, контакти и действия.
+    </p>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">⚖️</div>
+        <h3>Правни консултации</h3>
+        <p>
+          Анализ на вашата ситуация от правна гледна точка. Ясна оценка на рисковете,
+          възможностите и правилните стъпки напред.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🧩</div>
+        <h3>Решаване на проблеми</h3>
+        <p>
+          Когато случаят го изисква, поемаме ангажимент не само да консултираме,
+          а активно да работим по разрешаването на проблема до краен резултат.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🤝</div>
+        <h3>Мрежа от специалисти</h3>
+        <p>
+          Свързваме ви с доказани професионалисти в множество сфери — точният експерт
+          за точната задача, когато ви е необходим.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🧭</div>
+        <h3>Стратегическо консултиране</h3>
+        <p>
+          Помагаме ви да дефинирате целите си и изграждаме план, който води до
+          резултатите, които сте си заложили.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🛡️</div>
+        <h3>Защита на интереси</h3>
+        <p>
+          Представляваме и отстояваме вашите интереси в преговори, спорове
+          и сложни ситуации, изискващи опит и дискретност.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📋</div>
+        <h3>Цялостно водене на казус</h3>
+        <p>
+          От първоначалния анализ до финалното решение — координираме всички
+          участници и държим вие да сте информирани на всяка стъпка.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROCESS ===== -->
+<section id="process">
+  <div class="container">
+    <span class="section-tag">Как работим</span>
+    <h2 class="section-title">Четири стъпки до резултата</h2>
+    <p class="section-sub">
+      Ясен процес, без излишни обещания — само реална оценка и последователни действия.
+    </p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>Изслушваме ви</h3>
+        <p>Среща или разговор, в който разбираме в детайл вашия проблем и целите, които искате да постигнете.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>Анализираме казуса</h3>
+        <p>Оценяваме ситуацията, включително от правна гледна точка, и определяме реалистичните възможности.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>Събираме екипа</h3>
+        <p>Ангажираме точните специалисти от нашата мрежа от професионалисти, съобразно спецификата на случая.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h3>Постигаме резултат</h3>
+        <p>Работим по разрешаването на проблема и ви държим информирани, докато целта не бъде постигната.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHY US ===== -->
+<section class="why" id="why">
+  <div class="container">
+    <span class="section-tag">Защо ние</span>
+    <h2 class="section-title">Сигурност, че ще стигнете до целта</h2>
+    <p class="section-sub">
+      Клиентите ни избират, защото при нас консултацията не свършва със съвет —
+      тя продължава до резултат.
+    </p>
+    <div class="why-grid">
+      <div class="why-item">
+        <h3>Ангажимент към резултата</h3>
+        <p>Не просто даваме мнение — когато поемем казус, работим по него до неговото разрешаване.</p>
+      </div>
+      <div class="why-item">
+        <h3>Контакти, които отварят врати</h3>
+        <p>Дългогодишно изградена мрежа от специалисти и професионалисти в множество сфери.</p>
+      </div>
+      <div class="why-item">
+        <h3>Правна прецизност</h3>
+        <p>Всяко действие е стъпило на солиден правен анализ — знаете къде стоите във всеки момент.</p>
+      </div>
+      <div class="why-item">
+        <h3>Дискретност и доверие</h3>
+        <p>Вашият казус остава между нас. Работим с пълна конфиденциалност и лоялност към клиента.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+  <div class="container">
+    <span class="section-tag">Контакт</span>
+    <h2 class="section-title">Разкажете ни за вашия казус</h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>Първата консултация започва с един разговор</h3>
+        <p>
+          Свържете се с нас и опишете накратко ситуацията. Ще се върнем към вас
+          с първоначална оценка и предложение за следващи стъпки.
+        </p>
+        <div class="contact-line">
+          <span class="ci">✉️</span>
+          <a href="mailto:vstrenev@gmail.com">vstrenev@gmail.com</a>
+        </div>
+        <div class="contact-line">
+          <span class="ci">📞</span>
+          <a href="tel:+359000000000">+359 000 000 000</a>
+        </div>
+        <div class="contact-line">
+          <span class="ci">📍</span>
+          <span>София, България</span>
+        </div>
+      </div>
+      <form id="contact-form">
+        <div class="form-row">
+          <div>
+            <label for="name">Име</label>
+            <input type="text" id="name" name="name" placeholder="Вашето име" required>
+          </div>
+          <div>
+            <label for="phone">Телефон</label>
+            <input type="tel" id="phone" name="phone" placeholder="+359 ...">
+          </div>
+        </div>
+        <label for="email">Имейл</label>
+        <input type="email" id="email" name="email" placeholder="вашият@имейл.бг" required>
+        <label for="message">Опишете вашия казус</label>
+        <textarea id="message" name="message" placeholder="Разкажете ни накратко за проблема и целите, които искате да постигнете..." required></textarea>
+        <button type="submit" class="btn btn-gold" style="border:none; cursor:pointer; width:100%;">Изпратете запитване</button>
+        <p class="form-note">Всички запитвания се третират строго конфиденциално.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-inner">
+    <span>© <span id="year"></span> КОНСУЛТ. Всички права запазени.</span>
+    <span>Решаваме проблеми. Постигаме резултати. · <a href="mailto:vstrenev@gmail.com">vstrenev@gmail.com</a></span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  var burger = document.getElementById('burger');
+  var menu = document.getElementById('menu');
+  burger.addEventListener('click', function () { menu.classList.toggle('open'); });
+  menu.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () { menu.classList.remove('open'); });
+  });
+
+  // Формата отваря имейл клиента с попълнените данни (сайтът е статичен, без сървър).
+  document.getElementById('contact-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name = document.getElementById('name').value;
+    var phone = document.getElementById('phone').value;
+    var email = document.getElementById('email').value;
+    var message = document.getElementById('message').value;
+    var body = 'Име: ' + name + '\nТелефон: ' + phone + '\nИмейл: ' + email + '\n\nКазус:\n' + message;
+    window.location.href = 'mailto:vstrenev@gmail.com'
+      + '?subject=' + encodeURIComponent('Запитване от сайта — ' + name)
+      + '&body=' + encodeURIComponent(body);
+  });
+</script>
+
+</body>
+</html>
