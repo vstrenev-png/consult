@@ -3,21 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>КОНСУЛТ — Решаваме проблеми. Постигаме резултати.</title>
-<meta name="description" content="Консултантска фирма в сферата на решаването на проблеми. Правни консултации, мрежа от специалисти и ангажимент към резултата.">
+<title>Лицензиран преводач — арабски ↔ български | Официални преводи и легализация</title>
+<meta name="description" content="Лицензиран преводач с арабски и български език. Официални преводи на документи, легализация, устни преводи при нотариус, в съда и на бизнес срещи. София, България.">
 <style>
   :root {
-    --navy: #0e1a2b;
-    --navy-2: #14233a;
-    --navy-3: #1b2f4d;
-    --gold: #c9a24b;
-    --gold-light: #e0c583;
-    --ink: #1c2430;
-    --text: #3d4a5c;
-    --muted: #7b8794;
+    --teal: #0b3d3a;
+    --teal-2: #0f4f4a;
+    --teal-3: #14615b;
+    --sand: #c8a45d;
+    --sand-light: #e2c990;
+    --ink: #17262a;
+    --text: #3c4b50;
+    --muted: #75858b;
     --bg: #ffffff;
-    --bg-soft: #f5f7fa;
-    --border: #e3e8ee;
+    --bg-soft: #f4f8f7;
+    --border: #e0e9e7;
     --radius: 14px;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -32,12 +32,13 @@
   h1, h2, h3, h4 { font-family: Georgia, 'Times New Roman', serif; color: var(--ink); line-height: 1.25; }
   img { max-width: 100%; }
   a { color: inherit; }
+  .ar { font-family: 'Segoe UI', Tahoma, 'Traditional Arabic', serif; }
   .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
 
   /* ===== Header ===== */
   header {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(14, 26, 43, 0.92);
+    background: rgba(11, 61, 58, 0.93);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(255,255,255,0.08);
   }
@@ -50,60 +51,64 @@
     text-decoration: none;
   }
   .logo-mark {
-    width: 40px; height: 40px; border-radius: 10px;
-    background: linear-gradient(135deg, var(--gold), #a8823a);
+    width: 42px; height: 42px; border-radius: 10px;
+    background: linear-gradient(135deg, var(--sand), #a9843e);
     display: grid; place-items: center;
-    font-family: Georgia, serif; font-weight: bold; font-size: 20px; color: var(--navy);
+    font-size: 19px; color: var(--teal); font-weight: bold;
   }
-  .logo-text { color: #fff; font-family: Georgia, serif; font-size: 20px; letter-spacing: 2px; }
-  .logo-text small { display: block; font-family: 'Segoe UI', sans-serif; font-size: 10px; letter-spacing: 3px; color: var(--gold-light); text-transform: uppercase; }
-  nav ul { display: flex; gap: 32px; list-style: none; }
+  .logo-text { color: #fff; font-family: Georgia, serif; font-size: 18px; letter-spacing: 1px; }
+  .logo-text small { display: block; font-family: 'Segoe UI', sans-serif; font-size: 10px; letter-spacing: 2.5px; color: var(--sand-light); text-transform: uppercase; }
+  nav ul { display: flex; gap: 30px; list-style: none; }
   nav ul a {
     color: rgba(255,255,255,0.85); text-decoration: none; font-size: 15px;
     transition: color .2s;
   }
-  nav ul a:hover { color: var(--gold-light); }
+  nav ul a:hover { color: var(--sand-light); }
   .nav-cta {
-    background: var(--gold); color: var(--navy) !important; font-weight: 600;
+    background: var(--sand); color: var(--teal) !important; font-weight: 600;
     padding: 10px 22px; border-radius: 8px; transition: background .2s;
   }
-  .nav-cta:hover { background: var(--gold-light); color: var(--navy); }
+  .nav-cta:hover { background: var(--sand-light); color: var(--teal); }
   .burger { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
   .burger span { display: block; width: 24px; height: 2px; background: #fff; margin: 5px 0; transition: .3s; }
 
   /* ===== Hero ===== */
   .hero {
     background:
-      radial-gradient(ellipse at 80% 20%, rgba(201,162,75,0.12), transparent 50%),
-      radial-gradient(ellipse at 10% 90%, rgba(27,47,77,0.9), transparent 60%),
-      linear-gradient(160deg, var(--navy) 0%, var(--navy-2) 60%, var(--navy-3) 100%);
+      radial-gradient(ellipse at 82% 15%, rgba(200,164,93,0.14), transparent 50%),
+      radial-gradient(ellipse at 8% 90%, rgba(20,97,91,0.9), transparent 60%),
+      linear-gradient(160deg, var(--teal) 0%, var(--teal-2) 60%, var(--teal-3) 100%);
     color: #fff;
     padding: 190px 0 130px;
     position: relative;
     overflow: hidden;
   }
+  /* Фина „арабеска" — осмоъгълна геометрична шарка */
   .hero::after {
     content: "";
     position: absolute; inset: 0;
     background-image:
-      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-    background-size: 56px 56px;
+      repeating-linear-gradient(45deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 28px),
+      repeating-linear-gradient(-45deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 28px);
     pointer-events: none;
   }
   .hero .container { position: relative; z-index: 1; }
   .hero-badge {
-    display: inline-block; padding: 8px 18px; border: 1px solid rgba(201,162,75,0.5);
-    border-radius: 100px; color: var(--gold-light); font-size: 13px; letter-spacing: 2px;
+    display: inline-block; padding: 8px 18px; border: 1px solid rgba(200,164,93,0.5);
+    border-radius: 100px; color: var(--sand-light); font-size: 13px; letter-spacing: 2px;
     text-transform: uppercase; margin-bottom: 28px;
   }
   .hero h1 {
-    color: #fff; font-size: clamp(34px, 5.5vw, 58px); max-width: 780px;
-    margin-bottom: 24px;
+    color: #fff; font-size: clamp(32px, 5.2vw, 54px); max-width: 800px;
+    margin-bottom: 10px;
   }
-  .hero h1 em { font-style: normal; color: var(--gold); }
+  .hero h1 em { font-style: normal; color: var(--sand); }
+  .hero .hero-ar {
+    font-size: clamp(20px, 3vw, 30px); color: var(--sand-light);
+    margin-bottom: 26px; opacity: .95;
+  }
   .hero p.lead {
-    font-size: 19px; color: rgba(255,255,255,0.78); max-width: 640px; margin-bottom: 40px;
+    font-size: 19px; color: rgba(255,255,255,0.78); max-width: 660px; margin-bottom: 40px;
   }
   .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
   .btn {
@@ -111,37 +116,37 @@
     text-decoration: none; font-size: 16px; font-weight: 600;
     transition: transform .15s, box-shadow .15s, background .2s;
   }
-  .btn-gold { background: var(--gold); color: var(--navy); box-shadow: 0 8px 24px rgba(201,162,75,0.35); }
-  .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-sand { background: var(--sand); color: var(--teal); box-shadow: 0 8px 24px rgba(200,164,93,0.35); }
+  .btn-sand:hover { background: var(--sand-light); transform: translateY(-2px); }
   .btn-ghost { border: 1px solid rgba(255,255,255,0.35); color: #fff; }
-  .btn-ghost:hover { border-color: var(--gold); color: var(--gold-light); transform: translateY(-2px); }
+  .btn-ghost:hover { border-color: var(--sand); color: var(--sand-light); transform: translateY(-2px); }
 
   .hero-stats {
     display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
-    margin-top: 80px; max-width: 720px;
+    margin-top: 76px; max-width: 760px;
   }
-  .stat { border-left: 2px solid var(--gold); padding-left: 20px; }
-  .stat b { display: block; font-size: 32px; font-family: Georgia, serif; color: #fff; }
+  .stat { border-left: 2px solid var(--sand); padding-left: 20px; }
+  .stat b { display: block; font-size: 26px; font-family: Georgia, serif; color: #fff; }
   .stat span { color: rgba(255,255,255,0.65); font-size: 14px; }
 
   /* ===== Sections ===== */
   section { padding: 96px 0; }
   .section-tag {
-    color: var(--gold); font-size: 13px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--sand); font-size: 13px; letter-spacing: 3px; text-transform: uppercase;
     font-weight: 600; display: block; margin-bottom: 14px;
   }
   .section-title { font-size: clamp(28px, 4vw, 40px); margin-bottom: 18px; }
-  .section-sub { max-width: 640px; font-size: 17px; color: var(--muted); margin-bottom: 56px; }
+  .section-sub { max-width: 660px; font-size: 17px; color: var(--muted); margin-bottom: 56px; }
 
   /* About */
   .about-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 64px; align-items: center; }
   .about-text p { margin-bottom: 18px; font-size: 17px; }
   .about-card {
-    background: linear-gradient(160deg, var(--navy), var(--navy-3));
+    background: linear-gradient(160deg, var(--teal), var(--teal-3));
     border-radius: var(--radius); padding: 44px; color: #fff;
-    box-shadow: 0 24px 60px rgba(14,26,43,0.25);
+    box-shadow: 0 24px 60px rgba(11,61,58,0.25);
   }
-  .about-card h3 { color: var(--gold-light); font-size: 22px; margin-bottom: 20px; }
+  .about-card h3 { color: var(--sand-light); font-size: 22px; margin-bottom: 20px; }
   .about-card ul { list-style: none; }
   .about-card li {
     padding: 13px 0 13px 34px; position: relative;
@@ -151,7 +156,7 @@
   .about-card li:last-child { border-bottom: none; }
   .about-card li::before {
     content: "✓"; position: absolute; left: 0; top: 12px;
-    color: var(--gold); font-weight: bold;
+    color: var(--sand); font-weight: bold;
   }
 
   /* Services */
@@ -161,27 +166,36 @@
     background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
     padding: 36px 30px; transition: transform .2s, box-shadow .2s;
   }
-  .card:hover { transform: translateY(-6px); box-shadow: 0 18px 44px rgba(14,26,43,0.10); }
+  .card:hover { transform: translateY(-6px); box-shadow: 0 18px 44px rgba(11,61,58,0.10); }
   .card-icon {
     width: 56px; height: 56px; border-radius: 14px;
-    background: linear-gradient(135deg, rgba(201,162,75,0.15), rgba(201,162,75,0.28));
+    background: linear-gradient(135deg, rgba(200,164,93,0.15), rgba(200,164,93,0.28));
     display: grid; place-items: center; font-size: 26px; margin-bottom: 22px;
   }
   .card h3 { font-size: 20px; margin-bottom: 12px; }
   .card p { font-size: 15.5px; color: var(--muted); }
+
+  /* Documents */
+  .docs-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .doc {
+    background: #fff; border: 1px solid var(--border); border-radius: 12px;
+    padding: 18px 20px; font-size: 15px; color: var(--ink);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .doc::before { content: "📄"; font-size: 18px; }
 
   /* Process */
   .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; counter-reset: step; }
   .step { position: relative; padding-top: 8px; }
   .step-num {
     font-family: Georgia, serif; font-size: 54px; color: transparent;
-    -webkit-text-stroke: 1.5px var(--gold); line-height: 1; margin-bottom: 16px;
+    -webkit-text-stroke: 1.5px var(--sand); line-height: 1; margin-bottom: 16px;
   }
   .step h3 { font-size: 19px; margin-bottom: 10px; }
   .step p { font-size: 15px; color: var(--muted); }
 
-  /* Why us */
-  .why { background: linear-gradient(160deg, var(--navy), var(--navy-2)); color: #fff; }
+  /* Why */
+  .why { background: linear-gradient(160deg, var(--teal), var(--teal-2)); color: #fff; }
   .why .section-title { color: #fff; }
   .why .section-sub { color: rgba(255,255,255,0.7); }
   .why-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
@@ -189,7 +203,7 @@
     background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10);
     border-radius: var(--radius); padding: 30px;
   }
-  .why-item h3 { color: var(--gold-light); font-size: 19px; margin-bottom: 10px; }
+  .why-item h3 { color: var(--sand-light); font-size: 19px; margin-bottom: 10px; }
   .why-item p { color: rgba(255,255,255,0.75); font-size: 15.5px; }
 
   /* Contact */
@@ -201,37 +215,38 @@
   }
   .contact-line .ci {
     width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
-    background: rgba(201,162,75,0.15); display: grid; place-items: center; font-size: 20px;
+    background: rgba(200,164,93,0.15); display: grid; place-items: center; font-size: 20px;
   }
   .contact-line a { color: var(--ink); text-decoration: none; font-weight: 600; }
-  .contact-line a:hover { color: var(--gold); }
+  .contact-line a:hover { color: var(--sand); }
   form {
     background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 40px; box-shadow: 0 14px 40px rgba(14,26,43,0.07);
+    padding: 40px; box-shadow: 0 14px 40px rgba(11,61,58,0.07);
   }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
   label { display: block; font-size: 14px; font-weight: 600; color: var(--ink); margin: 0 0 6px; }
-  input, textarea {
+  input, textarea, select {
     width: 100%; padding: 13px 16px; border: 1px solid var(--border); border-radius: 10px;
     font-family: inherit; font-size: 15px; color: var(--ink); background: var(--bg-soft);
     margin-bottom: 20px; transition: border-color .2s;
   }
-  input:focus, textarea:focus { outline: none; border-color: var(--gold); background: #fff; }
+  input:focus, textarea:focus, select:focus { outline: none; border-color: var(--sand); background: #fff; }
   textarea { min-height: 130px; resize: vertical; }
   .form-note { font-size: 13px; color: var(--muted); margin-top: 14px; }
 
   /* Footer */
-  footer { background: var(--navy); color: rgba(255,255,255,0.6); padding: 40px 0; font-size: 14px; }
+  footer { background: var(--teal); color: rgba(255,255,255,0.6); padding: 40px 0; font-size: 14px; }
   .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
-  footer a { color: var(--gold-light); text-decoration: none; }
+  footer a { color: var(--sand-light); text-decoration: none; }
 
   /* ===== Responsive ===== */
   @media (max-width: 900px) {
     .cards, .steps, .why-grid { grid-template-columns: repeat(2, 1fr); }
+    .docs-grid { grid-template-columns: repeat(2, 1fr); }
     .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
     nav ul {
       position: fixed; top: 72px; right: -100%; width: min(320px, 80vw); height: calc(100vh - 72px);
-      background: var(--navy-2); flex-direction: column; padding: 32px; gap: 8px;
+      background: var(--teal-2); flex-direction: column; padding: 32px; gap: 8px;
       transition: right .3s; border-left: 1px solid rgba(255,255,255,0.1);
     }
     nav ul.open { right: 0; }
@@ -240,7 +255,7 @@
     .burger { display: block; }
   }
   @media (max-width: 560px) {
-    .cards, .steps, .why-grid, .form-row, .hero-stats { grid-template-columns: 1fr; }
+    .cards, .steps, .why-grid, .form-row, .hero-stats, .docs-grid { grid-template-columns: 1fr; }
     section { padding: 72px 0; }
     .hero { padding: 150px 0 90px; }
     form { padding: 28px 22px; }
@@ -252,19 +267,20 @@
 <header>
   <div class="container nav">
     <a class="logo" href="#top">
-      <span class="logo-mark">К</span>
-      <span class="logo-text">КОНСУЛТ<small>Решения &amp; Резултати</small></span>
+      <span class="logo-mark ar">ع</span>
+      <span class="logo-text">АРАБСКИ ↔ БЪЛГАРСКИ<small>Лицензиран преводач</small></span>
     </a>
     <nav>
       <button class="burger" id="burger" aria-label="Меню">
         <span></span><span></span><span></span>
       </button>
       <ul id="menu">
-        <li><a href="#about">За нас</a></li>
+        <li><a href="#about">За мен</a></li>
         <li><a href="#services">Услуги</a></li>
-        <li><a href="#process">Как работим</a></li>
-        <li><a href="#why">Защо ние</a></li>
-        <li><a class="nav-cta" href="#contact">Свържете се</a></li>
+        <li><a href="#documents">Документи</a></li>
+        <li><a href="#process">Как се работи</a></li>
+        <li><a href="#why">Защо аз</a></li>
+        <li><a class="nav-cta" href="#contact">Запитване</a></li>
       </ul>
     </nav>
   </div>
@@ -273,20 +289,22 @@
 <!-- ===== HERO ===== -->
 <section class="hero" id="top">
   <div class="container">
-    <span class="hero-badge">Консултантска фирма · Решаване на проблеми</span>
-    <h1>Вашият проблем има решение. <em>Ние го намираме.</em></h1>
+    <span class="hero-badge">Лицензиран преводач · Официални преводи и легализация</span>
+    <h1>Преводи от <em>арабски</em> на <em>български</em> — и обратно</h1>
+    <div class="hero-ar ar" lang="ar" dir="rtl">ترجمة محلّفة من العربية إلى البلغارية وبالعكس</div>
     <p class="lead">
-      Консултираме, анализираме и се ангажираме с разрешаването на вашия казус —
-      с подкрепата на мрежа от доказани специалисти и професионалисти в множество сфери.
+      Лицензиран преводач с арабски и български език. Извършвам официални преводи на
+      документи, преводи за легализация и устни преводи — при нотариус, в съда,
+      пред институции и на бизнес срещи.
     </p>
     <div class="hero-actions">
-      <a class="btn btn-gold" href="#contact">Запитване сега</a>
-      <a class="btn btn-ghost" href="#services">Нашите услуги</a>
+      <a class="btn btn-sand" href="#contact">Изпратете документ за оферта</a>
+      <a class="btn btn-ghost" href="#services">Вижте услугите</a>
     </div>
     <div class="hero-stats">
-      <div class="stat"><b>Мрежа</b><span>от специалисти във всяка сфера</span></div>
-      <div class="stat"><b>Правна</b><span>експертиза по всеки казус</span></div>
-      <div class="stat"><b>Резултат</b><span>ангажираме се докрай</span></div>
+      <div class="stat"><b>Официални</b><span>преводи с подпис на лицензиран преводач</span></div>
+      <div class="stat"><b>Устни</b><span>преводи при нотариус, в съда и на срещи</span></div>
+      <div class="stat"><b>Експресни</b><span>срокове при спешни случаи</span></div>
     </div>
   </div>
 </section>
@@ -294,34 +312,34 @@
 <!-- ===== ABOUT ===== -->
 <section id="about">
   <div class="container">
-    <span class="section-tag">За нас</span>
-    <h2 class="section-title">Партньорът, на когото разчитате, когато залогът е висок</h2>
+    <span class="section-tag">За мен</span>
+    <h2 class="section-title">Преводач, на когото институциите и клиентите се доверяват</h2>
     <div class="about-grid">
       <div class="about-text">
         <p>
-          Ние сме консултантска фирма, специализирана в <strong>решаването на проблеми</strong>.
-          Каквото и предизвикателство да стои пред вас — правно, бизнес или личностно —
-          нашата задача е да намерим верния път към целта.
+          Аз съм <strong>лицензиран преводач с арабски и български език</strong> с дългогодишен
+          опит в писмени и устни преводи. Работя с частни клиенти, фирми, адвокатски кантори,
+          нотариуси и държавни институции.
         </p>
         <p>
-          Разполагаме с множество контакти със <strong>специалисти и професионалисти</strong>
-          в най-различни области. Това ни позволява за всеки казус да съберем точния екип
-          от експерти, който ситуацията изисква.
+          Извършвам <strong>официални преводи</strong> на документи, предназначени за българските
+          институции и за държавите от арабския свят — включително преводи, подлежащи на
+          <strong>легализация и заверка</strong>.
         </p>
         <p>
-          Консултираме в <strong>правен характер</strong> и, в зависимост от случая,
-          <strong>се ангажираме лично с разрешаването на проблема</strong> — от първия анализ
-          до постигнатия резултат.
+          Владея книжовния арабски език и съм запознат с диалектните и правните особености
+          на арабските държави — гаранция, че преводът е не само точен, а и
+          <strong>приет без проблеми от институцията</strong>, за която е предназначен.
         </p>
       </div>
       <div class="about-card">
-        <h3>Клиентите се обръщат към нас, за да са сигурни, че:</h3>
+        <h3>Какво получавате при работа с мен:</h3>
         <ul>
-          <li>целите, които са си поставили, ще бъдат постигнати</li>
-          <li>казусът им е в ръцете на точните специалисти</li>
-          <li>получават ясна правна оценка на ситуацията</li>
-          <li>има кой да поеме ангажимент за резултата</li>
-          <li>дискретността и доверието са гарантирани</li>
+          <li>превод, заверен с подпис на лицензиран преводач</li>
+          <li>точност и терминологична прецизност на всеки документ</li>
+          <li>съдействие за легализация и заверки при нужда</li>
+          <li>спазени срокове — включително експресни поръчки</li>
+          <li>пълна конфиденциалност на личните ви данни и документи</li>
         </ul>
       </div>
     </div>
@@ -332,122 +350,149 @@
 <section class="bg-soft" id="services">
   <div class="container">
     <span class="section-tag">Услуги</span>
-    <h2 class="section-title">С какво можем да ви бъдем полезни</h2>
+    <h2 class="section-title">Писмени и устни преводи за всяка нужда</h2>
     <p class="section-sub">
-      Подходът ни е индивидуален — всеки казус е различен и изисква различна комбинация
-      от експертиза, контакти и действия.
+      Всяка поръчка се оценява индивидуално — според вида на документа, обема,
+      сложността и срока, в който ви е необходим преводът.
     </p>
     <div class="cards">
       <div class="card">
+        <div class="card-icon">📜</div>
+        <h3>Официални преводи на документи</h3>
+        <p>
+          Преводи на лични и фирмени документи с подпис на лицензиран преводач —
+          валидни пред българските институции и в чужбина.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏛️</div>
+        <h3>Легализация и заверки</h3>
+        <p>
+          Пълно съдействие при легализация на документи — превод, заверки и
+          подготовка за представяне пред институциите на България и арабските държави.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🗣️</div>
+        <h3>Устни преводи</h3>
+        <p>
+          Превод при нотариус, в съда, пред държавни органи, при сключване на брак,
+          на бизнес срещи и преговори — по предварителна уговорка.
+        </p>
+      </div>
+      <div class="card">
         <div class="card-icon">⚖️</div>
-        <h3>Правни консултации</h3>
+        <h3>Юридически преводи</h3>
         <p>
-          Анализ на вашата ситуация от правна гледна точка. Ясна оценка на рисковете,
-          възможностите и правилните стъпки напред.
+          Договори, пълномощни, съдебни решения, учредителни документи —
+          с прецизна правна терминология и на двата езика.
         </p>
       </div>
       <div class="card">
-        <div class="card-icon">🧩</div>
-        <h3>Решаване на проблеми</h3>
+        <div class="card-icon">🩺</div>
+        <h3>Специализирани преводи</h3>
         <p>
-          Когато случаят го изисква, поемаме ангажимент не само да консултираме,
-          а активно да работим по разрешаването на проблема до краен резултат.
+          Медицински документи, техническа документация, епикризи, сертификати —
+          преводи, изискващи специализирана терминология.
         </p>
       </div>
       <div class="card">
-        <div class="card-icon">🤝</div>
-        <h3>Мрежа от специалисти</h3>
+        <div class="card-icon">✉️</div>
+        <h3>Бизнес кореспонденция</h3>
         <p>
-          Свързваме ви с доказани професионалисти в множество сфери — точният експерт
-          за точната задача, когато ви е необходим.
+          Преводи на фирмена кореспонденция, оферти и документи за партньори
+          от арабския свят — бързо и с усет към културните особености.
         </p>
       </div>
-      <div class="card">
-        <div class="card-icon">🧭</div>
-        <h3>Стратегическо консултиране</h3>
-        <p>
-          Помагаме ви да дефинирате целите си и изграждаме план, който води до
-          резултатите, които сте си заложили.
-        </p>
-      </div>
-      <div class="card">
-        <div class="card-icon">🛡️</div>
-        <h3>Защита на интереси</h3>
-        <p>
-          Представляваме и отстояваме вашите интереси в преговори, спорове
-          и сложни ситуации, изискващи опит и дискретност.
-        </p>
-      </div>
-      <div class="card">
-        <div class="card-icon">📋</div>
-        <h3>Цялостно водене на казус</h3>
-        <p>
-          От първоначалния анализ до финалното решение — координираме всички
-          участници и държим вие да сте информирани на всяка стъпка.
-        </p>
-      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DOCUMENTS ===== -->
+<section id="documents">
+  <div class="container">
+    <span class="section-tag">Документи</span>
+    <h2 class="section-title">Най-често превеждани документи</h2>
+    <p class="section-sub">
+      Ако вашият документ не е в списъка — свържете се с мен. Работя с всякакви
+      лични, фирмени и официални документи.
+    </p>
+    <div class="docs-grid">
+      <div class="doc">Удостоверение за раждане</div>
+      <div class="doc">Удостоверение за брак</div>
+      <div class="doc">Дипломи и приложения</div>
+      <div class="doc">Академични справки</div>
+      <div class="doc">Свидетелство за съдимост</div>
+      <div class="doc">Шофьорска книжка</div>
+      <div class="doc">Пълномощни и декларации</div>
+      <div class="doc">Договори и споразумения</div>
+      <div class="doc">Съдебни решения</div>
+      <div class="doc">Медицински документи</div>
+      <div class="doc">Банкови и финансови документи</div>
+      <div class="doc">Фирмени и учредителни документи</div>
     </div>
   </div>
 </section>
 
 <!-- ===== PROCESS ===== -->
-<section id="process">
+<section class="bg-soft" id="process">
   <div class="container">
-    <span class="section-tag">Как работим</span>
-    <h2 class="section-title">Четири стъпки до резултата</h2>
+    <span class="section-tag">Как се работи</span>
+    <h2 class="section-title">Четири лесни стъпки до готовия превод</h2>
     <p class="section-sub">
-      Ясен процес, без излишни обещания — само реална оценка и последователни действия.
+      Не е необходимо да идвате на място — целият процес може да мине онлайн,
+      а готовите документи получавате по куриер или на място по уговорка.
     </p>
     <div class="steps">
       <div class="step">
         <div class="step-num">01</div>
-        <h3>Изслушваме ви</h3>
-        <p>Среща или разговор, в който разбираме в детайл вашия проблем и целите, които искате да постигнете.</p>
+        <h3>Изпращате документа</h3>
+        <p>Снимка или сканирано копие по имейл или чрез формата за запитване — достатъчно е текстът да се чете ясно.</p>
       </div>
       <div class="step">
         <div class="step-num">02</div>
-        <h3>Анализираме казуса</h3>
-        <p>Оценяваме ситуацията, включително от правна гледна точка, и определяме реалистичните възможности.</p>
+        <h3>Получавате оферта</h3>
+        <p>Връщам се към вас с цена и срок според обема, сложността и това дали е нужна легализация.</p>
       </div>
       <div class="step">
         <div class="step-num">03</div>
-        <h3>Събираме екипа</h3>
-        <p>Ангажираме точните специалисти от нашата мрежа от професионалисти, съобразно спецификата на случая.</p>
+        <h3>Превеждам и заверявам</h3>
+        <p>Изготвям превода, заверявам го с подписа си на лицензиран преводач и при нужда съдействам за легализация.</p>
       </div>
       <div class="step">
         <div class="step-num">04</div>
-        <h3>Постигаме резултат</h3>
-        <p>Работим по разрешаването на проблема и ви държим информирани, докато целта не бъде постигната.</p>
+        <h3>Получавате превода</h3>
+        <p>На място, по куриер за цялата страна или по имейл — според вида на документа и вашето предпочитание.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== WHY US ===== -->
+<!-- ===== WHY ===== -->
 <section class="why" id="why">
   <div class="container">
-    <span class="section-tag">Защо ние</span>
-    <h2 class="section-title">Сигурност, че ще стигнете до целта</h2>
+    <span class="section-tag">Защо аз</span>
+    <h2 class="section-title">Преводът е отговорност — не само текст</h2>
     <p class="section-sub">
-      Клиентите ни избират, защото при нас консултацията не свършва със съвет —
-      тя продължава до резултат.
+      Един неточен превод може да ви върне от гишето на институцията.
+      Затова клиентите избират преводач, който гарантира резултата.
     </p>
     <div class="why-grid">
       <div class="why-item">
-        <h3>Ангажимент към резултата</h3>
-        <p>Не просто даваме мнение — когато поемем казус, работим по него до неговото разрешаване.</p>
+        <h3>Лицензиран преводач</h3>
+        <p>Преводите ми носят подпис на лицензиран преводач и се приемат от институциите в България и чужбина.</p>
       </div>
       <div class="why-item">
-        <h3>Контакти, които отварят врати</h3>
-        <p>Дългогодишно изградена мрежа от специалисти и професионалисти в множество сфери.</p>
+        <h3>Двете култури, двата езика</h3>
+        <p>Отлично владеене на книжовния арабски и българския език, познаване на правните и културните особености на арабските държави.</p>
       </div>
       <div class="why-item">
-        <h3>Правна прецизност</h3>
-        <p>Всяко действие е стъпило на солиден правен анализ — знаете къде стоите във всеки момент.</p>
+        <h3>Точни срокове</h3>
+        <p>Спазвам договорения срок без изключения, а при спешност предлагам експресна услуга.</p>
       </div>
       <div class="why-item">
-        <h3>Дискретност и доверие</h3>
-        <p>Вашият казус остава между нас. Работим с пълна конфиденциалност и лоялност към клиента.</p>
+        <h3>Дискретност</h3>
+        <p>Личните ви документи и данни остават строго поверителни — при всяка поръчка, без изключение.</p>
       </div>
     </div>
   </div>
@@ -457,13 +502,13 @@
 <section id="contact">
   <div class="container">
     <span class="section-tag">Контакт</span>
-    <h2 class="section-title">Разкажете ни за вашия казус</h2>
+    <h2 class="section-title">Изпратете документа — ще получите оферта</h2>
     <div class="contact-grid">
       <div class="contact-info">
-        <h3>Първата консултация започва с един разговор</h3>
+        <h3>Свържете се с мен по удобния за вас начин</h3>
         <p>
-          Свържете се с нас и опишете накратко ситуацията. Ще се върнем към вас
-          с първоначална оценка и предложение за следващи стъпки.
+          Опишете какво ви е необходимо — вид документ, за коя институция е предназначен
+          преводът и в какъв срок ви трябва. Ще ви отговоря с цена и срок за изпълнение.
         </p>
         <div class="contact-line">
           <span class="ci">✉️</span>
@@ -475,7 +520,7 @@
         </div>
         <div class="contact-line">
           <span class="ci">📍</span>
-          <span>София, България</span>
+          <span>София, България · работя с клиенти от цялата страна</span>
         </div>
       </div>
       <form id="contact-form">
@@ -491,10 +536,18 @@
         </div>
         <label for="email">Имейл</label>
         <input type="email" id="email" name="email" placeholder="вашият@имейл.бг" required>
-        <label for="message">Опишете вашия казус</label>
-        <textarea id="message" name="message" placeholder="Разкажете ни накратко за проблема и целите, които искате да постигнете..." required></textarea>
-        <button type="submit" class="btn btn-gold" style="border:none; cursor:pointer; width:100%;">Изпратете запитване</button>
-        <p class="form-note">Всички запитвания се третират строго конфиденциално.</p>
+        <label for="service">Каква услуга ви е необходима?</label>
+        <select id="service" name="service">
+          <option>Официален превод на документ</option>
+          <option>Превод с легализация</option>
+          <option>Устен превод (нотариус, съд, среща)</option>
+          <option>Специализиран превод</option>
+          <option>Друго / не съм сигурен</option>
+        </select>
+        <label for="message">Опишете поръчката</label>
+        <textarea id="message" name="message" placeholder="Вид документ, за коя институция е предназначен преводът, желан срок..." required></textarea>
+        <button type="submit" class="btn btn-sand" style="border:none; cursor:pointer; width:100%;">Изпратете запитване</button>
+        <p class="form-note">Документите и личните ви данни се третират строго конфиденциално.</p>
       </form>
     </div>
   </div>
@@ -502,8 +555,8 @@
 
 <footer>
   <div class="container footer-inner">
-    <span>© <span id="year"></span> КОНСУЛТ. Всички права запазени.</span>
-    <span>Решаваме проблеми. Постигаме резултати. · <a href="mailto:vstrenev@gmail.com">vstrenev@gmail.com</a></span>
+    <span>© <span id="year"></span> Лицензиран преводач — арабски ↔ български. Всички права запазени.</span>
+    <span><span class="ar" lang="ar" dir="rtl">العربية ↔ البلغارية</span> · <a href="mailto:vstrenev@gmail.com">vstrenev@gmail.com</a></span>
   </div>
 </footer>
 
@@ -523,10 +576,12 @@
     var name = document.getElementById('name').value;
     var phone = document.getElementById('phone').value;
     var email = document.getElementById('email').value;
+    var service = document.getElementById('service').value;
     var message = document.getElementById('message').value;
-    var body = 'Име: ' + name + '\nТелефон: ' + phone + '\nИмейл: ' + email + '\n\nКазус:\n' + message;
+    var body = 'Име: ' + name + '\nТелефон: ' + phone + '\nИмейл: ' + email
+      + '\nУслуга: ' + service + '\n\nОписание на поръчката:\n' + message;
     window.location.href = 'mailto:vstrenev@gmail.com'
-      + '?subject=' + encodeURIComponent('Запитване от сайта — ' + name)
+      + '?subject=' + encodeURIComponent('Запитване за превод — ' + name)
       + '&body=' + encodeURIComponent(body);
   });
 </script>
