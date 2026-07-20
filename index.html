@@ -908,6 +908,7 @@
       };
       return fetch(ORDER_ENDPOINT, {
         method: 'POST',
+        keepalive: true,   // заявката оцелява дори при пренасочване към плащане
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(payload)
       }).then(function(r){ return r.ok ? true : Promise.reject(r); });
@@ -943,7 +944,11 @@
 
   // Плащане с карта през SumUp
   document.getElementById('payCard').addEventListener('click', function(){
-    if (!orderForm.reportValidity()) return;   // изисква попълнени данни за доставка
+    // Изискваме данните за доставка — с ясно съобщение, ако липсват (иначе бутонът „мълчи").
+    if (!orderForm.reportValidity()) {
+      setNote('Моля, попълнете данните за доставка (име, телефон, имейл, град, адрес), след което натиснете „Плати с карта".', false);
+      return;
+    }
     var o = collectOrder();
     var link = sumupLinkFor(o.pack);
     if (!link) {
@@ -960,7 +965,11 @@
       ? ' (линкът е за 1 пакет „' + o.pack + '"; за ' + o.qtyPacks + ' бр. повторете плащането или се свържете с нас)'
       : '';
     setNote('Пренасочваме към сигурно плащане с карта (SumUp) за поръчка ' + o.orderNo + '…' + extra, true);
-    window.open(payUrl, '_blank', 'noopener');
+    // Опит за нов таб; ако блокерът на изскачащи прозорци го спре — пренасочваме в същия таб.
+    var win = window.open(payUrl, '_blank');
+    if (!win || win.closed || typeof win.closed === 'undefined') {
+      window.location.href = payUrl;
+    }
   });
 </script>
 </body>
