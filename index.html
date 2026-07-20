@@ -820,6 +820,26 @@
     var u = SUMUP_LINKS[pack] || '';
     return (u && u.indexOf('http') === 0) ? u : '';
   }
+  /* Име на URL параметъра, с който SumUp линкът получава бележка/описание към
+     плащането. По подразбиране 'description'. Ако вашите SumUp линкове ползват
+     друго име (напр. 'reference' или 'checkout_reference'), сменете го тук. */
+  var SUMUP_NOTE_PARAM = 'description';
+  // Прикача номера на заявката към SumUp линка, за да влезе в бележката на
+  // плащането автоматично (клиентът не го въвежда → не може да го коригира).
+  function sumupLinkWithNote(link, orderNo){
+    if (!link || !orderNo) return link;
+    var note = 'Поръчка ' + orderNo;
+    return link + (link.indexOf('?') === -1 ? '?' : '&') +
+           SUMUP_NOTE_PARAM + '=' + encodeURIComponent(note);
+  }
+  // Уникален номер на заявката: ZT-ГГММДД-XXXX (за съпоставяне плащане ↔ поръчка).
+  function genOrderNo(){
+    var d = new Date();
+    var p = function(n){ return (n < 10 ? '0' : '') + n; };
+    var stamp = String(d.getFullYear()).slice(2) + p(d.getMonth()+1) + p(d.getDate());
+    var rnd = String(Math.floor(1000 + Math.random()*9000));
+    return 'ZT-' + stamp + '-' + rnd;
+  }
 
   function collectOrder(){
     var opt = packSel.options[packSel.selectedIndex];
@@ -828,6 +848,7 @@
     var n = Math.max(1, parseInt(qty.value,10) || 1);
     var val = function(id){ return (document.getElementById(id).value || '').trim(); };
     return {
+      orderNo: genOrderNo(),
       pack: packSel.value, qtyPacks: n,
       bugs: bugsEach*n, total: priceEach*n,
       name: val('name'), phone: val('phone'), email: val('email'),
@@ -838,6 +859,7 @@
   function orderText(o){
     return [
       'Нова поръчка от сайта „Жук Терапия"',
+      'Номер на заявката: ' + o.orderNo,
       '',
       'Пакет: ' + o.pack + ' × ' + o.qtyPacks,
       'Бръмбари общо: ' + o.bugs.toLocaleString('bg-BG') + ' бр.',
@@ -862,9 +884,10 @@
     if (USE_ENDPOINT) {
       var payload = {
         access_key: ORDER_ACCESS_KEY,
-        subject: 'Нова поръчка — ' + o.bugs + ' бръмбара (' + o.pack + ')' + (opts.paying ? ' [плащане с карта]' : ''),
+        subject: 'Поръчка ' + o.orderNo + ' — ' + o.bugs + ' бръмбара (' + o.pack + ')' + (opts.paying ? ' [плащане с карта]' : ''),
         from_name: 'Жук Терапия', to: ORDER_EMAIL,
         message: orderText(o) + (opts.paying ? '\n\nНачин на плащане: карта (SumUp)' : ''),
+        order_no: o.orderNo,
         pack: o.pack, qty_packs: o.qtyPacks, bugs: o.bugs, total_bgn: o.total,
         payment: opts.paying ? 'card-sumup' : 'cash-on-delivery',
         name: o.name, phone: o.phone, email: o.email, city: o.city, address: o.address, notes: o.notes
@@ -876,7 +899,7 @@
       }).then(function(r){ return r.ok ? true : Promise.reject(r); });
     }
     // резерва: mailto
-    var subject = 'Нова поръчка — ' + o.bugs + ' бръмбара (' + o.pack + ')';
+    var subject = 'Поръчка ' + o.orderNo + ' — ' + o.bugs + ' бръмбара (' + o.pack + ')';
     var href = 'mailto:' + ORDER_EMAIL +
       '?subject=' + encodeURIComponent(subject) +
       '&body=' + encodeURIComponent(orderText(o));
@@ -894,7 +917,7 @@
     setNote('Изпращане…', true);
     deliverOrder(o).then(function(){
       if (USE_ENDPOINT) {
-        setNote('Благодарим! Поръчката за ' + o.bugs.toLocaleString('bg-BG') + ' бръмбара е изпратена. Ще се свържем с вас.', true);
+        setNote('Благодарим! Поръчка ' + o.orderNo + ' за ' + o.bugs.toLocaleString('bg-BG') + ' бръмбара е изпратена. Ще се свържем с вас.', true);
         form.reset(); updateSummary();
       } else {
         setNote('Отваря се вашата поща с готова поръчка до ' + ORDER_EMAIL + ' — натиснете „Изпрати".', true);
@@ -912,16 +935,18 @@
     if (!link) {
       // Линковете още не са настроени — не губим поръчката: изпращаме я и молим за връзка.
       deliverOrder(o, {paying:true});
-      setNote('Плащането с карта се настройва. Поръчката е записана — ще се свържем с вас за плащане с карта.', true);
+      setNote('Плащането с карта се настройва. Поръчка ' + o.orderNo + ' е записана — ще се свържем с вас за плащане с карта.', true);
       return;
     }
     // Записваме поръчката при собственика и пренасочваме към сигурното плащане.
+    // Номерът на заявката се прикача автоматично като бележка към плащането.
     deliverOrder(o, {paying:true});
+    var payUrl = sumupLinkWithNote(link, o.orderNo);
     var extra = o.qtyPacks > 1
       ? ' (линкът е за 1 пакет „' + o.pack + '"; за ' + o.qtyPacks + ' бр. повторете плащането или се свържете с нас)'
       : '';
-    setNote('Пренасочваме към сигурно плащане с карта (SumUp)…' + extra, true);
-    window.open(link, '_blank', 'noopener');
+    setNote('Пренасочваме към сигурно плащане с карта (SumUp) за поръчка ' + o.orderNo + '…' + extra, true);
+    window.open(payUrl, '_blank', 'noopener');
   });
 </script>
 </body>
