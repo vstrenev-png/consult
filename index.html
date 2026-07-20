@@ -4,159 +4,223 @@
 <meta name="description" content="Живи руски лечебни бръмбари Жук (Ulomoides dermestoides). Пълна доза за курс на лечение — 930 бръмбара. Поръчайте онлайн с доставка.">
 <style>
   :root{
-    --bg:#0f1408;
-    --panel:#161d0d;
-    --panel-2:#1d260f;
-    --ink:#f2f4e9;
-    --muted:#a9b491;
-    --line:#2c371a;
-    --amber:#d9a441;
-    --amber-2:#f0c368;
-    --green:#7fae3a;
-    --danger:#e07a4a;
-    --radius:16px;
-    --shadow:0 18px 50px rgba(0,0,0,.45);
-    --maxw:1080px;
-    color-scheme:dark;
+    /* Parchment apothecary palette */
+    --paper:#f6efe2;
+    --paper-2:#efe6d3;
+    --card:#fffdf8;
+    --ink:#26301f;
+    --ink-soft:#4a5540;
+    --muted:#7c856c;
+    --line:#e0d5bf;
+    --forest:#2f5136;
+    --forest-2:#3d6a45;
+    --amber:#c08a2d;
+    --amber-2:#e0a83f;
+    --gold-ink:#8a5a12;
+    --rust:#a8531f;
+    --radius:18px;
+    --shadow-sm:0 2px 8px rgba(52,44,24,.06);
+    --shadow:0 22px 60px -24px rgba(52,44,24,.35);
+    --maxw:1120px;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,"Times New Roman",serif;
+    --sans:"Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+    color-scheme:light;
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{
     margin:0;
-    font-family:"Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
-    background:
-      radial-gradient(1200px 600px at 80% -10%,rgba(217,164,65,.10),transparent 60%),
-      radial-gradient(900px 500px at -10% 20%,rgba(127,174,58,.08),transparent 55%),
-      var(--bg);
+    font-family:var(--sans);
     color:var(--ink);
-    line-height:1.6;
+    line-height:1.65;
+    background:var(--paper);
+    background-image:
+      radial-gradient(1100px 520px at 82% -8%,rgba(224,168,63,.18),transparent 60%),
+      radial-gradient(900px 520px at -8% 12%,rgba(47,81,54,.10),transparent 55%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");
     -webkit-font-smoothing:antialiased;
   }
-  a{color:var(--amber-2);text-decoration:none}
+  a{color:var(--gold-ink);text-decoration:none}
   a:hover{text-decoration:underline}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
-  h1,h2,h3{line-height:1.15;margin:0 0 .5em}
-  h2{font-size:clamp(1.5rem,3vw,2.1rem)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  h1,h2,h3{font-family:var(--serif);line-height:1.12;margin:0 0 .5em;font-weight:600;letter-spacing:-.01em}
+  h2{font-size:clamp(1.7rem,3.4vw,2.5rem)}
+  .eyebrow{font-family:var(--sans);text-transform:uppercase;letter-spacing:.22em;font-size:.72rem;font-weight:800;color:var(--amber);margin:0 0 12px}
   .muted{color:var(--muted)}
+
   .btn{
-    display:inline-block;border:0;cursor:pointer;font:inherit;font-weight:700;
-    padding:.85rem 1.5rem;border-radius:999px;transition:transform .15s ease,box-shadow .15s ease;
+    display:inline-flex;align-items:center;gap:.5em;border:0;cursor:pointer;font-family:var(--sans);font-weight:700;
+    padding:.9rem 1.6rem;border-radius:999px;transition:transform .16s ease,box-shadow .16s ease,background .16s ease;
+    font-size:.98rem;
   }
   .btn:hover{transform:translateY(-2px);text-decoration:none}
-  .btn-primary{background:linear-gradient(135deg,var(--amber-2),var(--amber));color:#20260c;box-shadow:0 10px 24px rgba(217,164,65,.25)}
-  .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+  .btn-primary{background:linear-gradient(135deg,var(--amber-2),var(--amber));color:#2a1c05;box-shadow:0 12px 26px -8px rgba(192,138,45,.6)}
+  .btn-primary:hover{box-shadow:0 16px 32px -8px rgba(192,138,45,.7)}
+  .btn-forest{background:var(--forest);color:#f4efe0}
+  .btn-forest:hover{background:var(--forest-2)}
+  .btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--amber);color:var(--gold-ink)}
 
   /* Header */
-  header.nav{position:sticky;top:0;z-index:50;background:rgba(15,20,8,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-  .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 20px;max-width:var(--maxw);margin:0 auto}
-  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.15rem;letter-spacing:.3px}
-  .brand .bug{font-size:1.4rem}
-  nav.links{display:flex;gap:22px;flex-wrap:wrap}
-  nav.links a{color:var(--muted);font-weight:600;font-size:.95rem}
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(246,239,226,.78);backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .2s,box-shadow .2s,background .2s}
+  header.nav.scrolled{border-bottom-color:var(--line);box-shadow:var(--shadow-sm)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 22px;max-width:var(--maxw);margin:0 auto}
+  .brand{display:flex;align-items:center;gap:11px;font-family:var(--serif);font-weight:600;font-size:1.28rem;letter-spacing:-.01em}
+  .brand svg{width:34px;height:34px;flex:none}
+  nav.links{display:flex;gap:26px;flex-wrap:wrap}
+  nav.links a{color:var(--ink-soft);font-weight:600;font-size:.95rem;position:relative}
+  nav.links a::after{content:"";position:absolute;left:0;right:100%;bottom:-4px;height:2px;background:var(--amber);transition:right .22s ease}
   nav.links a:hover{color:var(--ink);text-decoration:none}
-  @media(max-width:760px){nav.links{display:none}}
+  nav.links a:hover::after{right:0}
+  @media(max-width:820px){nav.links{display:none}}
 
   /* Hero */
-  .hero{padding:70px 0 40px}
-  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
-  @media(max-width:860px){.hero-grid{grid-template-columns:1fr;gap:24px}}
-  .tag{display:inline-block;background:var(--panel-2);border:1px solid var(--line);color:var(--amber-2);
-    padding:.3rem .8rem;border-radius:999px;font-size:.8rem;font-weight:700;letter-spacing:.4px;text-transform:uppercase;margin-bottom:16px}
-  .hero h1{font-size:clamp(2rem,5vw,3.3rem);font-weight:800}
-  .hero p.lead{font-size:1.15rem;color:var(--muted);max-width:44ch}
-  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
-  .hero-art{
-    background:linear-gradient(160deg,var(--panel-2),var(--panel));
-    border:1px solid var(--line);border-radius:24px;padding:34px;text-align:center;box-shadow:var(--shadow);
-  }
-  .hero-art .big-bug{font-size:5.5rem;line-height:1}
-  .dose-badge{margin-top:18px;font-weight:800}
-  .dose-badge .n{font-size:3rem;color:var(--amber-2);display:block;line-height:1}
-  .trust{display:flex;gap:26px;flex-wrap:wrap;margin-top:34px;color:var(--muted);font-size:.9rem}
-  .trust b{color:var(--ink)}
+  .hero{padding:64px 0 48px;position:relative;overflow:hidden}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+  @media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:24px}}
+  .tag{display:inline-flex;align-items:center;gap:.5em;background:var(--card);border:1px solid var(--line);color:var(--gold-ink);
+    padding:.4rem .9rem;border-radius:999px;font-size:.78rem;font-weight:700;letter-spacing:.03em;margin-bottom:18px;box-shadow:var(--shadow-sm)}
+  .tag .dot{width:7px;height:7px;border-radius:50%;background:var(--forest-2);box-shadow:0 0 0 3px rgba(61,106,69,.18)}
+  .hero h1{font-size:clamp(2.3rem,5.4vw,3.7rem);font-weight:600}
+  .hero h1 em{font-style:italic;color:var(--forest)}
+  .hero p.lead{font-size:1.16rem;color:var(--ink-soft);max-width:46ch}
+  .hero p.lead b{color:var(--gold-ink)}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+  .trust{display:flex;gap:14px 30px;flex-wrap:wrap;margin-top:34px}
+  .trust .t{display:flex;flex-direction:column;line-height:1.2}
+  .trust .t b{font-family:var(--serif);font-size:1.5rem;color:var(--forest)}
+  .trust .t span{font-size:.82rem;color:var(--muted)}
+
+  /* Hero art — jar with beetle */
+  .hero-art{position:relative;display:flex;justify-content:center}
+  .jar{position:relative;width:min(360px,90%);filter:drop-shadow(0 30px 40px rgba(52,44,24,.28))}
+  .jar svg{width:100%;height:auto;display:block}
+  .dose-chip{position:absolute;right:-6px;bottom:24px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 18px;text-align:center;box-shadow:var(--shadow);transform:rotate(2deg)}
+  .dose-chip .n{font-family:var(--serif);font-size:2.3rem;font-weight:600;color:var(--gold-ink);line-height:1;display:block}
+  .dose-chip .lbl{font-size:.72rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);font-weight:700}
+  @media(max-width:900px){.dose-chip{right:6%}}
+
+  @keyframes crawl{0%,100%{transform:translate(0,0) rotate(0)}25%{transform:translate(1.2px,-1px) rotate(1.2deg)}50%{transform:translate(0,1px) rotate(0)}75%{transform:translate(-1.2px,-1px) rotate(-1.2deg)}}
+  .beetle-anim{transform-box:fill-box;transform-origin:center;animation:crawl 3.2s ease-in-out infinite}
+  @media(prefers-reduced-motion:reduce){.beetle-anim{animation:none}}
+
+  /* Divider */
+  .rule{display:flex;align-items:center;gap:14px;color:var(--amber);opacity:.9}
+  .rule::before,.rule::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--line),transparent)}
+  .rule svg{width:22px;height:22px}
 
   /* Sections */
-  section{padding:56px 0;border-top:1px solid var(--line)}
-  .section-head{max-width:60ch;margin-bottom:34px}
-  .section-head p{color:var(--muted);margin:.3em 0 0}
+  section{padding:64px 0}
+  .section-head{max-width:62ch;margin-bottom:38px}
+  .section-head p{color:var(--ink-soft);margin:.35em 0 0;font-size:1.05rem}
 
-  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  @media(max-width:820px){.cards{grid-template-columns:1fr}}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
-  .card .ic{font-size:1.8rem;margin-bottom:10px}
-  .card h3{font-size:1.15rem}
-  .card p{color:var(--muted);margin:0}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  @media(max-width:840px){.cards{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow-sm);transition:transform .18s ease,box-shadow .18s ease}
+  .card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+  .card .ic{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:var(--paper-2);color:var(--forest);margin-bottom:16px}
+  .card .ic svg{width:24px;height:24px}
+  .card h3{font-size:1.22rem}
+  .card p{color:var(--ink-soft);margin:0}
 
   /* Dose calculator */
-  .calc{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:stretch}
-  @media(max-width:820px){.calc{grid-template-columns:1fr}}
-  .calc-panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
-  .calc-panel label{display:block;font-weight:700;margin:0 0 8px}
-  .field{margin-bottom:18px}
+  .calc{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:stretch}
+  @media(max-width:840px){.calc{grid-template-columns:1fr}}
+  .calc-panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow-sm)}
+  .calc-panel label,form label{display:block;font-weight:700;margin:0 0 9px;font-size:.95rem}
+  .field{margin-bottom:20px}
   input[type=number],input[type=text],input[type=email],input[type=tel],select,textarea{
-    width:100%;padding:.8rem .9rem;border-radius:12px;border:1px solid var(--line);
-    background:var(--panel-2);color:var(--ink);font:inherit
+    width:100%;padding:.82rem .95rem;border-radius:12px;border:1px solid var(--line);
+    background:var(--paper);color:var(--ink);font:inherit;transition:border-color .15s,box-shadow .15s
   }
-  input:focus,select:focus,textarea:focus{outline:2px solid var(--amber);outline-offset:1px}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--amber);box-shadow:0 0 0 3px rgba(224,168,63,.22)}
   .range-row{display:flex;align-items:center;gap:14px}
   input[type=range]{flex:1;accent-color:var(--amber)}
-  .result{background:linear-gradient(160deg,var(--panel-2),var(--panel));border:1px solid var(--line);border-radius:var(--radius);padding:26px;display:flex;flex-direction:column;justify-content:center}
-  .result .row{display:flex;justify-content:space-between;align-items:baseline;padding:12px 0;border-bottom:1px dashed var(--line)}
-  .result .row:last-child{border-bottom:0}
-  .result .k{color:var(--muted)}
-  .result .v{font-weight:800;font-size:1.25rem}
-  .result .v.big{color:var(--amber-2);font-size:1.7rem}
+  .result{background:linear-gradient(165deg,var(--forest),#274229);color:#eef1e4;border-radius:var(--radius);padding:30px;display:flex;flex-direction:column;justify-content:center;box-shadow:var(--shadow)}
+  .result .row{display:flex;justify-content:space-between;align-items:baseline;padding:13px 0;border-bottom:1px dashed rgba(238,241,228,.22)}
+  .result .row:last-of-type{border-bottom:0}
+  .result .k{color:#c3cdb5}
+  .result .v{font-family:var(--serif);font-weight:600;font-size:1.35rem}
+  .result .v.big{color:var(--amber-2);font-size:2rem}
+  .result .note{font-size:.82rem;color:#b6c1a7;margin-top:14px}
   .note{font-size:.82rem;color:var(--muted);margin-top:10px}
 
   /* Pricing */
-  .prices{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
-  @media(max-width:820px){.prices{grid-template-columns:1fr}}
-  .price{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:26px;display:flex;flex-direction:column}
-  .price.featured{border-color:var(--amber);box-shadow:0 0 0 1px var(--amber) inset,var(--shadow)}
-  .price .badge{align-self:flex-start;background:var(--amber);color:#20260c;font-weight:800;font-size:.72rem;padding:.25rem .7rem;border-radius:999px;text-transform:uppercase;margin-bottom:12px}
-  .price h3{font-size:1.25rem;margin-bottom:4px}
-  .price .count{color:var(--muted);font-size:.95rem}
-  .price .amount{font-size:2.2rem;font-weight:800;margin:14px 0 2px}
-  .price .amount small{font-size:1rem;color:var(--muted);font-weight:600}
-  .price ul{list-style:none;padding:0;margin:16px 0 22px;color:var(--muted)}
-  .price ul li{padding:6px 0;border-bottom:1px solid var(--line)}
-  .price ul li::before{content:"✓ ";color:var(--green);font-weight:800}
-  .price .btn{margin-top:auto;text-align:center}
+  .prices{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch}
+  @media(max-width:840px){.prices{grid-template-columns:1fr}}
+  .price{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px;display:flex;flex-direction:column;box-shadow:var(--shadow-sm);position:relative;transition:transform .18s ease,box-shadow .18s ease}
+  .price:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+  .price.featured{border-color:var(--amber);box-shadow:0 0 0 2px rgba(192,138,45,.35),var(--shadow);transform:translateY(-6px)}
+  .price.featured:hover{transform:translateY(-9px)}
+  .price .badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--amber-2),var(--amber));color:#2a1c05;font-weight:800;font-size:.7rem;letter-spacing:.1em;padding:.4rem .9rem;border-radius:999px;text-transform:uppercase;box-shadow:var(--shadow-sm)}
+  .price .kicker{font-size:.8rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);font-weight:700}
+  .price h3{font-size:1.4rem;margin:6px 0 2px}
+  .price .count{color:var(--forest);font-weight:700;font-size:.98rem}
+  .price .amount{font-family:var(--serif);font-size:2.6rem;font-weight:600;margin:16px 0 2px;color:var(--ink)}
+  .price .amount small{font-family:var(--sans);font-size:.95rem;color:var(--muted);font-weight:600}
+  .price ul{list-style:none;padding:0;margin:18px 0 24px;color:var(--ink-soft)}
+  .price ul li{padding:8px 0 8px 26px;position:relative;border-bottom:1px solid var(--line)}
+  .price ul li::before{content:"";position:absolute;left:0;top:14px;width:14px;height:8px;border-left:2px solid var(--forest-2);border-bottom:2px solid var(--forest-2);transform:rotate(-45deg)}
+  .price .btn{margin-top:auto;justify-content:center}
 
   /* Steps */
-  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;counter-reset:s}
-  @media(max-width:820px){.steps{grid-template-columns:1fr 1fr}}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:s}
+  @media(max-width:840px){.steps{grid-template-columns:1fr 1fr}}
   @media(max-width:480px){.steps{grid-template-columns:1fr}}
-  .step{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px;position:relative}
-  .step::before{counter-increment:s;content:counter(s);display:inline-flex;align-items:center;justify-content:center;
-    width:34px;height:34px;border-radius:50%;background:var(--amber);color:#20260c;font-weight:800;margin-bottom:12px}
-  .step h3{font-size:1.05rem}
-  .step p{color:var(--muted);margin:0;font-size:.95rem}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px;position:relative;box-shadow:var(--shadow-sm)}
+  .step::before{counter-increment:s;content:counter(s);display:grid;place-items:center;font-family:var(--serif);
+    width:40px;height:40px;border-radius:50%;background:var(--forest);color:#f4efe0;font-weight:600;font-size:1.15rem;margin-bottom:14px}
+  .step h3{font-size:1.12rem}
+  .step p{color:var(--ink-soft);margin:0;font-size:.96rem}
 
-  /* Order form */
+  /* Order */
+  .order-wrap{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(24px,4vw,44px);box-shadow:var(--shadow-sm)}
   .order-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
   @media(max-width:640px){.order-grid{grid-template-columns:1fr}}
-  form label{display:block;font-weight:700;margin:0 0 8px}
   form .full{grid-column:1/-1}
-  .order-summary{background:var(--panel-2);border:1px solid var(--line);border-radius:12px;padding:16px;margin:18px 0}
-  .order-summary .line{display:flex;justify-content:space-between;padding:4px 0}
-  .order-summary .total{border-top:1px solid var(--line);margin-top:8px;padding-top:10px;font-weight:800;font-size:1.15rem}
-  .order-summary .total .amt{color:var(--amber-2)}
+  .order-summary{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:20px;margin:22px 0}
+  .order-summary .line{display:flex;justify-content:space-between;padding:6px 0;color:var(--ink-soft)}
+  .order-summary .line span:last-child{font-weight:700;color:var(--ink)}
+  .order-summary .total{border-top:1px solid var(--line);margin-top:10px;padding-top:12px;font-family:var(--serif);font-size:1.35rem}
+  .order-summary .total .amt{color:var(--gold-ink);font-weight:600}
 
-  /* Disclaimer / FAQ */
-  .faq details{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:6px 18px;margin-bottom:12px}
-  .faq summary{cursor:pointer;font-weight:700;padding:12px 0}
-  .faq details p{color:var(--muted);margin:0 0 14px}
-  .disclaimer{background:rgba(224,122,74,.08);border:1px solid rgba(224,122,74,.4);border-radius:12px;padding:18px 20px;color:#f2d8c8;font-size:.92rem}
-  .disclaimer b{color:#ffcbb0}
+  /* FAQ + disclaimer */
+  .faq details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:2px 22px;margin-bottom:12px;box-shadow:var(--shadow-sm)}
+  .faq summary{cursor:pointer;font-weight:700;padding:16px 0;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";font-family:var(--serif);font-size:1.5rem;color:var(--amber);transition:transform .2s}
+  .faq details[open] summary::after{transform:rotate(45deg)}
+  .faq details p{color:var(--ink-soft);margin:0 0 18px}
+  .disclaimer{background:rgba(168,83,31,.07);border:1px solid rgba(168,83,31,.28);border-radius:14px;padding:20px 22px;color:#6a4526;font-size:.94rem}
+  .disclaimer b{color:var(--rust)}
 
-  footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted);font-size:.9rem}
-  .foot-inner{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  footer{border-top:1px solid var(--line);padding:40px 0;color:var(--muted);font-size:.92rem;margin-top:24px}
+  .foot-inner{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:center}
+  .foot-inner .brand{font-size:1.1rem}
+
+  /* Reveal on scroll */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
 </style>
 
-<header class="nav">
+<header class="nav" id="nav">
   <div class="nav-inner">
-    <div class="brand"><span class="bug">🪲</span> Жук&nbsp;Терапия</div>
+    <div class="brand">
+      <!-- beetle mark -->
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <g fill="none" stroke="#2f5136" stroke-width="3" stroke-linecap="round">
+          <line x1="26" y1="12" x2="20" y2="5"/><line x1="38" y1="12" x2="44" y2="5"/>
+          <line x1="20" y1="30" x2="8" y2="24"/><line x1="20" y1="38" x2="7" y2="40"/><line x1="21" y1="46" x2="10" y2="54"/>
+          <line x1="44" y1="30" x2="56" y2="24"/><line x1="44" y1="38" x2="57" y2="40"/><line x1="43" y1="46" x2="54" y2="54"/>
+        </g>
+        <ellipse cx="32" cy="20" rx="9" ry="8" fill="#3d6a45"/>
+        <ellipse cx="32" cy="40" rx="15" ry="20" fill="#c08a2d"/>
+        <path d="M32 22v38" stroke="#7a5410" stroke-width="2.4" stroke-linecap="round"/>
+        <g fill="#8a5a12"><circle cx="25" cy="34" r="1.7"/><circle cx="39" cy="34" r="1.7"/><circle cx="24" cy="46" r="1.7"/><circle cx="40" cy="46" r="1.7"/><circle cx="27" cy="54" r="1.5"/><circle cx="37" cy="54" r="1.5"/></g>
+      </svg>
+      Жук&nbsp;Терапия
+    </div>
     <nav class="links">
       <a href="#zhuk">Бръмбарът</a>
       <a href="#dose">Дозиране</a>
@@ -170,62 +234,116 @@
 
 <main>
   <!-- HERO -->
-  <section class="hero" style="border-top:0">
+  <section class="hero">
     <div class="wrap hero-grid">
-      <div>
-        <span class="tag">Оригинални руски бръмбари</span>
-        <h1>Живи лечебни бръмбари&nbsp;Жук</h1>
+      <div class="reveal in">
+        <span class="tag"><span class="dot"></span> Оригинални руски бръмбари</span>
+        <h1>Живи лечебни<br>бръмбари <em>Жук</em></h1>
         <p class="lead">Отглеждаме и доставяме оригиналния руски бръмбар Жук (<i>Ulomoides dermestoides</i>) — жив, силен и готов за курс. Една пълна доза на лечението е <b>930 бръмбара</b>.</p>
         <div class="hero-cta">
           <a class="btn btn-primary" href="#order">Поръчай пълна доза</a>
           <a class="btn btn-ghost" href="#dose">Изчисли своята доза</a>
         </div>
         <div class="trust">
-          <span><b>930</b> бръмбара / пълна доза</span>
-          <span><b>24–48 ч.</b> доставка</span>
-          <span><b>100%</b> живи при получаване</span>
+          <div class="t"><b>930</b><span>бръмбара / пълна доза</span></div>
+          <div class="t"><b>24–48ч.</b><span>доставка в България</span></div>
+          <div class="t"><b>100%</b><span>живи при получаване</span></div>
         </div>
       </div>
-      <div class="hero-art">
-        <div class="big-bug">🪲</div>
-        <div class="dose-badge">
-          <span class="muted">Пълна доза на лечението</span>
+
+      <div class="hero-art reveal in">
+        <div class="jar">
+          <svg viewBox="0 0 300 360" role="img" aria-label="Буркан с живи бръмбари Жук">
+            <!-- lid -->
+            <rect x="86" y="14" width="128" height="30" rx="8" fill="#8a5a12"/>
+            <rect x="80" y="36" width="140" height="20" rx="7" fill="#a06a1e"/>
+            <!-- jar body -->
+            <path d="M70 60 h160 a20 20 0 0 1 20 20 v238 a26 26 0 0 1 -26 26 H76 a26 26 0 0 1 -26 -26 V80 a20 20 0 0 1 20 -20 Z"
+                  fill="#fbf4e3" stroke="#e0d5bf" stroke-width="3"/>
+            <!-- glass highlight -->
+            <path d="M84 74 q-12 4 -12 22 v210 q0 14 12 18 Z" fill="#ffffff" opacity=".5"/>
+            <!-- label -->
+            <rect x="86" y="150" width="128" height="120" rx="10" fill="#f6efe2" stroke="#e0d5bf" stroke-width="2"/>
+            <text x="150" y="182" text-anchor="middle" font-family="Georgia,serif" font-size="17" fill="#2f5136" font-weight="bold">ЖУК</text>
+            <text x="150" y="202" text-anchor="middle" font-family="Georgia,serif" font-size="10" fill="#7c856c">Ulomoides</text>
+            <line x1="104" y1="214" x2="196" y2="214" stroke="#e0d5bf" stroke-width="1.5"/>
+            <text x="150" y="244" text-anchor="middle" font-family="Georgia,serif" font-size="34" fill="#c08a2d" font-weight="bold">930</text>
+            <text x="150" y="260" text-anchor="middle" font-family="sans-serif" font-size="8.5" fill="#7c856c" letter-spacing="1.5">ПЪЛНА ДОЗА</text>
+
+            <!-- beetles inside (above the label) -->
+            <g class="beetle-anim">
+              <g transform="translate(112 96) scale(.62)">
+                <g fill="none" stroke="#3a2a10" stroke-width="3" stroke-linecap="round"><line x1="26" y1="14" x2="20" y2="6"/><line x1="38" y1="14" x2="44" y2="6"/><line x1="20" y1="32" x2="8" y2="27"/><line x1="20" y1="40" x2="7" y2="42"/><line x1="21" y1="48" x2="10" y2="56"/><line x1="44" y1="32" x2="56" y2="27"/><line x1="44" y1="40" x2="57" y2="42"/><line x1="43" y1="48" x2="54" y2="56"/></g>
+                <ellipse cx="32" cy="22" rx="9" ry="8" fill="#4a3413"/><ellipse cx="32" cy="42" rx="15" ry="20" fill="#6b4a1a"/><path d="M32 24v36" stroke="#2a1c08" stroke-width="2.2"/>
+              </g>
+            </g>
+            <g class="beetle-anim" style="animation-delay:-1.1s">
+              <g transform="translate(178 108) scale(.5) rotate(24)">
+                <g fill="none" stroke="#3a2a10" stroke-width="3" stroke-linecap="round"><line x1="26" y1="14" x2="20" y2="6"/><line x1="38" y1="14" x2="44" y2="6"/><line x1="20" y1="32" x2="8" y2="27"/><line x1="20" y1="40" x2="7" y2="42"/><line x1="21" y1="48" x2="10" y2="56"/><line x1="44" y1="32" x2="56" y2="27"/><line x1="44" y1="40" x2="57" y2="42"/><line x1="43" y1="48" x2="54" y2="56"/></g>
+                <ellipse cx="32" cy="22" rx="9" ry="8" fill="#4a3413"/><ellipse cx="32" cy="42" rx="15" ry="20" fill="#7a5620"/><path d="M32 24v36" stroke="#2a1c08" stroke-width="2.2"/>
+              </g>
+            </g>
+            <g class="beetle-anim" style="animation-delay:-2.2s">
+              <g transform="translate(120 300) scale(.44) rotate(-18)">
+                <g fill="none" stroke="#3a2a10" stroke-width="3" stroke-linecap="round"><line x1="26" y1="14" x2="20" y2="6"/><line x1="38" y1="14" x2="44" y2="6"/><line x1="20" y1="32" x2="8" y2="27"/><line x1="20" y1="40" x2="7" y2="42"/><line x1="21" y1="48" x2="10" y2="56"/><line x1="44" y1="32" x2="56" y2="27"/><line x1="44" y1="40" x2="57" y2="42"/><line x1="43" y1="48" x2="54" y2="56"/></g>
+                <ellipse cx="32" cy="22" rx="9" ry="8" fill="#4a3413"/><ellipse cx="32" cy="42" rx="15" ry="20" fill="#6b4a1a"/><path d="M32 24v36" stroke="#2a1c08" stroke-width="2.2"/>
+              </g>
+            </g>
+          </svg>
+        </div>
+        <div class="dose-chip">
           <span class="n">930</span>
-          <span class="muted">бръмбара Жук</span>
+          <span class="lbl">бръмбара / доза</span>
         </div>
       </div>
     </div>
   </section>
 
+  <div class="wrap"><div class="rule"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1.4 0 2.5 1 2.7 2.4C16 4 17.3 4.5 18 5.6 17 6 16.2 6.9 16 8c1.4.2 2.5 1.3 2.5 2.7S17.4 13.3 16 13.5c.3 1.4-.3 2.8-1.5 3.5.2 1.5-.7 3-2.5 3s-2.7-1.5-2.5-3C8.3 16.3 7.7 14.9 8 13.5 6.6 13.3 5.5 12.1 5.5 10.7S6.6 8.2 8 8c-.2-1.1-1-2-2-2.4C6.7 4.5 8 4 9.3 4.4 9.5 3 10.6 2 12 2Z"/></svg></div></div>
+
   <!-- ABOUT BEETLE -->
   <section id="zhuk">
     <div class="wrap">
-      <div class="section-head">
+      <div class="section-head reveal">
+        <p class="eyebrow">За продукта</p>
         <h2>Какво е бръмбарът Жук</h2>
         <p>Малкият тъмнокафяв бръмбар, известен в народната традиция като „руски лечебен бръмбар", се отглежда в чиста среда върху пшенични трици и се приема по установена схема.</p>
       </div>
       <div class="cards">
-        <div class="card"><div class="ic">🌾</div><h3>Чисто отглеждане</h3><p>Хранени с пшенични трици и парченца ябълка, без химия и добавки.</p></div>
-        <div class="card"><div class="ic">📦</div><h3>Живи при доставка</h3><p>Пътуват в дишаща опаковка с трици. Гарантираме живи бръмбари при получаване.</p></div>
-        <div class="card"><div class="ic">📈</div><h3>Постъпкова схема</h3><p>Приемат се по нарастваща и намаляваща схема, докато се набере пълната доза от 930.</p></div>
+        <div class="card reveal">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20c2-4 4-6 8-6M20 20c-2-4-4-6-8-6M12 14V4M12 4c-2 0-3-1-3-2M12 4c2 0 3-1 3-2"/></svg></div>
+          <h3>Чисто отглеждане</h3>
+          <p>Хранени с пшенични трици и парченца ябълка, без химия и добавки — в контролирана среда.</p>
+        </div>
+        <div class="card reveal">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l9-5 9 5v8l-9 5-9-5V8Z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg></div>
+          <h3>Живи при доставка</h3>
+          <p>Пътуват в дишаща опаковка с трици. Гарантираме живи бръмбари при получаване.</p>
+        </div>
+        <div class="card reveal">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-5 4 4 8-9"/><path d="M21 7v5h-5"/></svg></div>
+          <h3>Постъпкова схема</h3>
+          <p>Приемат се по нарастваща и намаляваща схема, докато се набере пълната доза от 930.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- DOSE CALCULATOR -->
-  <section id="dose">
+  <section id="dose" style="background:linear-gradient(180deg,transparent,rgba(47,81,54,.05),transparent)">
     <div class="wrap">
-      <div class="section-head">
+      <div class="section-head reveal">
+        <p class="eyebrow">Дозиране</p>
         <h2>Калкулатор на дозата</h2>
         <p>Пълната доза на едно лечение е <b>930 бръмбара</b>. Изберете колко бръмбара приемате на пик от схемата и вижте колко дни трае вашият курс.</p>
       </div>
       <div class="calc">
-        <div class="calc-panel">
+        <div class="calc-panel reveal">
           <div class="field">
             <label for="peak">Пик на схемата (макс. бръмбара на ден)</label>
             <div class="range-row">
               <input type="range" id="peak" min="10" max="60" value="30" step="1">
-              <output id="peakOut" style="min-width:3ch;font-weight:800;color:var(--amber-2)">30</output>
+              <output id="peakOut" style="min-width:3ch;font-weight:800;color:var(--gold-ink)">30</output>
             </div>
             <div class="note">Класическа схема: 1, 2, 3 … до пика, после обратно надолу до 1.</div>
           </div>
@@ -237,17 +355,17 @@
               <option value="3">3 пъти на ден</option>
             </select>
           </div>
-          <div class="field">
+          <div class="field" style="margin-bottom:0">
             <label for="people">Брой лекуващи се</label>
             <input type="number" id="people" min="1" max="20" value="1">
           </div>
         </div>
-        <div class="result">
+        <div class="result reveal">
           <div class="row"><span class="k">Пълна доза за курс</span><span class="v big" id="rTotal">930</span></div>
           <div class="row"><span class="k">Обхванати от схемата</span><span class="v" id="rScheme">—</span></div>
           <div class="row"><span class="k">Дни до пълна доза</span><span class="v" id="rDays">—</span></div>
           <div class="row"><span class="k">Нужни бръмбари общо</span><span class="v" id="rNeeded">930</span></div>
-          <div class="row"><span class="k">Препоръчан пакет</span><span class="v" id="rPack">Пълна доза</span></div>
+          <div class="row"><span class="k">Препоръчан пакет</span><span class="v" id="rPack" style="font-size:1.05rem">Пълна доза</span></div>
           <p class="note">Схемата покрива част от дозата; остатъкът се приема като поддържащ прием, докато се наберат всички 930 бръмбара на човек.</p>
         </div>
       </div>
@@ -257,16 +375,17 @@
   <!-- PRICING -->
   <section id="prices">
     <div class="wrap">
-      <div class="section-head">
-        <h2>Пакети и цени</h2>
+      <div class="section-head reveal">
+        <p class="eyebrow">Пакети</p>
+        <h2>Изберете своя курс</h2>
         <p>Пълната доза винаги е 930 бръмбара. Изберете дали да я вземете наведнъж или на части.</p>
       </div>
       <div class="prices">
-        <div class="price">
-          <span class="count">Проба</span>
+        <div class="price reveal">
+          <span class="kicker">Проба</span>
           <h3>Стартов пакет</h3>
-          <div class="amount">39 лв<small> / еднократно</small></div>
           <div class="count">100 бръмбара Жук</div>
+          <div class="amount">39 лв<small> / еднократно</small></div>
           <ul>
             <li>За начало на схемата</li>
             <li>Инструкция за прием</li>
@@ -274,11 +393,12 @@
           </ul>
           <a class="btn btn-ghost" href="#order" data-pack="Стартов пакет">Поръчай</a>
         </div>
-        <div class="price featured">
+        <div class="price featured reveal">
           <span class="badge">Пълна доза</span>
+          <span class="kicker">Най-търсен</span>
           <h3>Курс на лечение</h3>
-          <div class="amount">299 лв<small> / курс</small></div>
           <div class="count">930 бръмбара Жук</div>
+          <div class="amount">299 лв<small> / курс</small></div>
           <ul>
             <li>Цялата доза за едно лечение</li>
             <li>Персонална схема на прием</li>
@@ -287,33 +407,34 @@
           </ul>
           <a class="btn btn-primary" href="#order" data-pack="Курс на лечение">Поръчай пълна доза</a>
         </div>
-        <div class="price">
-          <span class="count">Семейство</span>
+        <div class="price reveal">
+          <span class="kicker">Семейство</span>
           <h3>Двоен курс</h3>
-          <div class="amount">549 лв<small> / 2 курса</small></div>
           <div class="count">1860 бръмбара Жук</div>
+          <div class="amount">549 лв<small> / 2 курса</small></div>
           <ul>
             <li>Две пълни дози (2 × 930)</li>
             <li>За двама лекуващи се</li>
             <li>Безплатна доставка</li>
           </ul>
-          <a class="btn btn-ghost" href="#order" data-pack="Двоен курс">Поръчай</a>
+          <a class="btn btn-forest" href="#order" data-pack="Двоен курс">Поръчай</a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- HOW IT WORKS -->
-  <section id="how">
+  <section id="how" style="background:linear-gradient(180deg,transparent,rgba(47,81,54,.05),transparent)">
     <div class="wrap">
-      <div class="section-head">
+      <div class="section-head reveal">
+        <p class="eyebrow">Процес</p>
         <h2>Как работи поръчката</h2>
       </div>
       <div class="steps">
-        <div class="step"><h3>Изберете доза</h3><p>Стартова, пълна (930) или двоен курс.</p></div>
-        <div class="step"><h3>Поръчайте онлайн</h3><p>Попълнете формата за поръчка по-долу.</p></div>
-        <div class="step"><h3>Доставяме живи</h3><p>Бръмбарите пътуват в дишаща опаковка с трици.</p></div>
-        <div class="step"><h3>Следвайте схемата</h3><p>Приемате по нарастваща схема до пълната доза.</p></div>
+        <div class="step reveal"><h3>Изберете доза</h3><p>Стартова, пълна (930) или двоен курс.</p></div>
+        <div class="step reveal"><h3>Поръчайте онлайн</h3><p>Попълнете формата за поръчка по-долу.</p></div>
+        <div class="step reveal"><h3>Доставяме живи</h3><p>Бръмбарите пътуват в дишаща опаковка с трици.</p></div>
+        <div class="step reveal"><h3>Следвайте схемата</h3><p>Приемате по нарастваща схема до пълната доза.</p></div>
       </div>
     </div>
   </section>
@@ -321,56 +442,60 @@
   <!-- ORDER -->
   <section id="order">
     <div class="wrap">
-      <div class="section-head">
+      <div class="section-head reveal">
+        <p class="eyebrow">Поръчка</p>
         <h2>Поръчай бръмбари Жук</h2>
         <p>Попълнете формата. Ще потвърдим наличност и доставка по имейл или телефон.</p>
       </div>
-      <form id="orderForm">
-        <div class="order-grid">
-          <div>
-            <label for="pack">Пакет</label>
-            <select id="pack" name="pack">
-              <option value="Стартов пакет" data-qty="100" data-price="39">Стартов пакет — 100 бр. — 39 лв</option>
-              <option value="Курс на лечение" data-qty="930" data-price="299" selected>Курс на лечение (пълна доза) — 930 бр. — 299 лв</option>
-              <option value="Двоен курс" data-qty="1860" data-price="549">Двоен курс — 1860 бр. — 549 лв</option>
-            </select>
+      <div class="order-wrap reveal">
+        <form id="orderForm">
+          <div class="order-grid">
+            <div>
+              <label for="pack">Пакет</label>
+              <select id="pack" name="pack">
+                <option value="Стартов пакет" data-qty="100" data-price="39">Стартов пакет — 100 бр. — 39 лв</option>
+                <option value="Курс на лечение" data-qty="930" data-price="299" selected>Курс на лечение (пълна доза) — 930 бр. — 299 лв</option>
+                <option value="Двоен курс" data-qty="1860" data-price="549">Двоен курс — 1860 бр. — 549 лв</option>
+              </select>
+            </div>
+            <div>
+              <label for="qty">Брой курсове/пакети</label>
+              <input type="number" id="qty" name="qty" min="1" max="50" value="1">
+            </div>
           </div>
-          <div>
-            <label for="qty">Брой курсове/пакети</label>
-            <input type="number" id="qty" name="qty" min="1" max="50" value="1">
+
+          <div class="order-summary" id="summary">
+            <div class="line"><span>Пакет</span><span id="sPack">Курс на лечение</span></div>
+            <div class="line"><span>Бръмбари общо</span><span id="sBugs">930 бр.</span></div>
+            <div class="line total"><span>За плащане</span><span class="amt" id="sTotal">299 лв</span></div>
           </div>
-        </div>
 
-        <div class="order-summary" id="summary">
-          <div class="line"><span>Пакет</span><span id="sPack">Курс на лечение</span></div>
-          <div class="line"><span>Бръмбари общо</span><span id="sBugs">930 бр.</span></div>
-          <div class="line total"><span>За плащане</span><span class="amt" id="sTotal">299 лв</span></div>
-        </div>
+          <div class="order-grid">
+            <div><label for="name">Име и фамилия</label><input type="text" id="name" name="name" required></div>
+            <div><label for="phone">Телефон</label><input type="tel" id="phone" name="phone" required></div>
+            <div><label for="email">Имейл</label><input type="email" id="email" name="email" required></div>
+            <div><label for="city">Град</label><input type="text" id="city" name="city" required></div>
+            <div class="full"><label for="address">Адрес за доставка</label><input type="text" id="address" name="address" required></div>
+            <div class="full"><label for="notes">Бележка (по избор)</label><textarea id="notes" name="notes" rows="3" placeholder="Напр. предпочитан час за доставка"></textarea></div>
+          </div>
 
-        <div class="order-grid">
-          <div><label for="name">Име и фамилия</label><input type="text" id="name" name="name" required></div>
-          <div><label for="phone">Телефон</label><input type="tel" id="phone" name="phone" required></div>
-          <div><label for="email">Имейл</label><input type="email" id="email" name="email" required></div>
-          <div><label for="city">Град</label><input type="text" id="city" name="city" required></div>
-          <div class="full"><label for="address">Адрес за доставка</label><input type="text" id="address" name="address" required></div>
-          <div class="full"><label for="notes">Бележка (по избор)</label><textarea id="notes" name="notes" rows="3" placeholder="Напр. предпочитан час за доставка"></textarea></div>
-        </div>
-
-        <div style="margin-top:8px" class="full">
-          <button class="btn btn-primary" type="submit">Изпрати поръчка</button>
-          <span class="note" id="formNote" style="margin-left:12px"></span>
-        </div>
-      </form>
+          <div style="margin-top:18px" class="full">
+            <button class="btn btn-primary" type="submit">Изпрати поръчка</button>
+            <span class="note" id="formNote" style="margin-left:12px"></span>
+          </div>
+        </form>
+      </div>
     </div>
   </section>
 
   <!-- FAQ + DISCLAIMER -->
-  <section id="faq">
+  <section id="faq" style="padding-top:32px">
     <div class="wrap">
-      <div class="section-head">
+      <div class="section-head reveal">
+        <p class="eyebrow">Въпроси</p>
         <h2>Често задавани въпроси</h2>
       </div>
-      <div class="faq">
+      <div class="faq reveal">
         <details open>
           <summary>Защо са нужни точно 930 бръмбара?</summary>
           <p>930 бръмбара е пълната доза за един завършен курс на лечение. Приемат се постепенно по схема, а не наведнъж.</p>
@@ -389,7 +514,7 @@
         </details>
       </div>
 
-      <div class="disclaimer" style="margin-top:26px">
+      <div class="disclaimer reveal" style="margin-top:26px">
         <b>Важно:</b> Този сайт е с информационен и демонстрационен характер. Бръмбарите Жук се предлагат като продукт от народната традиция и <b>не са лекарство</b>. Продуктът не е предназначен да диагностицира, лекува или предотвратява заболявания. Консултирайте се с лекар преди употреба.
       </div>
     </div>
@@ -398,7 +523,10 @@
 
 <footer>
   <div class="wrap foot-inner">
-    <div><span class="brand"><span class="bug">🪲</span> Жук Терапия</span> — руски лечебни бръмбари Жук.</div>
+    <div class="brand">
+      <svg viewBox="0 0 64 64" width="28" height="28" aria-hidden="true"><ellipse cx="32" cy="20" rx="9" ry="8" fill="#3d6a45"/><ellipse cx="32" cy="40" rx="15" ry="20" fill="#c08a2d"/><path d="M32 22v38" stroke="#7a5410" stroke-width="2.4"/></svg>
+      Жук Терапия
+    </div>
     <div>© <span id="year"></span> Жук Терапия · <a href="mailto:vstrenev@gmail.com">vstrenev@gmail.com</a></div>
   </div>
 </footer>
@@ -407,6 +535,17 @@
   var FULL_DOSE = 930;
 
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* Sticky header shadow */
+  var navEl = document.getElementById('nav');
+  var onScroll = function(){ navEl.classList.toggle('scrolled', window.scrollY > 8); };
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  /* Reveal on scroll */
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.12, rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
 
   /* ---- Dose calculator ---- */
   var peak = document.getElementById('peak');
@@ -478,7 +617,7 @@
     var bugsEach = parseInt(opt.getAttribute('data-qty'),10);
     var n = Math.max(1, parseInt(qty.value,10) || 1);
     var note = document.getElementById('formNote');
-    note.style.color = 'var(--green)';
+    note.style.color = 'var(--forest)';
     note.textContent = 'Благодарим! Поръчката за ' + (bugsEach*n).toLocaleString('bg-BG') +
       ' бръмбара е приета. Ще се свържем с вас.';
     this.reset();
