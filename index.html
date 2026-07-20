@@ -210,6 +210,27 @@
   .disclaimer{background:rgba(168,83,31,.07);border:1px solid rgba(168,83,31,.28);border-radius:14px;padding:20px 22px;color:#6a4526;font-size:.94rem}
   .disclaimer b{color:var(--rust)}
 
+  /* Science / research */
+  .compounds{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:34px}
+  .compound{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:.5rem 1rem;font-size:.9rem;box-shadow:var(--shadow-sm)}
+  .compound b{color:var(--forest)}
+  .findings{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  @media(max-width:760px){.findings{grid-template-columns:1fr}}
+  .finding{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow-sm)}
+  .finding h3{font-size:1.12rem;margin-bottom:6px}
+  .finding p{color:var(--ink-soft);margin:0}
+  .ev{display:inline-block;font-family:var(--sans);font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+      padding:.28rem .6rem;border-radius:999px;margin-bottom:12px}
+  .ev-lab{background:#e6eef0;color:#2b5561;border:1px solid #cfe0e4}      /* in vitro / лабораторно */
+  .ev-animal{background:#efeae0;color:#6b5426;border:1px solid #e0d5bf}   /* върху животни */
+  .limits{margin-top:26px;background:rgba(168,83,31,.07);border:1px solid rgba(168,83,31,.3);border-radius:var(--radius);padding:24px 26px}
+  .limits h3{color:var(--rust);font-size:1.15rem;margin-bottom:10px}
+  .limits ul{margin:0;padding-left:20px;color:#6a4526}
+  .limits ul li{margin:6px 0}
+  .sources{margin-top:20px;font-size:.85rem;color:var(--muted)}
+  .sources a{color:var(--gold-ink)}
+  .sources b{color:var(--ink-soft);display:block;margin-bottom:6px;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase}
+
   /* Testimonials */
   .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
   @media(max-width:840px){.quotes{grid-template-columns:1fr}}
@@ -254,6 +275,7 @@
     </div>
     <nav class="links">
       <a href="#zhuk">Бръмбарът</a>
+      <a href="#science">Наука</a>
       <a href="#dose">Дозиране</a>
       <a href="#prices">Пакети</a>
       <a href="#how">Как работи</a>
@@ -357,6 +379,71 @@
           <h3>Постъпкова схема</h3>
           <p>Приемат се по нарастваща и намаляваща схема, докато се набере пълната доза от 930.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCIENCE / RESEARCH -->
+  <section id="science" style="background:linear-gradient(180deg,transparent,rgba(47,81,54,.05),transparent)">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Наука и изследвания</p>
+        <h2>Какво казва науката за бръмбара Жук</h2>
+        <p><i>Ulomoides dermestoides</i> (сем. Tenebrionidae, дл. ~5 мм) — наричан още „китайски долгоносик", „аптечен жук" или „жук-знахар". В народната медицина в Аржентина, Бразилия и постсъветските страни се приема жив за редица заболявания. Ето какво реално са установили лабораторните изследвания — и какво все още не са.</p>
+      </div>
+
+      <div class="reveal">
+        <p class="eyebrow" style="color:var(--forest)">Активни съединения, открити в бръмбара</p>
+        <div class="compounds">
+          <span class="compound"><b>Метил-1,4-бензохинон</b></span>
+          <span class="compound"><b>Етил-1,4-бензохинон</b></span>
+          <span class="compound"><b>Лимонен</b> (терпен)</span>
+          <span class="compound"><b>1-тридецен · 1-пентадецен</b></span>
+          <span class="compound">Мастни киселини</span>
+          <span class="compound">Антиоксидантни ензими и гликопротеини</span>
+          <span class="compound">Феноли</span>
+        </div>
+      </div>
+
+      <div class="findings reveal">
+        <div class="finding">
+          <span class="ev ev-lab">In vitro</span>
+          <h3>Антиоксидантно и противовъзпалително действие</h3>
+          <p>Прегледни и експериментални изследвания описват модулиране на реактивни кислородни форми (ROS), цитокини и възпалителни клетки — механизми, свързани с антиоксидантен и противовъзпалителен ефект в клетъчни модели.</p>
+        </div>
+        <div class="finding">
+          <span class="ev ev-animal">Върху животни</span>
+          <h3>Противовъзпалителен ефект при плеврит</h3>
+          <p>Изследване върху предизвикан плеврит при плъхове и лимфоцитна пролиферация in vitro отчита противовъзпалителни и имуномодулиращи ефекти на екстракт от бръмбара (Inflammation, 2009).</p>
+        </div>
+        <div class="finding">
+          <span class="ev ev-lab">In vitro</span>
+          <h3>Цитотоксичност срещу ракови клетки</h3>
+          <p>Защитният секрет (бензохинони) проявява цитотоксична активност върху белодробни ракови клетки A549 и уврежда тяхната ДНК (J. Ethnopharmacology, 2011). Ефектът е върху клетъчна култура, не при пациенти.</p>
+        </div>
+        <div class="finding">
+          <span class="ev ev-animal">Върху животни</span>
+          <h3>Модел на болест на Паркинсон</h3>
+          <p>При невротоксичен модел на болестта на Паркинсон при мишки диета с екстракт от бръмбара показва предпазна активност в отделни изследвания — резултат при животни, не потвърден при хора.</p>
+        </div>
+      </div>
+
+      <div class="limits reveal">
+        <h3>⚠ Какво изследванията НЕ доказват</h3>
+        <ul>
+          <li><b>Няма клинични изпитвания при хора.</b> Нито едно проучване не е доказало, че бръмбарът лекува рак, астма, диабет, Паркинсон или друго заболяване при хора.</li>
+          <li><b>Токсичност и генотоксичност.</b> Същите бензохинони, които са биологично активни, увреждат ДНК и могат да бъдат токсични или канцерогенни. Суровите екстракти показват отчетлива генотоксичност.</li>
+          <li><b>Риск при по-високи дози.</b> С увеличаване на дозата екстрактът става токсичен; описани са рискове като остро възпаление на белите дробове.</li>
+          <li>Наличните находки са предимно лабораторни (in vitro) и върху животни — те са изходна точка за наука, а не доказателство за лечебен ефект при хора.</li>
+        </ul>
+      </div>
+
+      <div class="sources reveal">
+        <b>Източници</b>
+        <a href="https://www.mdpi.com/2076-3921/15/7/849" target="_blank" rel="noopener">Antioxidants (MDPI), 2025 — преглед</a> ·
+        <a href="https://pubmed.ncbi.nlm.nih.gov/20020191/" target="_blank" rel="noopener">Inflammation, 2009 (PubMed)</a> ·
+        <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8537694/" target="_blank" rel="noopener">Molecules, 2021 — волатилом (PMC)</a> ·
+        <a href="https://www.sciencedirect.com/science/article/abs/pii/S0378874111003084" target="_blank" rel="noopener">J. Ethnopharmacology, 2011 (A549)</a>
       </div>
     </div>
   </section>
