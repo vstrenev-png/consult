@@ -957,19 +957,19 @@
       setNote('Плащането с карта се настройва. Поръчка ' + o.orderNo + ' е записана — ще се свържем с вас за плащане с карта.', true);
       return;
     }
-    // Записваме поръчката при собственика и пренасочваме към сигурното плащане.
+    // Записваме поръчката при собственика БЕЗ да пренасочваме страницата.
+    // Само endpoint-ът (fetch с keepalive) е безопасен тук; mailto би отворило
+    // пощата и би прекъснало пренасочването към плащането (личи си на телефон).
+    if (USE_ENDPOINT) deliverOrder(o, {paying:true});
     // Номерът на заявката се прикача автоматично като бележка към плащането.
-    deliverOrder(o, {paying:true});
     var payUrl = sumupLinkWithNote(link, o.orderNo);
     var extra = o.qtyPacks > 1
       ? ' (линкът е за 1 пакет „' + o.pack + '"; за ' + o.qtyPacks + ' бр. повторете плащането или се свържете с нас)'
       : '';
     setNote('Пренасочваме към сигурно плащане с карта (SumUp) за поръчка ' + o.orderNo + '…' + extra, true);
-    // Опит за нов таб; ако блокерът на изскачащи прозорци го спре — пренасочваме в същия таб.
-    var win = window.open(payUrl, '_blank');
-    if (!win || win.closed || typeof win.closed === 'undefined') {
-      window.location.href = payUrl;
-    }
+    // Пренасочване в същия таб — надеждно и на телефон, и на компютър
+    // (нов таб / window.open често се блокира на мобилни браузъри).
+    window.location.assign(payUrl);
   });
 </script>
 </body>
