@@ -889,6 +889,17 @@
 
   var note = document.getElementById('formNote');
   function setNote(msg, ok){ note.style.color = ok ? 'var(--forest)' : 'var(--rust)'; note.textContent = msg; }
+  // Като setNote, но с добавен кликаем линк (резерва, ако автоматичното
+  // пренасочване е блокирано — напр. при преглед на файл във вграден браузър).
+  function setNoteLink(msg, url, linkText){
+    note.style.color = 'var(--forest)';
+    note.textContent = msg + ' ';
+    var a = document.createElement('a');
+    a.href = url; a.target = '_blank'; a.rel = 'noopener';
+    a.style.fontWeight = '700'; a.style.textDecoration = 'underline';
+    a.textContent = linkText;
+    note.appendChild(a);
+  }
 
   // Изпраща данните на поръчката към собственика (endpoint или mailto).
   // onSent(ok) се извиква след опита за изпращане.
@@ -966,10 +977,14 @@
     var extra = o.qtyPacks > 1
       ? ' (линкът е за 1 пакет „' + o.pack + '"; за ' + o.qtyPacks + ' бр. повторете плащането или се свържете с нас)'
       : '';
-    setNote('Пренасочваме към сигурно плащане с карта (SumUp) за поръчка ' + o.orderNo + '…' + extra, true);
-    // Пренасочване в същия таб — надеждно и на телефон, и на компютър
-    // (нов таб / window.open често се блокира на мобилни браузъри).
-    window.location.assign(payUrl);
+    // Показваме и кликаем линк като резерва: ако автоматичното пренасочване
+    // е блокирано (напр. преглед на файл във вграден браузър), клиентът
+    // натиска линка ръчно и стига до плащането.
+    setNoteLink('Пренасочваме към сигурно плащане (SumUp) за поръчка ' + o.orderNo + '…' + extra +
+                ' Ако не се отвори автоматично:', payUrl, 'плати с карта тук');
+    // Оставяме линка да се покаже, после опитваме автоматично пренасочване
+    // (в същия таб — надеждно и на телефон, и на компютър).
+    setTimeout(function(){ window.location.assign(payUrl); }, 80);
   });
 </script>
 </body>
