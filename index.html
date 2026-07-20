@@ -199,6 +199,10 @@
   .order-summary .line span:last-child{font-weight:700;color:var(--ink)}
   .order-summary .total{border-top:1px solid var(--line);margin-top:10px;padding-top:12px;font-family:var(--serif);font-size:1.35rem}
   .order-summary .total .amt{color:var(--gold-ink);font-weight:600}
+  .pay-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+  .pay-info{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;margin-top:12px}
+  .pay-badges{font-size:.85rem;color:var(--muted)}
+  .pay-badges b{color:var(--ink-soft);font-weight:700}
 
   /* FAQ + disclaimer */
   .faq details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:2px 22px;margin-bottom:12px;box-shadow:var(--shadow-sm)}
@@ -217,6 +221,7 @@
   .findings{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
   @media(max-width:760px){.findings{grid-template-columns:1fr}}
   .finding{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow-sm)}
+  .finding.span2{grid-column:1/-1}
   .finding h3{font-size:1.12rem;margin-bottom:6px}
   .finding p{color:var(--ink-soft);margin:0}
   .ev{display:inline-block;font-family:var(--sans);font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
@@ -406,6 +411,11 @@
       </div>
 
       <div class="findings reveal">
+        <div class="finding span2">
+          <span class="ev ev-animal">Модел (C. elegans)</span>
+          <h3>Подмладяване и антиоксиданти — какво реално е измерено</h3>
+          <p>Водният екстракт има измерима <b>антиоксидантна активност</b> — еквивалент на ≈ 0,2 mM Trolox (аналог на витамин Е) на 1 mg сухо вещество/mL (Antioxidants, 2021). В модел с кръгли червеи <i>Caenorhabditis elegans</i> екстрактът <b>удължава средната продължителност на живота с 25–30%</b> (и с 12–17% при оксидативен стрес). Това са реални предклинични данни, свързани с биологията на стареенето — но <b>не са доказателство за подмладяване или антиейджинг ефект при хора</b>. Няма клинично изпитване за подмладяване на кожата или организма при хора.</p>
+        </div>
         <div class="finding">
           <span class="ev ev-lab">In vitro</span>
           <h3>Антиоксидантно и противовъзпалително действие</h3>
@@ -432,6 +442,7 @@
         <h3>⚠ Какво изследванията НЕ доказват</h3>
         <ul>
           <li><b>Няма клинични изпитвания при хора.</b> Нито едно проучване не е доказало, че бръмбарът лекува рак, астма, диабет, Паркинсон или друго заболяване при хора.</li>
+          <li><b>Няма доказано подмладяване при хора.</b> Антиоксидантната активност и удълженият живот са наблюдавани в лаборатория и при кръгли червеи — не при хора. Няма клинично доказателство за антиейджинг или подмладяване.</li>
           <li><b>Токсичност и генотоксичност.</b> Същите бензохинони, които са биологично активни, увреждат ДНК и могат да бъдат токсични или канцерогенни. Суровите екстракти показват отчетлива генотоксичност.</li>
           <li><b>Риск при по-високи дози.</b> С увеличаване на дозата екстрактът става токсичен; описани са рискове като остро възпаление на белите дробове.</li>
           <li>Наличните находки са предимно лабораторни (in vitro) и върху животни — те са изходна точка за наука, а не доказателство за лечебен ефект при хора.</li>
@@ -443,7 +454,8 @@
         <a href="https://www.mdpi.com/2076-3921/15/7/849" target="_blank" rel="noopener">Antioxidants (MDPI), 2025 — преглед</a> ·
         <a href="https://pubmed.ncbi.nlm.nih.gov/20020191/" target="_blank" rel="noopener">Inflammation, 2009 (PubMed)</a> ·
         <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8537694/" target="_blank" rel="noopener">Molecules, 2021 — волатилом (PMC)</a> ·
-        <a href="https://www.sciencedirect.com/science/article/abs/pii/S0378874111003084" target="_blank" rel="noopener">J. Ethnopharmacology, 2011 (A549)</a>
+        <a href="https://www.sciencedirect.com/science/article/abs/pii/S0378874111003084" target="_blank" rel="noopener">J. Ethnopharmacology, 2011 (A549)</a> ·
+        <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8300742/" target="_blank" rel="noopener">Antioxidants, 2021 — състав и антиоксидантна активност (PMC)</a>
       </div>
     </div>
   </section>
@@ -598,9 +610,16 @@
             <div class="full"><label for="notes">Бележка (по избор)</label><textarea id="notes" name="notes" rows="3" placeholder="Напр. предпочитан час за доставка"></textarea></div>
           </div>
 
-          <div style="margin-top:18px" class="full">
-            <button class="btn btn-primary" type="submit">Изпрати поръчка</button>
-            <span class="note" id="formNote" style="margin-left:12px"></span>
+          <div class="pay-row full">
+            <button class="btn btn-forest" type="submit">Поръчай (плащане при доставка)</button>
+            <button class="btn btn-primary" type="button" id="payCard">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+              Плати с карта (SumUp)
+            </button>
+          </div>
+          <div class="pay-info full">
+            <span class="pay-badges"><b>Сигурно плащане с карта чрез SumUp</b> · Visa · Mastercard · Maestro</span>
+            <span class="note" id="formNote"></span>
           </div>
         </form>
       </div>
@@ -787,6 +806,21 @@
   var USE_ENDPOINT = ORDER_ENDPOINT && ORDER_ACCESS_KEY &&
                      ORDER_ACCESS_KEY.indexOf('ПОСТАВЕТЕ') === -1;
 
+  /* ---- Плащане с карта през SumUp ----
+     SumUp платежни линкове (fixed amount) — по един за всеки пакет.
+     Създайте ги във вашия SumUp профил и поставете URL-ите тук
+     (напр. https://pay.sumup.com/b2c/XXXXXXX). Оставете празно, за да е скрит
+     бутонът за карта, докато линковете бъдат добавени. */
+  var SUMUP_LINKS = {
+    'Стартов пакет':   '',   // 39 лв
+    'Курс на лечение': '',   // 299 лв
+    'Двоен курс':      ''    // 549 лв
+  };
+  function sumupLinkFor(pack){
+    var u = SUMUP_LINKS[pack] || '';
+    return (u && u.indexOf('http') === 0) ? u : '';
+  }
+
   function collectOrder(){
     var opt = packSel.options[packSel.selectedIndex];
     var bugsEach = parseInt(opt.getAttribute('data-qty'),10);
@@ -821,43 +855,73 @@
   var note = document.getElementById('formNote');
   function setNote(msg, ok){ note.style.color = ok ? 'var(--forest)' : 'var(--rust)'; note.textContent = msg; }
 
-  document.getElementById('orderForm').addEventListener('submit', function(e){
-    e.preventDefault();
-    var o = collectOrder();
-    var form = this;
-
+  // Изпраща данните на поръчката към собственика (endpoint или mailto).
+  // onSent(ok) се извиква след опита за изпращане.
+  function deliverOrder(o, opts){
+    opts = opts || {};
     if (USE_ENDPOINT) {
-      // Вариант 1: изпращане към форма-услуга -> имейл в пощата ви
       var payload = {
         access_key: ORDER_ACCESS_KEY,
-        subject: 'Нова поръчка — ' + o.bugs + ' бръмбара (' + o.pack + ')',
+        subject: 'Нова поръчка — ' + o.bugs + ' бръмбара (' + o.pack + ')' + (opts.paying ? ' [плащане с карта]' : ''),
         from_name: 'Жук Терапия', to: ORDER_EMAIL,
-        message: orderText(o),
+        message: orderText(o) + (opts.paying ? '\n\nНачин на плащане: карта (SumUp)' : ''),
         pack: o.pack, qty_packs: o.qtyPacks, bugs: o.bugs, total_bgn: o.total,
+        payment: opts.paying ? 'card-sumup' : 'cash-on-delivery',
         name: o.name, phone: o.phone, email: o.email, city: o.city, address: o.address, notes: o.notes
       };
-      setNote('Изпращане…', true);
-      fetch(ORDER_ENDPOINT, {
+      return fetch(ORDER_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(payload)
-      }).then(function(r){ return r.ok ? r : Promise.reject(r); })
-        .then(function(){
-          setNote('Благодарим! Поръчката за ' + o.bugs.toLocaleString('bg-BG') + ' бръмбара е изпратена. Ще се свържем с вас.', true);
-          form.reset(); updateSummary();
-        })
-        .catch(function(){
-          setNote('Възникна проблем при изпращането. Обадете се или пишете на ' + ORDER_EMAIL + '.', false);
-        });
-    } else {
-      // Вариант 2 (по подразбиране): имейл до собственика с попълнена поръчка
-      var subject = 'Нова поръчка — ' + o.bugs + ' бръмбара (' + o.pack + ')';
-      var href = 'mailto:' + ORDER_EMAIL +
-        '?subject=' + encodeURIComponent(subject) +
-        '&body=' + encodeURIComponent(orderText(o));
-      window.location.href = href;
-      setNote('Отваря се вашата поща с готова поръчка до ' + ORDER_EMAIL + ' — натиснете „Изпрати".', true);
+      }).then(function(r){ return r.ok ? true : Promise.reject(r); });
     }
+    // резерва: mailto
+    var subject = 'Нова поръчка — ' + o.bugs + ' бръмбара (' + o.pack + ')';
+    var href = 'mailto:' + ORDER_EMAIL +
+      '?subject=' + encodeURIComponent(subject) +
+      '&body=' + encodeURIComponent(orderText(o));
+    window.location.href = href;
+    return Promise.resolve(true);
+  }
+
+  var orderForm = document.getElementById('orderForm');
+
+  // Поръчка с плащане при доставка
+  orderForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    var o = collectOrder();
+    var form = this;
+    setNote('Изпращане…', true);
+    deliverOrder(o).then(function(){
+      if (USE_ENDPOINT) {
+        setNote('Благодарим! Поръчката за ' + o.bugs.toLocaleString('bg-BG') + ' бръмбара е изпратена. Ще се свържем с вас.', true);
+        form.reset(); updateSummary();
+      } else {
+        setNote('Отваря се вашата поща с готова поръчка до ' + ORDER_EMAIL + ' — натиснете „Изпрати".', true);
+      }
+    }).catch(function(){
+      setNote('Възникна проблем при изпращането. Обадете се или пишете на ' + ORDER_EMAIL + '.', false);
+    });
+  });
+
+  // Плащане с карта през SumUp
+  document.getElementById('payCard').addEventListener('click', function(){
+    if (!orderForm.reportValidity()) return;   // изисква попълнени данни за доставка
+    var o = collectOrder();
+    var link = sumupLinkFor(o.pack);
+    if (!link) {
+      // Линковете още не са настроени — не губим поръчката: изпращаме я и молим за връзка.
+      deliverOrder(o, {paying:true});
+      setNote('Плащането с карта се настройва. Поръчката е записана — ще се свържем с вас за плащане с карта.', true);
+      return;
+    }
+    // Записваме поръчката при собственика и пренасочваме към сигурното плащане.
+    deliverOrder(o, {paying:true});
+    var extra = o.qtyPacks > 1
+      ? ' (линкът е за 1 пакет „' + o.pack + '"; за ' + o.qtyPacks + ' бр. повторете плащането или се свържете с нас)'
+      : '';
+    setNote('Пренасочваме към сигурно плащане с карта (SumUp)…' + extra, true);
+    window.open(link, '_blank', 'noopener');
   });
 </script>
 </body>
