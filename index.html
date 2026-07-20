@@ -771,18 +771,88 @@
   qty.addEventListener('input', updateSummary);
   updateSummary();
 
-  /* ---- Submit ---- */
-  document.getElementById('orderForm').addEventListener('submit', function(e){
-    e.preventDefault();
+  /* ---- Order delivery configuration ----
+     Изберете КЪДЕ да получавате заявките:
+     1) ORDER_ENDPOINT — ако попълните URL на форма-услуга (напр. Web3Forms
+        https://api.web3forms.com/submit или Formspree), поръчката се праща
+        по HTTP и пристига като имейл в пощата ви, без сайтът да презарежда.
+     2) Ако ORDER_ENDPOINT е празен (по подразбиране) — отваря се имейл до
+        ORDER_EMAIL с попълнена поръчка (работи веднага, без регистрация). */
+  var ORDER_ENDPOINT = '';                 // напр. 'https://api.web3forms.com/submit'
+  var ORDER_ACCESS_KEY = '';               // ключ за Web3Forms (ако ползвате endpoint)
+  var ORDER_EMAIL = 'vstrenev@gmail.com';  // тук пристигат заявките при mailto
+
+  function collectOrder(){
     var opt = packSel.options[packSel.selectedIndex];
     var bugsEach = parseInt(opt.getAttribute('data-qty'),10);
+    var priceEach = parseInt(opt.getAttribute('data-price'),10);
     var n = Math.max(1, parseInt(qty.value,10) || 1);
-    var note = document.getElementById('formNote');
-    note.style.color = 'var(--forest)';
-    note.textContent = 'Благодарим! Поръчката за ' + (bugsEach*n).toLocaleString('bg-BG') +
-      ' бръмбара е приета. Ще се свържем с вас.';
-    this.reset();
-    updateSummary();
+    var val = function(id){ return (document.getElementById(id).value || '').trim(); };
+    return {
+      pack: packSel.value, qtyPacks: n,
+      bugs: bugsEach*n, total: priceEach*n,
+      name: val('name'), phone: val('phone'), email: val('email'),
+      city: val('city'), address: val('address'), notes: val('notes')
+    };
+  }
+
+  function orderText(o){
+    return [
+      'Нова поръчка от сайта „Жук Терапия"',
+      '',
+      'Пакет: ' + o.pack + ' × ' + o.qtyPacks,
+      'Бръмбари общо: ' + o.bugs.toLocaleString('bg-BG') + ' бр.',
+      'За плащане: ' + o.total.toLocaleString('bg-BG') + ' лв',
+      '',
+      'Име: ' + o.name,
+      'Телефон: ' + o.phone,
+      'Имейл: ' + o.email,
+      'Град: ' + o.city,
+      'Адрес: ' + o.address,
+      'Бележка: ' + (o.notes || '—')
+    ].join('\n');
+  }
+
+  var note = document.getElementById('formNote');
+  function setNote(msg, ok){ note.style.color = ok ? 'var(--forest)' : 'var(--rust)'; note.textContent = msg; }
+
+  document.getElementById('orderForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var o = collectOrder();
+    var form = this;
+
+    if (ORDER_ENDPOINT) {
+      // Вариант 1: изпращане към форма-услуга -> имейл в пощата ви
+      var payload = {
+        access_key: ORDER_ACCESS_KEY,
+        subject: 'Нова поръчка — ' + o.bugs + ' бръмбара (' + o.pack + ')',
+        from_name: 'Жук Терапия', to: ORDER_EMAIL,
+        message: orderText(o),
+        pack: o.pack, qty_packs: o.qtyPacks, bugs: o.bugs, total_bgn: o.total,
+        name: o.name, phone: o.phone, email: o.email, city: o.city, address: o.address, notes: o.notes
+      };
+      setNote('Изпращане…', true);
+      fetch(ORDER_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      }).then(function(r){ return r.ok ? r : Promise.reject(r); })
+        .then(function(){
+          setNote('Благодарим! Поръчката за ' + o.bugs.toLocaleString('bg-BG') + ' бръмбара е изпратена. Ще се свържем с вас.', true);
+          form.reset(); updateSummary();
+        })
+        .catch(function(){
+          setNote('Възникна проблем при изпращането. Обадете се или пишете на ' + ORDER_EMAIL + '.', false);
+        });
+    } else {
+      // Вариант 2 (по подразбиране): имейл до собственика с попълнена поръчка
+      var subject = 'Нова поръчка — ' + o.bugs + ' бръмбара (' + o.pack + ')';
+      var href = 'mailto:' + ORDER_EMAIL +
+        '?subject=' + encodeURIComponent(subject) +
+        '&body=' + encodeURIComponent(orderText(o));
+      window.location.href = href;
+      setNote('Отваря се вашата поща с готова поръчка до ' + ORDER_EMAIL + ' — натиснете „Изпрати".', true);
+    }
   });
 </script>
 </body>
