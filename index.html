@@ -819,6 +819,46 @@
   var USE_ENDPOINT = ORDER_ENDPOINT && ORDER_ACCESS_KEY &&
                      ORDER_ACCESS_KEY.indexOf('ПОСТАВЕТЕ') === -1;
 
+  /* ---- Имейл-потвърждение до клиента (EmailJS) ----
+     Праща на клиента „Поръчката е получена" веднага след поръчка (и при
+     доставка, и с карта). Трите стойности се взимат от emailjs.com:
+     Account → Public Key; Email Services → Service ID; Templates → Template ID.
+     ВАЖНО: в шаблона полето „To Email" трябва да е {{to_email}}.
+     При празни стойности имейлът просто се пропуска (поръчката не се губи). */
+  var EMAILJS_PUBLIC_KEY  = 'ПОСТАВЕТЕ-PUBLIC-KEY';
+  var EMAILJS_SERVICE_ID  = 'ПОСТАВЕТЕ-SERVICE-ID';
+  var EMAILJS_TEMPLATE_ID = 'ПОСТАВЕТЕ-TEMPLATE-ID';
+  var USE_EMAILJS = EMAILJS_PUBLIC_KEY.indexOf('ПОСТАВЕТЕ') === -1 &&
+                    EMAILJS_SERVICE_ID.indexOf('ПОСТАВЕТЕ') === -1 &&
+                    EMAILJS_TEMPLATE_ID.indexOf('ПОСТАВЕТЕ') === -1;
+
+  function sendCustomerEmail(o, opts){
+    if (!USE_EMAILJS || !o.email) return Promise.resolve(false);
+    return fetch('https://api.emailjs.com/api/v1.0/email/send', {
+      method: 'POST',
+      keepalive: true,   // оцелява и при пренасочване към плащането
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        service_id: EMAILJS_SERVICE_ID,
+        template_id: EMAILJS_TEMPLATE_ID,
+        user_id: EMAILJS_PUBLIC_KEY,
+        template_params: {
+          to_email: o.email,
+          to_name: o.name,
+          order_no: o.orderNo,
+          pack: o.pack,
+          qty_packs: o.qtyPacks,
+          bugs: o.bugs.toLocaleString('bg-BG'),
+          total: fmtPrice(o.total),
+          payment: (opts && opts.paying) ? 'С карта (SumUp)' : 'При доставка',
+          city: o.city,
+          address: o.address,
+          phone: o.phone
+        }
+      })
+    }).then(function(r){ return r.ok; }).catch(function(){ return false; });
+  }
+
   /* ---- Плащане с карта през SumUp ----
      SumUp платежни линкове (fixed amount) — по един за всеки пакет.
      Създайте ги във вашия SumUp профил и поставете URL-ите тук
@@ -941,6 +981,7 @@
     var o = collectOrder();
     var form = this;
     setNote('Изпращане…', true);
+    sendCustomerEmail(o);   // потвърждение до клиента (ако EmailJS е настроен)
     deliverOrder(o).then(function(){
       if (USE_ENDPOINT) {
         setNote('Благодарим! Поръчка ' + o.orderNo + ' за ' + o.bugs.toLocaleString('bg-BG') + ' бръмбара е изпратена. Ще се свържем с вас.', true);
@@ -965,6 +1006,7 @@
     if (!link) {
       // Линковете още не са настроени — не губим поръчката: изпращаме я и молим за връзка.
       deliverOrder(o, {paying:true});
+      sendCustomerEmail(o, {paying:true});
       setNote('Плащането с карта се настройва. Поръчка ' + o.orderNo + ' е записана — ще се свържем с вас за плащане с карта.', true);
       return;
     }
@@ -972,6 +1014,7 @@
     // Само endpoint-ът (fetch с keepalive) е безопасен тук; mailto би отворило
     // пощата и би прекъснало пренасочването към плащането (личи си на телефон).
     if (USE_ENDPOINT) deliverOrder(o, {paying:true});
+    sendCustomerEmail(o, {paying:true});   // потвърждение до клиента (keepalive)
     // Номерът на заявката се прикача автоматично като бележка към плащането.
     var payUrl = sumupLinkWithNote(link, o.orderNo);
     var extra = o.qtyPacks > 1
