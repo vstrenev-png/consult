@@ -778,9 +778,14 @@
         по HTTP и пристига като имейл в пощата ви, без сайтът да презарежда.
      2) Ако ORDER_ENDPOINT е празен (по подразбиране) — отваря се имейл до
         ORDER_EMAIL с попълнена поръчка (работи веднага, без регистрация). */
-  var ORDER_ENDPOINT = '';                 // напр. 'https://api.web3forms.com/submit'
-  var ORDER_ACCESS_KEY = '';               // ключ за Web3Forms (ако ползвате endpoint)
-  var ORDER_EMAIL = 'vstrenev@gmail.com';  // тук пристигат заявките при mailto
+  var ORDER_ENDPOINT = 'https://api.web3forms.com/submit';  // Web3Forms
+  var ORDER_ACCESS_KEY = 'ПОСТАВЕТЕ-WEB3FORMS-КЛЮЧА-ТУК';   // безплатен ключ от web3forms.com
+  var ORDER_EMAIL = 'vstrenev@gmail.com';  // тук пристигат заявките (резерва: mailto)
+
+  // Endpoint се ползва само с валиден ключ; иначе резерва към mailto,
+  // за да не спира приемането на поръчки, докато ключът бъде поставен.
+  var USE_ENDPOINT = ORDER_ENDPOINT && ORDER_ACCESS_KEY &&
+                     ORDER_ACCESS_KEY.indexOf('ПОСТАВЕТЕ') === -1;
 
   function collectOrder(){
     var opt = packSel.options[packSel.selectedIndex];
@@ -821,7 +826,7 @@
     var o = collectOrder();
     var form = this;
 
-    if (ORDER_ENDPOINT) {
+    if (USE_ENDPOINT) {
       // Вариант 1: изпращане към форма-услуга -> имейл в пощата ви
       var payload = {
         access_key: ORDER_ACCESS_KEY,
