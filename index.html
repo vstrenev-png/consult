@@ -174,6 +174,7 @@
   .price .count{color:var(--forest);font-weight:700;font-size:.98rem}
   .price .amount{font-family:var(--serif);font-size:2.6rem;font-weight:600;margin:16px 0 2px;color:var(--ink)}
   .price .amount small{font-family:var(--sans);font-size:.95rem;color:var(--muted);font-weight:600}
+  .price .amount-bgn{color:var(--muted);font-weight:600;font-size:.95rem;margin:-2px 0 2px}
   .price ul{list-style:none;padding:0;margin:18px 0 24px;color:var(--ink-soft)}
   .price ul li{padding:8px 0 8px 26px;position:relative;border-bottom:1px solid var(--line)}
   .price ul li::before{content:"";position:absolute;left:0;top:14px;width:14px;height:8px;border-left:2px solid var(--forest-2);border-bottom:2px solid var(--forest-2);transform:rotate(-45deg)}
@@ -516,7 +517,8 @@
           <span class="kicker">Проба</span>
           <h3>Стартов пакет</h3>
           <div class="count">100 бръмбара Жук</div>
-          <div class="amount">39 лв<small> / еднократно</small></div>
+          <div class="amount">20 €<small> / еднократно</small></div>
+          <div class="amount-bgn">39,12 лв</div>
           <ul>
             <li>За начало на схемата</li>
             <li>Инструкция за прием</li>
@@ -529,7 +531,8 @@
           <span class="kicker">Най-търсен</span>
           <h3>Курс на лечение</h3>
           <div class="count">930 бръмбара Жук</div>
-          <div class="amount">299 лв<small> / курс</small></div>
+          <div class="amount">150 €<small> / курс</small></div>
+          <div class="amount-bgn">293,37 лв</div>
           <ul>
             <li>Цялата доза за едно лечение</li>
             <li>Персонална схема на прием</li>
@@ -542,7 +545,8 @@
           <span class="kicker">Семейство</span>
           <h3>Двоен курс</h3>
           <div class="count">1860 бръмбара Жук</div>
-          <div class="amount">549 лв<small> / 2 курса</small></div>
+          <div class="amount">275 €<small> / 2 курса</small></div>
+          <div class="amount-bgn">537,85 лв</div>
           <ul>
             <li>Две пълни дози (2 × 930)</li>
             <li>За двама лекуващи се</li>
@@ -584,9 +588,9 @@
             <div>
               <label for="pack">Пакет</label>
               <select id="pack" name="pack">
-                <option value="Стартов пакет" data-qty="100" data-price="39">Стартов пакет — 100 бр. — 39 лв</option>
-                <option value="Курс на лечение" data-qty="930" data-price="299" selected>Курс на лечение (пълна доза) — 930 бр. — 299 лв</option>
-                <option value="Двоен курс" data-qty="1860" data-price="549">Двоен курс — 1860 бр. — 549 лв</option>
+                <option value="Стартов пакет" data-qty="100" data-price="20">Стартов пакет — 100 бр. — 20 € (39,12 лв)</option>
+                <option value="Курс на лечение" data-qty="930" data-price="150" selected>Курс на лечение (пълна доза) — 930 бр. — 150 € (293,37 лв)</option>
+                <option value="Двоен курс" data-qty="1860" data-price="275">Двоен курс — 1860 бр. — 275 € (537,85 лв)</option>
               </select>
             </div>
             <div>
@@ -598,7 +602,7 @@
           <div class="order-summary" id="summary">
             <div class="line"><span>Пакет</span><span id="sPack">Курс на лечение</span></div>
             <div class="line"><span>Бръмбари общо</span><span id="sBugs">930 бр.</span></div>
-            <div class="line total"><span>За плащане</span><span class="amt" id="sTotal">299 лв</span></div>
+            <div class="line total"><span>За плащане</span><span class="amt" id="sTotal">150 € (293,37 лв)</span></div>
           </div>
 
           <div class="order-grid">
@@ -700,6 +704,15 @@
 <script>
   var FULL_DOSE = 930;
 
+  /* ---- Валута ---- Основната валута е евро (SumUp таксува в евро).
+     Левовата равностойност се показва по фиксирания курс 1 € = 1.95583 лв. */
+  var EUR_BGN = 1.95583;
+  function fmtBgn(eur){
+    return (eur * EUR_BGN).toLocaleString('bg-BG', {minimumFractionDigits:2, maximumFractionDigits:2}) + ' лв';
+  }
+  function fmtEur(eur){ return eur.toLocaleString('bg-BG') + ' €'; }
+  function fmtPrice(eur){ return fmtEur(eur) + ' (' + fmtBgn(eur) + ')'; }
+
   document.getElementById('year').textContent = new Date().getFullYear();
 
   /* Sticky header shadow */
@@ -784,7 +797,7 @@
     var n = Math.max(1, parseInt(qty.value,10) || 1);
     document.getElementById('sPack').textContent = packSel.value;
     document.getElementById('sBugs').textContent = (bugsEach*n).toLocaleString('bg-BG') + ' бр.';
-    document.getElementById('sTotal').textContent = (priceEach*n).toLocaleString('bg-BG') + ' лв';
+    document.getElementById('sTotal').textContent = fmtPrice(priceEach*n);
   }
   packSel.addEventListener('change', updateSummary);
   qty.addEventListener('input', updateSummary);
@@ -812,9 +825,9 @@
      (напр. https://pay.sumup.com/b2c/XXXXXXX). Оставете празно, за да е скрит
      бутонът за карта, докато линковете бъдат добавени. */
   var SUMUP_LINKS = {
-    'Стартов пакет':   'https://pay.sumup.com/b2c/Q6HSYISC',   // 39 лв
-    'Курс на лечение': 'https://pay.sumup.com/b2c/QGU3NTQI',   // 299 лв
-    'Двоен курс':      'https://pay.sumup.com/b2c/QX51A7SZ'    // 549 лв
+    'Стартов пакет':   'https://pay.sumup.com/b2c/Q6HSYISC',   // 20 €
+    'Курс на лечение': 'https://pay.sumup.com/b2c/QGU3NTQI',   // 150 €
+    'Двоен курс':      'https://pay.sumup.com/b2c/QX51A7SZ'    // 275 €
   };
   function sumupLinkFor(pack){
     var u = SUMUP_LINKS[pack] || '';
@@ -863,7 +876,7 @@
       '',
       'Пакет: ' + o.pack + ' × ' + o.qtyPacks,
       'Бръмбари общо: ' + o.bugs.toLocaleString('bg-BG') + ' бр.',
-      'За плащане: ' + o.total.toLocaleString('bg-BG') + ' лв',
+      'За плащане: ' + fmtPrice(o.total),
       '',
       'Име: ' + o.name,
       'Телефон: ' + o.phone,
@@ -888,7 +901,8 @@
         from_name: 'Жук Терапия', to: ORDER_EMAIL,
         message: orderText(o) + (opts.paying ? '\n\nНачин на плащане: карта (SumUp)' : ''),
         order_no: o.orderNo,
-        pack: o.pack, qty_packs: o.qtyPacks, bugs: o.bugs, total_bgn: o.total,
+        pack: o.pack, qty_packs: o.qtyPacks, bugs: o.bugs,
+        total_eur: o.total, total_bgn: +(o.total * EUR_BGN).toFixed(2),
         payment: opts.paying ? 'card-sumup' : 'cash-on-delivery',
         name: o.name, phone: o.phone, email: o.email, city: o.city, address: o.address, notes: o.notes
       };
