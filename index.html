@@ -1,535 +1,487 @@
-<!DOCTYPE html>
-<html lang="bg">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>КОНСУЛТ — Решаваме проблеми. Постигаме резултати.</title>
-<meta name="description" content="Консултантска фирма в сферата на решаването на проблеми. Правни консултации, мрежа от специалисти и ангажимент към резултата.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Жук Терапия — руски лечебни бръмбари Жук</title>
+<meta name="description" content="Живи руски лечебни бръмбари Жук (Ulomoides dermestoides). Пълна доза за курс на лечение — 930 бръмбара. Поръчайте онлайн с доставка.">
 <style>
-  :root {
-    --navy: #0e1a2b;
-    --navy-2: #14233a;
-    --navy-3: #1b2f4d;
-    --gold: #c9a24b;
-    --gold-light: #e0c583;
-    --ink: #1c2430;
-    --text: #3d4a5c;
-    --muted: #7b8794;
-    --bg: #ffffff;
-    --bg-soft: #f5f7fa;
-    --border: #e3e8ee;
-    --radius: 14px;
+  :root{
+    --bg:#0f1408;
+    --panel:#161d0d;
+    --panel-2:#1d260f;
+    --ink:#f2f4e9;
+    --muted:#a9b491;
+    --line:#2c371a;
+    --amber:#d9a441;
+    --amber-2:#f0c368;
+    --green:#7fae3a;
+    --danger:#e07a4a;
+    --radius:16px;
+    --shadow:0 18px 50px rgba(0,0,0,.45);
+    --maxw:1080px;
+    color-scheme:dark;
   }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
-    color: var(--text);
-    background: var(--bg);
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
-  }
-  h1, h2, h3, h4 { font-family: Georgia, 'Times New Roman', serif; color: var(--ink); line-height: 1.25; }
-  img { max-width: 100%; }
-  a { color: inherit; }
-  .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
-
-  /* ===== Header ===== */
-  header {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(14, 26, 43, 0.92);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-  }
-  .nav {
-    display: flex; align-items: center; justify-content: space-between;
-    height: 72px;
-  }
-  .logo {
-    display: flex; align-items: center; gap: 12px;
-    text-decoration: none;
-  }
-  .logo-mark {
-    width: 40px; height: 40px; border-radius: 10px;
-    background: linear-gradient(135deg, var(--gold), #a8823a);
-    display: grid; place-items: center;
-    font-family: Georgia, serif; font-weight: bold; font-size: 20px; color: var(--navy);
-  }
-  .logo-text { color: #fff; font-family: Georgia, serif; font-size: 20px; letter-spacing: 2px; }
-  .logo-text small { display: block; font-family: 'Segoe UI', sans-serif; font-size: 10px; letter-spacing: 3px; color: var(--gold-light); text-transform: uppercase; }
-  nav ul { display: flex; gap: 32px; list-style: none; }
-  nav ul a {
-    color: rgba(255,255,255,0.85); text-decoration: none; font-size: 15px;
-    transition: color .2s;
-  }
-  nav ul a:hover { color: var(--gold-light); }
-  .nav-cta {
-    background: var(--gold); color: var(--navy) !important; font-weight: 600;
-    padding: 10px 22px; border-radius: 8px; transition: background .2s;
-  }
-  .nav-cta:hover { background: var(--gold-light); color: var(--navy); }
-  .burger { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
-  .burger span { display: block; width: 24px; height: 2px; background: #fff; margin: 5px 0; transition: .3s; }
-
-  /* ===== Hero ===== */
-  .hero {
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:"Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
     background:
-      radial-gradient(ellipse at 80% 20%, rgba(201,162,75,0.12), transparent 50%),
-      radial-gradient(ellipse at 10% 90%, rgba(27,47,77,0.9), transparent 60%),
-      linear-gradient(160deg, var(--navy) 0%, var(--navy-2) 60%, var(--navy-3) 100%);
-    color: #fff;
-    padding: 190px 0 130px;
-    position: relative;
-    overflow: hidden;
+      radial-gradient(1200px 600px at 80% -10%,rgba(217,164,65,.10),transparent 60%),
+      radial-gradient(900px 500px at -10% 20%,rgba(127,174,58,.08),transparent 55%),
+      var(--bg);
+    color:var(--ink);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
   }
-  .hero::after {
-    content: "";
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-    background-size: 56px 56px;
-    pointer-events: none;
+  a{color:var(--amber-2);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+  h1,h2,h3{line-height:1.15;margin:0 0 .5em}
+  h2{font-size:clamp(1.5rem,3vw,2.1rem)}
+  .muted{color:var(--muted)}
+  .btn{
+    display:inline-block;border:0;cursor:pointer;font:inherit;font-weight:700;
+    padding:.85rem 1.5rem;border-radius:999px;transition:transform .15s ease,box-shadow .15s ease;
   }
-  .hero .container { position: relative; z-index: 1; }
-  .hero-badge {
-    display: inline-block; padding: 8px 18px; border: 1px solid rgba(201,162,75,0.5);
-    border-radius: 100px; color: var(--gold-light); font-size: 13px; letter-spacing: 2px;
-    text-transform: uppercase; margin-bottom: 28px;
-  }
-  .hero h1 {
-    color: #fff; font-size: clamp(34px, 5.5vw, 58px); max-width: 780px;
-    margin-bottom: 24px;
-  }
-  .hero h1 em { font-style: normal; color: var(--gold); }
-  .hero p.lead {
-    font-size: 19px; color: rgba(255,255,255,0.78); max-width: 640px; margin-bottom: 40px;
-  }
-  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
-  .btn {
-    display: inline-block; padding: 15px 34px; border-radius: 10px;
-    text-decoration: none; font-size: 16px; font-weight: 600;
-    transition: transform .15s, box-shadow .15s, background .2s;
-  }
-  .btn-gold { background: var(--gold); color: var(--navy); box-shadow: 0 8px 24px rgba(201,162,75,0.35); }
-  .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
-  .btn-ghost { border: 1px solid rgba(255,255,255,0.35); color: #fff; }
-  .btn-ghost:hover { border-color: var(--gold); color: var(--gold-light); transform: translateY(-2px); }
+  .btn:hover{transform:translateY(-2px);text-decoration:none}
+  .btn-primary{background:linear-gradient(135deg,var(--amber-2),var(--amber));color:#20260c;box-shadow:0 10px 24px rgba(217,164,65,.25)}
+  .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
 
-  .hero-stats {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
-    margin-top: 80px; max-width: 720px;
-  }
-  .stat { border-left: 2px solid var(--gold); padding-left: 20px; }
-  .stat b { display: block; font-size: 32px; font-family: Georgia, serif; color: #fff; }
-  .stat span { color: rgba(255,255,255,0.65); font-size: 14px; }
+  /* Header */
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(15,20,8,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 20px;max-width:var(--maxw);margin:0 auto}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.15rem;letter-spacing:.3px}
+  .brand .bug{font-size:1.4rem}
+  nav.links{display:flex;gap:22px;flex-wrap:wrap}
+  nav.links a{color:var(--muted);font-weight:600;font-size:.95rem}
+  nav.links a:hover{color:var(--ink);text-decoration:none}
+  @media(max-width:760px){nav.links{display:none}}
 
-  /* ===== Sections ===== */
-  section { padding: 96px 0; }
-  .section-tag {
-    color: var(--gold); font-size: 13px; letter-spacing: 3px; text-transform: uppercase;
-    font-weight: 600; display: block; margin-bottom: 14px;
+  /* Hero */
+  .hero{padding:70px 0 40px}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+  @media(max-width:860px){.hero-grid{grid-template-columns:1fr;gap:24px}}
+  .tag{display:inline-block;background:var(--panel-2);border:1px solid var(--line);color:var(--amber-2);
+    padding:.3rem .8rem;border-radius:999px;font-size:.8rem;font-weight:700;letter-spacing:.4px;text-transform:uppercase;margin-bottom:16px}
+  .hero h1{font-size:clamp(2rem,5vw,3.3rem);font-weight:800}
+  .hero p.lead{font-size:1.15rem;color:var(--muted);max-width:44ch}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
+  .hero-art{
+    background:linear-gradient(160deg,var(--panel-2),var(--panel));
+    border:1px solid var(--line);border-radius:24px;padding:34px;text-align:center;box-shadow:var(--shadow);
   }
-  .section-title { font-size: clamp(28px, 4vw, 40px); margin-bottom: 18px; }
-  .section-sub { max-width: 640px; font-size: 17px; color: var(--muted); margin-bottom: 56px; }
+  .hero-art .big-bug{font-size:5.5rem;line-height:1}
+  .dose-badge{margin-top:18px;font-weight:800}
+  .dose-badge .n{font-size:3rem;color:var(--amber-2);display:block;line-height:1}
+  .trust{display:flex;gap:26px;flex-wrap:wrap;margin-top:34px;color:var(--muted);font-size:.9rem}
+  .trust b{color:var(--ink)}
 
-  /* About */
-  .about-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 64px; align-items: center; }
-  .about-text p { margin-bottom: 18px; font-size: 17px; }
-  .about-card {
-    background: linear-gradient(160deg, var(--navy), var(--navy-3));
-    border-radius: var(--radius); padding: 44px; color: #fff;
-    box-shadow: 0 24px 60px rgba(14,26,43,0.25);
-  }
-  .about-card h3 { color: var(--gold-light); font-size: 22px; margin-bottom: 20px; }
-  .about-card ul { list-style: none; }
-  .about-card li {
-    padding: 13px 0 13px 34px; position: relative;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    color: rgba(255,255,255,0.85); font-size: 15.5px;
-  }
-  .about-card li:last-child { border-bottom: none; }
-  .about-card li::before {
-    content: "✓"; position: absolute; left: 0; top: 12px;
-    color: var(--gold); font-weight: bold;
-  }
+  /* Sections */
+  section{padding:56px 0;border-top:1px solid var(--line)}
+  .section-head{max-width:60ch;margin-bottom:34px}
+  .section-head p{color:var(--muted);margin:.3em 0 0}
 
-  /* Services */
-  .bg-soft { background: var(--bg-soft); }
-  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
-  .card {
-    background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 36px 30px; transition: transform .2s, box-shadow .2s;
-  }
-  .card:hover { transform: translateY(-6px); box-shadow: 0 18px 44px rgba(14,26,43,0.10); }
-  .card-icon {
-    width: 56px; height: 56px; border-radius: 14px;
-    background: linear-gradient(135deg, rgba(201,162,75,0.15), rgba(201,162,75,0.28));
-    display: grid; place-items: center; font-size: 26px; margin-bottom: 22px;
-  }
-  .card h3 { font-size: 20px; margin-bottom: 12px; }
-  .card p { font-size: 15.5px; color: var(--muted); }
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  @media(max-width:820px){.cards{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+  .card .ic{font-size:1.8rem;margin-bottom:10px}
+  .card h3{font-size:1.15rem}
+  .card p{color:var(--muted);margin:0}
 
-  /* Process */
-  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; counter-reset: step; }
-  .step { position: relative; padding-top: 8px; }
-  .step-num {
-    font-family: Georgia, serif; font-size: 54px; color: transparent;
-    -webkit-text-stroke: 1.5px var(--gold); line-height: 1; margin-bottom: 16px;
+  /* Dose calculator */
+  .calc{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:stretch}
+  @media(max-width:820px){.calc{grid-template-columns:1fr}}
+  .calc-panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+  .calc-panel label{display:block;font-weight:700;margin:0 0 8px}
+  .field{margin-bottom:18px}
+  input[type=number],input[type=text],input[type=email],input[type=tel],select,textarea{
+    width:100%;padding:.8rem .9rem;border-radius:12px;border:1px solid var(--line);
+    background:var(--panel-2);color:var(--ink);font:inherit
   }
-  .step h3 { font-size: 19px; margin-bottom: 10px; }
-  .step p { font-size: 15px; color: var(--muted); }
+  input:focus,select:focus,textarea:focus{outline:2px solid var(--amber);outline-offset:1px}
+  .range-row{display:flex;align-items:center;gap:14px}
+  input[type=range]{flex:1;accent-color:var(--amber)}
+  .result{background:linear-gradient(160deg,var(--panel-2),var(--panel));border:1px solid var(--line);border-radius:var(--radius);padding:26px;display:flex;flex-direction:column;justify-content:center}
+  .result .row{display:flex;justify-content:space-between;align-items:baseline;padding:12px 0;border-bottom:1px dashed var(--line)}
+  .result .row:last-child{border-bottom:0}
+  .result .k{color:var(--muted)}
+  .result .v{font-weight:800;font-size:1.25rem}
+  .result .v.big{color:var(--amber-2);font-size:1.7rem}
+  .note{font-size:.82rem;color:var(--muted);margin-top:10px}
 
-  /* Why us */
-  .why { background: linear-gradient(160deg, var(--navy), var(--navy-2)); color: #fff; }
-  .why .section-title { color: #fff; }
-  .why .section-sub { color: rgba(255,255,255,0.7); }
-  .why-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-  .why-item {
-    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10);
-    border-radius: var(--radius); padding: 30px;
-  }
-  .why-item h3 { color: var(--gold-light); font-size: 19px; margin-bottom: 10px; }
-  .why-item p { color: rgba(255,255,255,0.75); font-size: 15.5px; }
+  /* Pricing */
+  .prices{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+  @media(max-width:820px){.prices{grid-template-columns:1fr}}
+  .price{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:26px;display:flex;flex-direction:column}
+  .price.featured{border-color:var(--amber);box-shadow:0 0 0 1px var(--amber) inset,var(--shadow)}
+  .price .badge{align-self:flex-start;background:var(--amber);color:#20260c;font-weight:800;font-size:.72rem;padding:.25rem .7rem;border-radius:999px;text-transform:uppercase;margin-bottom:12px}
+  .price h3{font-size:1.25rem;margin-bottom:4px}
+  .price .count{color:var(--muted);font-size:.95rem}
+  .price .amount{font-size:2.2rem;font-weight:800;margin:14px 0 2px}
+  .price .amount small{font-size:1rem;color:var(--muted);font-weight:600}
+  .price ul{list-style:none;padding:0;margin:16px 0 22px;color:var(--muted)}
+  .price ul li{padding:6px 0;border-bottom:1px solid var(--line)}
+  .price ul li::before{content:"✓ ";color:var(--green);font-weight:800}
+  .price .btn{margin-top:auto;text-align:center}
 
-  /* Contact */
-  .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px; }
-  .contact-info h3 { font-size: 22px; margin-bottom: 18px; }
-  .contact-info p { color: var(--muted); margin-bottom: 28px; }
-  .contact-line {
-    display: flex; align-items: center; gap: 14px; margin-bottom: 18px; font-size: 16px;
-  }
-  .contact-line .ci {
-    width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
-    background: rgba(201,162,75,0.15); display: grid; place-items: center; font-size: 20px;
-  }
-  .contact-line a { color: var(--ink); text-decoration: none; font-weight: 600; }
-  .contact-line a:hover { color: var(--gold); }
-  form {
-    background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 40px; box-shadow: 0 14px 40px rgba(14,26,43,0.07);
-  }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-  label { display: block; font-size: 14px; font-weight: 600; color: var(--ink); margin: 0 0 6px; }
-  input, textarea {
-    width: 100%; padding: 13px 16px; border: 1px solid var(--border); border-radius: 10px;
-    font-family: inherit; font-size: 15px; color: var(--ink); background: var(--bg-soft);
-    margin-bottom: 20px; transition: border-color .2s;
-  }
-  input:focus, textarea:focus { outline: none; border-color: var(--gold); background: #fff; }
-  textarea { min-height: 130px; resize: vertical; }
-  .form-note { font-size: 13px; color: var(--muted); margin-top: 14px; }
+  /* Steps */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;counter-reset:s}
+  @media(max-width:820px){.steps{grid-template-columns:1fr 1fr}}
+  @media(max-width:480px){.steps{grid-template-columns:1fr}}
+  .step{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:22px;position:relative}
+  .step::before{counter-increment:s;content:counter(s);display:inline-flex;align-items:center;justify-content:center;
+    width:34px;height:34px;border-radius:50%;background:var(--amber);color:#20260c;font-weight:800;margin-bottom:12px}
+  .step h3{font-size:1.05rem}
+  .step p{color:var(--muted);margin:0;font-size:.95rem}
 
-  /* Footer */
-  footer { background: var(--navy); color: rgba(255,255,255,0.6); padding: 40px 0; font-size: 14px; }
-  .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
-  footer a { color: var(--gold-light); text-decoration: none; }
+  /* Order form */
+  .order-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:640px){.order-grid{grid-template-columns:1fr}}
+  form label{display:block;font-weight:700;margin:0 0 8px}
+  form .full{grid-column:1/-1}
+  .order-summary{background:var(--panel-2);border:1px solid var(--line);border-radius:12px;padding:16px;margin:18px 0}
+  .order-summary .line{display:flex;justify-content:space-between;padding:4px 0}
+  .order-summary .total{border-top:1px solid var(--line);margin-top:8px;padding-top:10px;font-weight:800;font-size:1.15rem}
+  .order-summary .total .amt{color:var(--amber-2)}
 
-  /* ===== Responsive ===== */
-  @media (max-width: 900px) {
-    .cards, .steps, .why-grid { grid-template-columns: repeat(2, 1fr); }
-    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
-    nav ul {
-      position: fixed; top: 72px; right: -100%; width: min(320px, 80vw); height: calc(100vh - 72px);
-      background: var(--navy-2); flex-direction: column; padding: 32px; gap: 8px;
-      transition: right .3s; border-left: 1px solid rgba(255,255,255,0.1);
-    }
-    nav ul.open { right: 0; }
-    nav ul a { display: block; padding: 12px 0; font-size: 17px; }
-    .nav-cta { text-align: center; margin-top: 12px; }
-    .burger { display: block; }
-  }
-  @media (max-width: 560px) {
-    .cards, .steps, .why-grid, .form-row, .hero-stats { grid-template-columns: 1fr; }
-    section { padding: 72px 0; }
-    .hero { padding: 150px 0 90px; }
-    form { padding: 28px 22px; }
-  }
+  /* Disclaimer / FAQ */
+  .faq details{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:6px 18px;margin-bottom:12px}
+  .faq summary{cursor:pointer;font-weight:700;padding:12px 0}
+  .faq details p{color:var(--muted);margin:0 0 14px}
+  .disclaimer{background:rgba(224,122,74,.08);border:1px solid rgba(224,122,74,.4);border-radius:12px;padding:18px 20px;color:#f2d8c8;font-size:.92rem}
+  .disclaimer b{color:#ffcbb0}
+
+  footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted);font-size:.9rem}
+  .foot-inner{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 </style>
-</head>
-<body>
 
-<header>
-  <div class="container nav">
-    <a class="logo" href="#top">
-      <span class="logo-mark">К</span>
-      <span class="logo-text">КОНСУЛТ<small>Решения &amp; Резултати</small></span>
-    </a>
-    <nav>
-      <button class="burger" id="burger" aria-label="Меню">
-        <span></span><span></span><span></span>
-      </button>
-      <ul id="menu">
-        <li><a href="#about">За нас</a></li>
-        <li><a href="#services">Услуги</a></li>
-        <li><a href="#process">Как работим</a></li>
-        <li><a href="#why">Защо ние</a></li>
-        <li><a class="nav-cta" href="#contact">Свържете се</a></li>
-      </ul>
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><span class="bug">🪲</span> Жук&nbsp;Терапия</div>
+    <nav class="links">
+      <a href="#zhuk">Бръмбарът</a>
+      <a href="#dose">Дозиране</a>
+      <a href="#prices">Пакети</a>
+      <a href="#how">Как работи</a>
+      <a href="#faq">Въпроси</a>
     </nav>
+    <a class="btn btn-primary" href="#order">Поръчай</a>
   </div>
 </header>
 
-<!-- ===== HERO ===== -->
-<section class="hero" id="top">
-  <div class="container">
-    <span class="hero-badge">Консултантска фирма · Решаване на проблеми</span>
-    <h1>Вашият проблем има решение. <em>Ние го намираме.</em></h1>
-    <p class="lead">
-      Консултираме, анализираме и се ангажираме с разрешаването на вашия казус —
-      с подкрепата на мрежа от доказани специалисти и професионалисти в множество сфери.
-    </p>
-    <div class="hero-actions">
-      <a class="btn btn-gold" href="#contact">Запитване сега</a>
-      <a class="btn btn-ghost" href="#services">Нашите услуги</a>
-    </div>
-    <div class="hero-stats">
-      <div class="stat"><b>Мрежа</b><span>от специалисти във всяка сфера</span></div>
-      <div class="stat"><b>Правна</b><span>експертиза по всеки казус</span></div>
-      <div class="stat"><b>Резултат</b><span>ангажираме се докрай</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== ABOUT ===== -->
-<section id="about">
-  <div class="container">
-    <span class="section-tag">За нас</span>
-    <h2 class="section-title">Партньорът, на когото разчитате, когато залогът е висок</h2>
-    <div class="about-grid">
-      <div class="about-text">
-        <p>
-          Ние сме консултантска фирма, специализирана в <strong>решаването на проблеми</strong>.
-          Каквото и предизвикателство да стои пред вас — правно, бизнес или личностно —
-          нашата задача е да намерим верния път към целта.
-        </p>
-        <p>
-          Разполагаме с множество контакти със <strong>специалисти и професионалисти</strong>
-          в най-различни области. Това ни позволява за всеки казус да съберем точния екип
-          от експерти, който ситуацията изисква.
-        </p>
-        <p>
-          Консултираме в <strong>правен характер</strong> и, в зависимост от случая,
-          <strong>се ангажираме лично с разрешаването на проблема</strong> — от първия анализ
-          до постигнатия резултат.
-        </p>
-      </div>
-      <div class="about-card">
-        <h3>Клиентите се обръщат към нас, за да са сигурни, че:</h3>
-        <ul>
-          <li>целите, които са си поставили, ще бъдат постигнати</li>
-          <li>казусът им е в ръцете на точните специалисти</li>
-          <li>получават ясна правна оценка на ситуацията</li>
-          <li>има кой да поеме ангажимент за резултата</li>
-          <li>дискретността и доверието са гарантирани</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== SERVICES ===== -->
-<section class="bg-soft" id="services">
-  <div class="container">
-    <span class="section-tag">Услуги</span>
-    <h2 class="section-title">С какво можем да ви бъдем полезни</h2>
-    <p class="section-sub">
-      Подходът ни е индивидуален — всеки казус е различен и изисква различна комбинация
-      от експертиза, контакти и действия.
-    </p>
-    <div class="cards">
-      <div class="card">
-        <div class="card-icon">⚖️</div>
-        <h3>Правни консултации</h3>
-        <p>
-          Анализ на вашата ситуация от правна гледна точка. Ясна оценка на рисковете,
-          възможностите и правилните стъпки напред.
-        </p>
-      </div>
-      <div class="card">
-        <div class="card-icon">🧩</div>
-        <h3>Решаване на проблеми</h3>
-        <p>
-          Когато случаят го изисква, поемаме ангажимент не само да консултираме,
-          а активно да работим по разрешаването на проблема до краен резултат.
-        </p>
-      </div>
-      <div class="card">
-        <div class="card-icon">🤝</div>
-        <h3>Мрежа от специалисти</h3>
-        <p>
-          Свързваме ви с доказани професионалисти в множество сфери — точният експерт
-          за точната задача, когато ви е необходим.
-        </p>
-      </div>
-      <div class="card">
-        <div class="card-icon">🧭</div>
-        <h3>Стратегическо консултиране</h3>
-        <p>
-          Помагаме ви да дефинирате целите си и изграждаме план, който води до
-          резултатите, които сте си заложили.
-        </p>
-      </div>
-      <div class="card">
-        <div class="card-icon">🛡️</div>
-        <h3>Защита на интереси</h3>
-        <p>
-          Представляваме и отстояваме вашите интереси в преговори, спорове
-          и сложни ситуации, изискващи опит и дискретност.
-        </p>
-      </div>
-      <div class="card">
-        <div class="card-icon">📋</div>
-        <h3>Цялостно водене на казус</h3>
-        <p>
-          От първоначалния анализ до финалното решение — координираме всички
-          участници и държим вие да сте информирани на всяка стъпка.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== PROCESS ===== -->
-<section id="process">
-  <div class="container">
-    <span class="section-tag">Как работим</span>
-    <h2 class="section-title">Четири стъпки до резултата</h2>
-    <p class="section-sub">
-      Ясен процес, без излишни обещания — само реална оценка и последователни действия.
-    </p>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">01</div>
-        <h3>Изслушваме ви</h3>
-        <p>Среща или разговор, в който разбираме в детайл вашия проблем и целите, които искате да постигнете.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">02</div>
-        <h3>Анализираме казуса</h3>
-        <p>Оценяваме ситуацията, включително от правна гледна точка, и определяме реалистичните възможности.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">03</div>
-        <h3>Събираме екипа</h3>
-        <p>Ангажираме точните специалисти от нашата мрежа от професионалисти, съобразно спецификата на случая.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">04</div>
-        <h3>Постигаме резултат</h3>
-        <p>Работим по разрешаването на проблема и ви държим информирани, докато целта не бъде постигната.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== WHY US ===== -->
-<section class="why" id="why">
-  <div class="container">
-    <span class="section-tag">Защо ние</span>
-    <h2 class="section-title">Сигурност, че ще стигнете до целта</h2>
-    <p class="section-sub">
-      Клиентите ни избират, защото при нас консултацията не свършва със съвет —
-      тя продължава до резултат.
-    </p>
-    <div class="why-grid">
-      <div class="why-item">
-        <h3>Ангажимент към резултата</h3>
-        <p>Не просто даваме мнение — когато поемем казус, работим по него до неговото разрешаване.</p>
-      </div>
-      <div class="why-item">
-        <h3>Контакти, които отварят врати</h3>
-        <p>Дългогодишно изградена мрежа от специалисти и професионалисти в множество сфери.</p>
-      </div>
-      <div class="why-item">
-        <h3>Правна прецизност</h3>
-        <p>Всяко действие е стъпило на солиден правен анализ — знаете къде стоите във всеки момент.</p>
-      </div>
-      <div class="why-item">
-        <h3>Дискретност и доверие</h3>
-        <p>Вашият казус остава между нас. Работим с пълна конфиденциалност и лоялност към клиента.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== CONTACT ===== -->
-<section id="contact">
-  <div class="container">
-    <span class="section-tag">Контакт</span>
-    <h2 class="section-title">Разкажете ни за вашия казус</h2>
-    <div class="contact-grid">
-      <div class="contact-info">
-        <h3>Първата консултация започва с един разговор</h3>
-        <p>
-          Свържете се с нас и опишете накратко ситуацията. Ще се върнем към вас
-          с първоначална оценка и предложение за следващи стъпки.
-        </p>
-        <div class="contact-line">
-          <span class="ci">✉️</span>
-          <a href="mailto:vstrenev@gmail.com">vstrenev@gmail.com</a>
+<main>
+  <!-- HERO -->
+  <section class="hero" style="border-top:0">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="tag">Оригинални руски бръмбари</span>
+        <h1>Живи лечебни бръмбари&nbsp;Жук</h1>
+        <p class="lead">Отглеждаме и доставяме оригиналния руски бръмбар Жук (<i>Ulomoides dermestoides</i>) — жив, силен и готов за курс. Една пълна доза на лечението е <b>930 бръмбара</b>.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#order">Поръчай пълна доза</a>
+          <a class="btn btn-ghost" href="#dose">Изчисли своята доза</a>
         </div>
-        <div class="contact-line">
-          <span class="ci">📞</span>
-          <a href="tel:+359000000000">+359 000 000 000</a>
-        </div>
-        <div class="contact-line">
-          <span class="ci">📍</span>
-          <span>София, България</span>
+        <div class="trust">
+          <span><b>930</b> бръмбара / пълна доза</span>
+          <span><b>24–48 ч.</b> доставка</span>
+          <span><b>100%</b> живи при получаване</span>
         </div>
       </div>
-      <form id="contact-form">
-        <div class="form-row">
-          <div>
-            <label for="name">Име</label>
-            <input type="text" id="name" name="name" placeholder="Вашето име" required>
+      <div class="hero-art">
+        <div class="big-bug">🪲</div>
+        <div class="dose-badge">
+          <span class="muted">Пълна доза на лечението</span>
+          <span class="n">930</span>
+          <span class="muted">бръмбара Жук</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT BEETLE -->
+  <section id="zhuk">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Какво е бръмбарът Жук</h2>
+        <p>Малкият тъмнокафяв бръмбар, известен в народната традиция като „руски лечебен бръмбар", се отглежда в чиста среда върху пшенични трици и се приема по установена схема.</p>
+      </div>
+      <div class="cards">
+        <div class="card"><div class="ic">🌾</div><h3>Чисто отглеждане</h3><p>Хранени с пшенични трици и парченца ябълка, без химия и добавки.</p></div>
+        <div class="card"><div class="ic">📦</div><h3>Живи при доставка</h3><p>Пътуват в дишаща опаковка с трици. Гарантираме живи бръмбари при получаване.</p></div>
+        <div class="card"><div class="ic">📈</div><h3>Постъпкова схема</h3><p>Приемат се по нарастваща и намаляваща схема, докато се набере пълната доза от 930.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOSE CALCULATOR -->
+  <section id="dose">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Калкулатор на дозата</h2>
+        <p>Пълната доза на едно лечение е <b>930 бръмбара</b>. Изберете колко бръмбара приемате на пик от схемата и вижте колко дни трае вашият курс.</p>
+      </div>
+      <div class="calc">
+        <div class="calc-panel">
+          <div class="field">
+            <label for="peak">Пик на схемата (макс. бръмбара на ден)</label>
+            <div class="range-row">
+              <input type="range" id="peak" min="10" max="60" value="30" step="1">
+              <output id="peakOut" style="min-width:3ch;font-weight:800;color:var(--amber-2)">30</output>
+            </div>
+            <div class="note">Класическа схема: 1, 2, 3 … до пика, после обратно надолу до 1.</div>
           </div>
-          <div>
-            <label for="phone">Телефон</label>
-            <input type="tel" id="phone" name="phone" placeholder="+359 ...">
+          <div class="field">
+            <label for="perDay">Приеми на ден</label>
+            <select id="perDay">
+              <option value="1">1 път на ден</option>
+              <option value="2" selected>2 пъти на ден (сутрин и вечер)</option>
+              <option value="3">3 пъти на ден</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="people">Брой лекуващи се</label>
+            <input type="number" id="people" min="1" max="20" value="1">
           </div>
         </div>
-        <label for="email">Имейл</label>
-        <input type="email" id="email" name="email" placeholder="вашият@имейл.бг" required>
-        <label for="message">Опишете вашия казус</label>
-        <textarea id="message" name="message" placeholder="Разкажете ни накратко за проблема и целите, които искате да постигнете..." required></textarea>
-        <button type="submit" class="btn btn-gold" style="border:none; cursor:pointer; width:100%;">Изпратете запитване</button>
-        <p class="form-note">Всички запитвания се третират строго конфиденциално.</p>
+        <div class="result">
+          <div class="row"><span class="k">Пълна доза за курс</span><span class="v big" id="rTotal">930</span></div>
+          <div class="row"><span class="k">Обхванати от схемата</span><span class="v" id="rScheme">—</span></div>
+          <div class="row"><span class="k">Дни до пълна доза</span><span class="v" id="rDays">—</span></div>
+          <div class="row"><span class="k">Нужни бръмбари общо</span><span class="v" id="rNeeded">930</span></div>
+          <div class="row"><span class="k">Препоръчан пакет</span><span class="v" id="rPack">Пълна доза</span></div>
+          <p class="note">Схемата покрива част от дозата; остатъкът се приема като поддържащ прием, докато се наберат всички 930 бръмбара на човек.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="prices">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Пакети и цени</h2>
+        <p>Пълната доза винаги е 930 бръмбара. Изберете дали да я вземете наведнъж или на части.</p>
+      </div>
+      <div class="prices">
+        <div class="price">
+          <span class="count">Проба</span>
+          <h3>Стартов пакет</h3>
+          <div class="amount">39 лв<small> / еднократно</small></div>
+          <div class="count">100 бръмбара Жук</div>
+          <ul>
+            <li>За начало на схемата</li>
+            <li>Инструкция за прием</li>
+            <li>Дишаща опаковка с трици</li>
+          </ul>
+          <a class="btn btn-ghost" href="#order" data-pack="Стартов пакет">Поръчай</a>
+        </div>
+        <div class="price featured">
+          <span class="badge">Пълна доза</span>
+          <h3>Курс на лечение</h3>
+          <div class="amount">299 лв<small> / курс</small></div>
+          <div class="count">930 бръмбара Жук</div>
+          <ul>
+            <li>Цялата доза за едно лечение</li>
+            <li>Персонална схема на прием</li>
+            <li>Приоритетна доставка 24–48 ч.</li>
+            <li>Гаранция „живи при получаване"</li>
+          </ul>
+          <a class="btn btn-primary" href="#order" data-pack="Курс на лечение">Поръчай пълна доза</a>
+        </div>
+        <div class="price">
+          <span class="count">Семейство</span>
+          <h3>Двоен курс</h3>
+          <div class="amount">549 лв<small> / 2 курса</small></div>
+          <div class="count">1860 бръмбара Жук</div>
+          <ul>
+            <li>Две пълни дози (2 × 930)</li>
+            <li>За двама лекуващи се</li>
+            <li>Безплатна доставка</li>
+          </ul>
+          <a class="btn btn-ghost" href="#order" data-pack="Двоен курс">Поръчай</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Как работи поръчката</h2>
+      </div>
+      <div class="steps">
+        <div class="step"><h3>Изберете доза</h3><p>Стартова, пълна (930) или двоен курс.</p></div>
+        <div class="step"><h3>Поръчайте онлайн</h3><p>Попълнете формата за поръчка по-долу.</p></div>
+        <div class="step"><h3>Доставяме живи</h3><p>Бръмбарите пътуват в дишаща опаковка с трици.</p></div>
+        <div class="step"><h3>Следвайте схемата</h3><p>Приемате по нарастваща схема до пълната доза.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORDER -->
+  <section id="order">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Поръчай бръмбари Жук</h2>
+        <p>Попълнете формата. Ще потвърдим наличност и доставка по имейл или телефон.</p>
+      </div>
+      <form id="orderForm">
+        <div class="order-grid">
+          <div>
+            <label for="pack">Пакет</label>
+            <select id="pack" name="pack">
+              <option value="Стартов пакет" data-qty="100" data-price="39">Стартов пакет — 100 бр. — 39 лв</option>
+              <option value="Курс на лечение" data-qty="930" data-price="299" selected>Курс на лечение (пълна доза) — 930 бр. — 299 лв</option>
+              <option value="Двоен курс" data-qty="1860" data-price="549">Двоен курс — 1860 бр. — 549 лв</option>
+            </select>
+          </div>
+          <div>
+            <label for="qty">Брой курсове/пакети</label>
+            <input type="number" id="qty" name="qty" min="1" max="50" value="1">
+          </div>
+        </div>
+
+        <div class="order-summary" id="summary">
+          <div class="line"><span>Пакет</span><span id="sPack">Курс на лечение</span></div>
+          <div class="line"><span>Бръмбари общо</span><span id="sBugs">930 бр.</span></div>
+          <div class="line total"><span>За плащане</span><span class="amt" id="sTotal">299 лв</span></div>
+        </div>
+
+        <div class="order-grid">
+          <div><label for="name">Име и фамилия</label><input type="text" id="name" name="name" required></div>
+          <div><label for="phone">Телефон</label><input type="tel" id="phone" name="phone" required></div>
+          <div><label for="email">Имейл</label><input type="email" id="email" name="email" required></div>
+          <div><label for="city">Град</label><input type="text" id="city" name="city" required></div>
+          <div class="full"><label for="address">Адрес за доставка</label><input type="text" id="address" name="address" required></div>
+          <div class="full"><label for="notes">Бележка (по избор)</label><textarea id="notes" name="notes" rows="3" placeholder="Напр. предпочитан час за доставка"></textarea></div>
+        </div>
+
+        <div style="margin-top:8px" class="full">
+          <button class="btn btn-primary" type="submit">Изпрати поръчка</button>
+          <span class="note" id="formNote" style="margin-left:12px"></span>
+        </div>
       </form>
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- FAQ + DISCLAIMER -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Често задавани въпроси</h2>
+      </div>
+      <div class="faq">
+        <details open>
+          <summary>Защо са нужни точно 930 бръмбара?</summary>
+          <p>930 бръмбара е пълната доза за един завършен курс на лечение. Приемат се постепенно по схема, а не наведнъж.</p>
+        </details>
+        <details>
+          <summary>Как се приемат бръмбарите?</summary>
+          <p>По нарастваща схема — първия ден малко количество, всеки следващ ден с един-два повече до пика, после надолу, докато се набере пълната доза.</p>
+        </details>
+        <details>
+          <summary>Живи ли пристигат?</summary>
+          <p>Да. Пътуват в дишаща опаковка с пшенични трици. Гарантираме живи бръмбари при получаване.</p>
+        </details>
+        <details>
+          <summary>Колко трае доставката?</summary>
+          <p>Обикновено 24–48 часа за България с куриер.</p>
+        </details>
+      </div>
+
+      <div class="disclaimer" style="margin-top:26px">
+        <b>Важно:</b> Този сайт е с информационен и демонстрационен характер. Бръмбарите Жук се предлагат като продукт от народната традиция и <b>не са лекарство</b>. Продуктът не е предназначен да диагностицира, лекува или предотвратява заболявания. Консултирайте се с лекар преди употреба.
+      </div>
+    </div>
+  </section>
+</main>
 
 <footer>
-  <div class="container footer-inner">
-    <span>© <span id="year"></span> КОНСУЛТ. Всички права запазени.</span>
-    <span>Решаваме проблеми. Постигаме резултати. · <a href="mailto:vstrenev@gmail.com">vstrenev@gmail.com</a></span>
+  <div class="wrap foot-inner">
+    <div><span class="brand"><span class="bug">🪲</span> Жук Терапия</span> — руски лечебни бръмбари Жук.</div>
+    <div>© <span id="year"></span> Жук Терапия · <a href="mailto:vstrenev@gmail.com">vstrenev@gmail.com</a></div>
   </div>
 </footer>
 
 <script>
+  var FULL_DOSE = 930;
+
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  var burger = document.getElementById('burger');
-  var menu = document.getElementById('menu');
-  burger.addEventListener('click', function () { menu.classList.toggle('open'); });
-  menu.querySelectorAll('a').forEach(function (a) {
-    a.addEventListener('click', function () { menu.classList.remove('open'); });
+  /* ---- Dose calculator ---- */
+  var peak = document.getElementById('peak');
+  var peakOut = document.getElementById('peakOut');
+  var perDay = document.getElementById('perDay');
+  var people = document.getElementById('people');
+
+  function schemeSum(p){
+    var up = p*(p+1)/2;       // 1..p
+    var down = (p-1)*p/2;     // p-1..1
+    return up + down;
+  }
+
+  function updateCalc(){
+    var p = parseInt(peak.value,10);
+    var ppl = Math.max(1, parseInt(people.value,10) || 1);
+    peakOut.textContent = p;
+
+    var perPersonScheme = schemeSum(p);
+    var totalDose = FULL_DOSE * ppl;
+
+    var steps = 2*p - 1;
+    var intakes = parseInt(perDay.value,10);
+    var days = Math.ceil(steps / intakes);
+
+    document.getElementById('rTotal').textContent = FULL_DOSE.toLocaleString('bg-BG');
+    document.getElementById('rScheme').textContent = perPersonScheme.toLocaleString('bg-BG') + ' бр.';
+    document.getElementById('rDays').textContent = days + ' дни';
+    document.getElementById('rNeeded').textContent = totalDose.toLocaleString('bg-BG') + ' бр.';
+
+    var pack = totalDose <= 100 ? 'Стартов пакет'
+             : totalDose <= 930 ? 'Курс на лечение (пълна доза)'
+             : 'Двоен курс / няколко курса';
+    document.getElementById('rPack').textContent = pack;
+  }
+  peak.addEventListener('input', updateCalc);
+  perDay.addEventListener('change', updateCalc);
+  people.addEventListener('input', updateCalc);
+  updateCalc();
+
+  /* ---- Pricing buttons -> preselect order ---- */
+  var packSel = document.getElementById('pack');
+  document.querySelectorAll('[data-pack]').forEach(function(a){
+    a.addEventListener('click', function(){
+      packSel.value = a.getAttribute('data-pack');
+      updateSummary();
+    });
   });
 
-  // Формата отваря имейл клиента с попълнените данни (сайтът е статичен, без сървър).
-  document.getElementById('contact-form').addEventListener('submit', function (e) {
+  /* ---- Order summary ---- */
+  var qty = document.getElementById('qty');
+  function updateSummary(){
+    var opt = packSel.options[packSel.selectedIndex];
+    var bugsEach = parseInt(opt.getAttribute('data-qty'),10);
+    var priceEach = parseInt(opt.getAttribute('data-price'),10);
+    var n = Math.max(1, parseInt(qty.value,10) || 1);
+    document.getElementById('sPack').textContent = packSel.value;
+    document.getElementById('sBugs').textContent = (bugsEach*n).toLocaleString('bg-BG') + ' бр.';
+    document.getElementById('sTotal').textContent = (priceEach*n).toLocaleString('bg-BG') + ' лв';
+  }
+  packSel.addEventListener('change', updateSummary);
+  qty.addEventListener('input', updateSummary);
+  updateSummary();
+
+  /* ---- Submit ---- */
+  document.getElementById('orderForm').addEventListener('submit', function(e){
     e.preventDefault();
-    var name = document.getElementById('name').value;
-    var phone = document.getElementById('phone').value;
-    var email = document.getElementById('email').value;
-    var message = document.getElementById('message').value;
-    var body = 'Име: ' + name + '\nТелефон: ' + phone + '\nИмейл: ' + email + '\n\nКазус:\n' + message;
-    window.location.href = 'mailto:vstrenev@gmail.com'
-      + '?subject=' + encodeURIComponent('Запитване от сайта — ' + name)
-      + '&body=' + encodeURIComponent(body);
+    var opt = packSel.options[packSel.selectedIndex];
+    var bugsEach = parseInt(opt.getAttribute('data-qty'),10);
+    var n = Math.max(1, parseInt(qty.value,10) || 1);
+    var note = document.getElementById('formNote');
+    note.style.color = 'var(--green)';
+    note.textContent = 'Благодарим! Поръчката за ' + (bugsEach*n).toLocaleString('bg-BG') +
+      ' бръмбара е приета. Ще се свържем с вас.';
+    this.reset();
+    updateSummary();
   });
 </script>
-
-</body>
-</html>
