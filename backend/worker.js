@@ -15,6 +15,8 @@
  */
 
 const SUMUP_API = "https://api.sumup.com";
+const MERCHANT_CODE = "M7JCYFHR"; // от GET /me → merchant_profile.merchant_code
+const CURRENCY = "EUR";           // от GET /me → default_currency
 
 export default {
   async fetch(request, env) {
@@ -50,6 +52,37 @@ export default {
       }
       // Връщаме целия профил, за да видим точните полета (merchant_code, валута и т.н.)
       return json({ ok: true, profile: data }, cors);
+    }
+
+    // Стъпка 2: тестово създаване на плащане (checkout) за 1.00 EUR.
+    // Само СЪЗДАВА checkout със статус PENDING — НЕ таксува нищо (таксуване има
+    // само след реално плащане). Целта е да видим как SumUp връща checkout-а.
+    if (url.pathname === "/test-order") {
+      if (!env.SUMUP_SECRET_KEY) {
+        return json({ ok: false, error: "Липсва SUMUP_SECRET_KEY." }, cors, 500);
+      }
+      const ref = "TEST-" + Date.now();
+      let r, data;
+      try {
+        r = await fetch(SUMUP_API + "/v0.1/checkouts", {
+          method: "POST",
+          headers: {
+            Authorization: "Bearer " + env.SUMUP_SECRET_KEY,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            checkout_reference: ref,
+            amount: 1.0,
+            currency: CURRENCY,
+            merchant_code: MERCHANT_CODE,
+            description: "Тестова поръчка (Жук Терапия) " + ref,
+          }),
+        });
+        data = await r.json();
+      } catch (e) {
+        return json({ ok: false, error: "Грешка при връзка със SumUp", detail: String(e) }, cors, 502);
+      }
+      return json({ ok: r.ok, status: r.status, reference: ref, checkout: data }, cors, r.ok ? 200 : r.status);
     }
 
     return json({ ok: false, error: "not found", path: url.pathname }, cors, 404);
