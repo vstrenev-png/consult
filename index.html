@@ -180,6 +180,24 @@
   .price ul li::before{content:"";position:absolute;left:0;top:14px;width:14px;height:8px;border-left:2px solid var(--forest-2);border-bottom:2px solid var(--forest-2);transform:rotate(-45deg)}
   .price .btn{margin-top:auto;justify-content:center}
 
+  /* Интро оферта */
+  .intro-offer{display:flex;flex-wrap:wrap;align-items:center;gap:20px 30px;margin-bottom:26px;
+    background:linear-gradient(120deg,var(--forest),var(--forest-2));color:#f4efe0;
+    border-radius:var(--radius);padding:24px 28px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .intro-offer .io-badge{position:absolute;top:16px;right:-38px;transform:rotate(45deg);
+    background:var(--amber);color:#2a1c05;font-weight:800;font-size:.68rem;letter-spacing:.1em;
+    text-transform:uppercase;padding:6px 46px;box-shadow:var(--shadow-sm)}
+  .intro-offer .io-main{flex:1 1 260px;min-width:0}
+  .intro-offer .io-kicker{font-size:.75rem;text-transform:uppercase;letter-spacing:.16em;font-weight:800;color:var(--amber-2)}
+  .intro-offer h3{font-family:var(--serif);font-size:1.55rem;margin:6px 0 4px;color:#fff}
+  .intro-offer p{margin:0;color:#e4e9dc;font-size:.95rem;max-width:44ch}
+  .intro-offer .io-price{flex:0 0 auto;text-align:center;line-height:1}
+  .intro-offer .io-price .io-eur{font-family:var(--serif);font-size:2.9rem;font-weight:600;color:#fff}
+  .intro-offer .io-price .io-bgn{font-size:.9rem;color:#cfd8c6;margin-top:4px;font-weight:600}
+  .intro-offer .io-price .io-unit{font-size:.8rem;color:#cfd8c6;margin-top:2px}
+  .intro-offer .btn{flex:0 0 auto}
+  @media(max-width:600px){.intro-offer{padding:22px 20px}.intro-offer .io-badge{display:none}}
+
   /* Steps */
   .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:s}
   @media(max-width:840px){.steps{grid-template-columns:1fr 1fr}}
@@ -512,6 +530,22 @@
         <h2>Изберете своя курс</h2>
         <p>Пълната доза винаги е 930 бръмбара. Изберете дали да я вземете наведнъж или на части.</p>
       </div>
+
+      <div class="intro-offer reveal">
+        <span class="io-badge">Ново</span>
+        <div class="io-main">
+          <span class="io-kicker">Интро оферта · само за нови клиенти</span>
+          <h3>Опитай с 10 бръмбара</h3>
+          <p>Изпробвай без риск преди пълния курс. Малка доза, за да се запознаеш с приема.</p>
+        </div>
+        <div class="io-price">
+          <div class="io-eur">2,50 €</div>
+          <div class="io-bgn">4,89 лв</div>
+          <div class="io-unit">10 бр. · еднократно</div>
+        </div>
+        <a class="btn btn-primary" href="#order" data-pack="Интро пакет">Опитай сега</a>
+      </div>
+
       <div class="prices">
         <div class="price reveal">
           <span class="kicker">Проба</span>
@@ -588,6 +622,7 @@
             <div>
               <label for="pack">Пакет</label>
               <select id="pack" name="pack">
+                <option value="Интро пакет" data-qty="10" data-price="2.5">Интро оферта — 10 бр. — 2,50 € (4,89 лв)</option>
                 <option value="Стартов пакет" data-qty="100" data-price="20">Стартов пакет — 100 бр. — 20 € (39,12 лв)</option>
                 <option value="Курс на лечение" data-qty="930" data-price="150" selected>Курс на лечение (пълна доза) — 930 бр. — 150 € (293,37 лв)</option>
                 <option value="Двоен курс" data-qty="1860" data-price="275">Двоен курс — 1860 бр. — 275 € (537,85 лв)</option>
@@ -710,7 +745,10 @@
   function fmtBgn(eur){
     return (eur * EUR_BGN).toLocaleString('bg-BG', {minimumFractionDigits:2, maximumFractionDigits:2}) + ' лв';
   }
-  function fmtEur(eur){ return eur.toLocaleString('bg-BG') + ' €'; }
+  function fmtEur(eur){
+    var frac = (eur % 1 === 0) ? 0 : 2;   // цели суми без стотинки, дробните с 2 знака
+    return eur.toLocaleString('bg-BG', {minimumFractionDigits: frac, maximumFractionDigits: 2}) + ' €';
+  }
   function fmtPrice(eur){ return fmtEur(eur) + ' (' + fmtBgn(eur) + ')'; }
 
   document.getElementById('year').textContent = new Date().getFullYear();
@@ -793,7 +831,7 @@
   function updateSummary(){
     var opt = packSel.options[packSel.selectedIndex];
     var bugsEach = parseInt(opt.getAttribute('data-qty'),10);
-    var priceEach = parseInt(opt.getAttribute('data-price'),10);
+    var priceEach = parseFloat(opt.getAttribute('data-price'));
     var n = Math.max(1, parseInt(qty.value,10) || 1);
     document.getElementById('sPack').textContent = packSel.value;
     document.getElementById('sBugs').textContent = (bugsEach*n).toLocaleString('bg-BG') + ' бр.';
@@ -904,7 +942,7 @@
   function collectOrder(){
     var opt = packSel.options[packSel.selectedIndex];
     var bugsEach = parseInt(opt.getAttribute('data-qty'),10);
-    var priceEach = parseInt(opt.getAttribute('data-price'),10);
+    var priceEach = parseFloat(opt.getAttribute('data-price'));
     var n = Math.max(1, parseInt(qty.value,10) || 1);
     var val = function(id){ return (document.getElementById(id).value || '').trim(); };
     return {
