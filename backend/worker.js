@@ -18,6 +18,13 @@ const SUMUP_API = "https://api.sumup.com";
 const MERCHANT_CODE = "M7JCYFHR"; // от GET /me → merchant_profile.merchant_code
 const CURRENCY = "EUR";           // от GET /me → default_currency
 
+// Цените се пазят ТУК (на сървъра), за да не могат да се подправят от браузъра.
+const PRICES = {
+  "Стартов пакет": 20,
+  "Курс на лечение": 150,
+  "Двоен курс": 275,
+};
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -83,6 +90,56 @@ export default {
         return json({ ok: false, error: "Грешка при връзка със SumUp", detail: String(e) }, cors, 502);
       }
       return json({ ok: r.ok, status: r.status, reference: ref, checkout: data }, cors, r.ok ? 200 : r.status);
+    }
+
+    // Стъпка 3: истинско създаване на плащане за поръчка.
+    // Тяло (JSON): { pack: "Курс на лечение", reference: "ZT-260724-1234" }
+    // Цената се определя ТУК по пакета — браузърът не може да я подмени.
+    if (url.pathname === "/order" && request.method === "POST") {
+      if (!env.SUMUP_SECRET_KEY) return json({ ok: false, error: "Липсва SUMUP_SECRET_KEY." }, cors, 500);
+      let body;
+      try { body = await request.json(); } catch (e) { return json({ ok: false, error: "Невалиден JSON" }, cors, 400); }
+      const amount = PRICES[body.pack];
+      if (!amount) return json({ ok: false, error: "Непознат пакет: " + body.pack }, cors, 400);
+      const ref = String(body.reference || "ZT-" + Date.now()).slice(0, 60);
+      let r, data;
+      try {
+        r = await fetch(SUMUP_API + "/v0.1/checkouts", {
+          method: "POST",
+          headers: { Authorization: "Bearer " + env.SUMUP_SECRET_KEY, "Content-Type": "application/json" },
+          body: JSON.stringify({
+            checkout_reference: ref,
+            amount: amount,
+            currency: CURRENCY,
+            merchant_code: MERCHANT_CODE,
+            description: body.pack + " — Жук Терапия (" + ref + ")",
+          }),
+        });
+        data = await r.json();
+      } catch (e) {
+        return json({ ok: false, error: "Грешка при връзка със SumUp", detail: String(e) }, cors, 502);
+      }
+      if (!r.ok) return json({ ok: false, status: r.status, sumup: data }, cors, r.status);
+      return json({ ok: true, id: data.id, reference: ref, amount: amount, status: data.status }, cors);
+    }
+
+    // Стъпка 3: проверка дали плащане е минало.
+    // GET /confirm?id=<checkout-id>  → { paid: true/false, status: "PAID"|"PENDING"|... }
+    if (url.pathname === "/confirm") {
+      if (!env.SUMUP_SECRET_KEY) return json({ ok: false, error: "Липсва SUMUP_SECRET_KEY." }, cors, 500);
+      const id = url.searchParams.get("id");
+      if (!id) return json({ ok: false, error: "Липсва параметър id" }, cors, 400);
+      let r, data;
+      try {
+        r = await fetch(SUMUP_API + "/v0.1/checkouts/" + encodeURIComponent(id), {
+          headers: { Authorization: "Bearer " + env.SUMUP_SECRET_KEY },
+        });
+        data = await r.json();
+      } catch (e) {
+        return json({ ok: false, error: "Грешка при връзка със SumUp", detail: String(e) }, cors, 502);
+      }
+      if (!r.ok) return json({ ok: false, status: r.status, sumup: data }, cors, r.status);
+      return json({ ok: true, id: id, status: data.status, paid: data.status === "PAID", reference: data.checkout_reference }, cors);
     }
 
     return json({ ok: false, error: "not found", path: url.pathname }, cors, 404);
