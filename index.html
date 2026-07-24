@@ -869,6 +869,13 @@
     'Курс на лечение': 'https://pay.sumup.com/b2c/QGU3NTQI',   // 150 €
     'Двоен курс':      'https://pay.sumup.com/b2c/QX51A7SZ'    // 275 €
   };
+  /* ---- Платежен бекенд (Cloudflare Worker + SumUp API) ----
+     Ако е зададен, плащането с карта става ВЪРХУ сайта (сигурна форма на
+     SumUp) с автоматично потвърждение „платено". Празно → връщаме се към
+     обикновените SumUp линкове по-долу. */
+  var PAY_BACKEND_URL = 'https://zhuk-pay.vstrenev.workers.dev';
+  var SUMUP_SDK = 'https://gateway.sumup.com/gateway/ecom/card/v2/sdk.js';
+
   function sumupLinkFor(pack){
     var u = SUMUP_LINKS[pack] || '';
     return (u && u.indexOf('http') === 0) ? u : '';
@@ -946,15 +953,18 @@
   function deliverOrder(o, opts){
     opts = opts || {};
     if (USE_ENDPOINT) {
+      var tag = opts.paid ? ' [ПЛАТЕНО с карта ✅]' : (opts.paying ? ' [плащане с карта]' : '');
+      var payMsg = opts.paid ? '\n\nНачин на плащане: карта (SumUp) — ПЛАТЕНО ✅'
+                 : (opts.paying ? '\n\nНачин на плащане: карта (SumUp)' : '');
       var payload = {
         access_key: ORDER_ACCESS_KEY,
-        subject: 'Поръчка ' + o.orderNo + ' — ' + o.bugs + ' бръмбара (' + o.pack + ')' + (opts.paying ? ' [плащане с карта]' : ''),
+        subject: 'Поръчка ' + o.orderNo + ' — ' + o.bugs + ' бръмбара (' + o.pack + ')' + tag,
         from_name: 'Жук Терапия', to: ORDER_EMAIL,
-        message: orderText(o) + (opts.paying ? '\n\nНачин на плащане: карта (SumUp)' : ''),
+        message: orderText(o) + payMsg,
         order_no: o.orderNo,
         pack: o.pack, qty_packs: o.qtyPacks, bugs: o.bugs,
         total_eur: o.total, total_bgn: +(o.total * EUR_BGN).toFixed(2),
-        payment: opts.paying ? 'card-sumup' : 'cash-on-delivery',
+        payment: opts.paid ? 'card-sumup-paid' : (opts.paying ? 'card-sumup' : 'cash-on-delivery'),
         name: o.name, phone: o.phone, email: o.email, city: o.city, address: o.address, notes: o.notes
       };
       return fetch(ORDER_ENDPOINT, {
@@ -994,6 +1004,122 @@
     });
   });
 
+  /* ---- Плащане с карта ВЪРХУ сайта (SumUp widget + авто-потвърждение) ---- */
+  function payStatus(msg, ok){
+    var s = document.getElementById('payModalStatus');
+    if (s){ s.style.color = ok ? 'var(--forest)' : 'var(--rust)'; s.textContent = msg; }
+  }
+  function loadSumUpSdk(){
+    return new Promise(function(resolve, reject){
+      if (window.SumUpCard) return resolve();
+      var s = document.createElement('script');
+      s.src = SUMUP_SDK; s.async = true;
+      s.onload = function(){ resolve(); };
+      s.onerror = function(){ reject(new Error('Неуспешно зареждане на формата за плащане.')); };
+      document.head.appendChild(s);
+    });
+  }
+  function ensurePayModal(){
+    if (document.getElementById('payModal')) return;
+    var css = '.pay-modal{position:fixed;inset:0;z-index:200;display:none;align-items:flex-start;justify-content:center;'
+      + 'background:rgba(30,24,12,.55);backdrop-filter:blur(3px);overflow-y:auto;padding:24px 14px}'
+      + '.pay-modal.open{display:flex}'
+      + '.pay-modal-inner{background:var(--card);border:1px solid var(--line);border-radius:18px;max-width:440px;width:100%;'
+      + 'margin:auto;padding:24px 22px;box-shadow:var(--shadow);position:relative}'
+      + '.pay-modal-inner h3{margin:0 0 4px;font-family:var(--serif);font-size:1.35rem}'
+      + '.pay-modal-sub{margin:0 0 16px;color:var(--muted);font-size:.92rem}'
+      + '.pay-modal-x{position:absolute;top:12px;right:14px;background:none;border:0;font-size:1.7rem;line-height:1;'
+      + 'color:var(--muted);cursor:pointer}'
+      + '.pay-modal-status{margin:14px 0 0;font-weight:600;font-size:.92rem;min-height:1.2em}'
+      + '#sumup-card{min-height:60px}';
+    var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
+    var m = document.createElement('div');
+    m.id = 'payModal'; m.className = 'pay-modal';
+    m.innerHTML = '<div class="pay-modal-inner">'
+      + '<button class="pay-modal-x" type="button" aria-label="Затвори">×</button>'
+      + '<h3>Плащане с карта</h3>'
+      + '<p class="pay-modal-sub" id="payModalSub"></p>'
+      + '<div id="sumup-card"></div>'
+      + '<p class="pay-modal-status" id="payModalStatus"></p>'
+      + '</div>';
+    document.body.appendChild(m);
+    m.addEventListener('click', function(e){ if (e.target === m) closePayModal(); });
+    m.querySelector('.pay-modal-x').addEventListener('click', closePayModal);
+  }
+  function openPayModal(){ ensurePayModal(); document.getElementById('payModal').classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closePayModal(){
+    var m = document.getElementById('payModal');
+    if (m){ m.classList.remove('open'); }
+    document.body.style.overflow = '';
+    var c = document.getElementById('sumup-card'); if (c) c.innerHTML = '';
+  }
+
+  // Проверява през бекенда дали плащането е минало (сървърът е истината).
+  function verifyPaid(checkoutId, o, tries){
+    tries = tries || 0;
+    payStatus('Потвърждаваме плащането…', true);
+    fetch(PAY_BACKEND_URL + '/confirm?id=' + encodeURIComponent(checkoutId))
+      .then(function(r){ return r.json(); })
+      .then(function(res){
+        if (res && res.paid){
+          if (USE_ENDPOINT) deliverOrder(o, {paying:true, paid:true});  // известие „ПЛАТЕНО" до собственика
+          sendCustomerEmail(o, {paying:true});                           // потвърждение до клиента
+          payStatus('Плащането е потвърдено ✅ Благодарим!', true);
+          setNote('Плащането е успешно — поръчка ' + o.orderNo + '. Ще се свържем с вас за доставката.', true);
+          setTimeout(closePayModal, 3500);
+        } else if (tries < 6){
+          setTimeout(function(){ verifyPaid(checkoutId, o, tries + 1); }, 1500);
+        } else {
+          payStatus('Изчакваме потвърждение от банката. Ако сте платили, ще получите имейл.', true);
+        }
+      })
+      .catch(function(){ payStatus('Проблем при проверката. Ако сте платили, ще се свържем с вас.', false); });
+  }
+
+  // Създава плащане в бекенда, отваря формата на SumUp и следи за успех.
+  function payWithWidget(o){
+    setNote('Подготвяме сигурно плащане за поръчка ' + o.orderNo + '…', true);
+    fetch(PAY_BACKEND_URL + '/order', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ pack: o.pack, reference: o.orderNo })
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(res){
+      if (!res || !res.ok || !res.id) throw new Error((res && res.error) || 'Неуспешно създаване на плащане.');
+      openPayModal();
+      document.getElementById('payModalSub').textContent = 'Поръчка ' + o.orderNo + ' · ' + fmtPrice(res.amount)
+        + (o.qtyPacks > 1 ? ' (за 1 пакет; за ' + o.qtyPacks + ' се свържете с нас)' : '');
+      payStatus('');
+      return loadSumUpSdk().then(function(){
+        window.SumUpCard.mount({
+          id: 'sumup-card',
+          checkoutId: res.id,
+          locale: 'bg-BG',
+          onResponse: function(type, body){
+            if (type === 'success'){
+              verifyPaid(res.id, o);
+            } else if (type === 'error' || type === 'fail' || type === 'invalid'){
+              payStatus('Плащането не мина. Проверете данните на картата и опитайте пак.', false);
+            }
+          }
+        });
+      });
+    })
+    .catch(function(err){
+      closePayModal();
+      // Резерва: ако бекендът/формата не тръгне, падаме на обикновения SumUp линк.
+      var link = sumupLinkFor(o.pack);
+      if (link){
+        var payUrl = sumupLinkWithNote(link, o.orderNo);
+        if (USE_ENDPOINT) deliverOrder(o, {paying:true});
+        setNoteLink('Формата за карта не се зареди. Платете през сигурния линк:', payUrl, 'плати с карта тук');
+      } else {
+        setNote('Възникна проблем с плащането. Опитайте пак или се свържете с нас.', false);
+      }
+    });
+  }
+
   // Плащане с карта през SumUp
   document.getElementById('payCard').addEventListener('click', function(){
     // Изискваме данните за доставка — с ясно съобщение, ако липсват (иначе бутонът „мълчи").
@@ -1002,6 +1128,8 @@
       return;
     }
     var o = collectOrder();
+    // Ако платежният бекенд е зададен → плащане върху сайта с авто-потвърждение.
+    if (PAY_BACKEND_URL) { payWithWidget(o); return; }
     var link = sumupLinkFor(o.pack);
     if (!link) {
       // Линковете още не са настроени — не губим поръчката: изпращаме я и молим за връзка.
