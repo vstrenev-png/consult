@@ -4,17 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>document.documentElement.className += ' js';</script>
-<title>Жук Терапия — руски лечебни бръмбари Жук</title>
+<title>Знахарницата — руски лечебни бръмбари Жук</title>
 <meta name="description" content="Живи руски лечебни бръмбари Жук (Ulomoides dermestoides). Пълна доза за курс на лечение — 930 бръмбара. Поръчайте онлайн с доставка.">
 <meta name="theme-color" content="#f6efe2">
-<meta name="author" content="Жук Терапия">
+<meta name="author" content="Знахарницата">
 <!-- Open Graph / social preview -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="Жук Терапия — руски лечебни бръмбари Жук">
+<meta property="og:title" content="Знахарницата — руски лечебни бръмбари Жук">
 <meta property="og:description" content="Живи руски лечебни бръмбари Жук. Една пълна доза на лечението е 930 бръмбара. Поръчайте онлайн с доставка 24–48ч.">
 <meta property="og:locale" content="bg_BG">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Жук Терапия — руски лечебни бръмбари Жук">
+<meta name="twitter:title" content="Знахарницата — руски лечебни бръмбари Жук">
 <meta name="twitter:description" content="Живи руски лечебни бръмбари Жук. Една пълна доза на лечението е 930 бръмбара.">
 <!-- Beetle favicon -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f6efe2'/%3E%3Cellipse cx='32' cy='22' rx='8' ry='7' fill='%233d6a45'/%3E%3Cellipse cx='32' cy='40' rx='13' ry='17' fill='%23c08a2d'/%3E%3Cpath d='M32 24v34' stroke='%237a5410' stroke-width='2.4'/%3E%3Cg stroke='%233d6a45' stroke-width='2.6' stroke-linecap='round'%3E%3Cline x1='21' y1='32' x2='11' y2='27'/%3E%3Cline x1='21' y1='40' x2='10' y2='42'/%3E%3Cline x1='43' y1='32' x2='53' y2='27'/%3E%3Cline x1='43' y1='40' x2='54' y2='42'/%3E%3C/g%3E%3C/svg%3E">
@@ -83,6 +83,8 @@
   .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 22px;max-width:var(--maxw);margin:0 auto}
   .brand{display:flex;align-items:center;gap:11px;font-family:var(--serif);font-weight:600;font-size:1.28rem;letter-spacing:-.01em}
   .brand svg{width:34px;height:34px;flex:none}
+  .brand-text{display:flex;flex-direction:column;line-height:1.05}
+  .brand-text small{font-family:var(--sans);font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
   nav.links{display:flex;gap:26px;flex-wrap:wrap}
   nav.links a{color:var(--ink-soft);font-weight:600;font-size:.95rem;position:relative}
   nav.links a::after{content:"";position:absolute;left:0;right:100%;bottom:-4px;height:2px;background:var(--amber);transition:right .22s ease}
@@ -295,7 +297,7 @@
         <path d="M32 22v38" stroke="#7a5410" stroke-width="2.4" stroke-linecap="round"/>
         <g fill="#8a5a12"><circle cx="25" cy="34" r="1.7"/><circle cx="39" cy="34" r="1.7"/><circle cx="24" cy="46" r="1.7"/><circle cx="40" cy="46" r="1.7"/><circle cx="27" cy="54" r="1.5"/><circle cx="37" cy="54" r="1.5"/></g>
       </svg>
-      Жук&nbsp;Терапия
+      <span class="brand-text">Знахарницата<small>Лечебни бръмбари</small></span>
     </div>
     <nav class="links">
       <a href="#zhuk">Бръмбарът</a>
@@ -730,9 +732,9 @@
   <div class="wrap foot-inner">
     <div class="brand">
       <svg viewBox="0 0 64 64" width="28" height="28" aria-hidden="true"><ellipse cx="32" cy="20" rx="9" ry="8" fill="#3d6a45"/><ellipse cx="32" cy="40" rx="15" ry="20" fill="#c08a2d"/><path d="M32 22v38" stroke="#7a5410" stroke-width="2.4"/></svg>
-      Жук Терапия
+      Знахарницата
     </div>
-    <div>© <span id="year"></span> Жук Терапия · <a href="mailto:vstrenev@gmail.com">vstrenev@gmail.com</a></div>
+    <div>© <span id="year"></span> Знахарницата · <a href="mailto:vstrenev@gmail.com">vstrenev@gmail.com</a></div>
   </div>
 </footer>
 
@@ -956,7 +958,7 @@
 
   function orderText(o){
     return [
-      'Нова поръчка от сайта „Жук Терапия"',
+      'Нова поръчка от сайта „Знахарницата"',
       'Номер на заявката: ' + o.orderNo,
       '',
       'Пакет: ' + o.pack + ' × ' + o.qtyPacks,
@@ -997,7 +999,7 @@
       var payload = {
         access_key: ORDER_ACCESS_KEY,
         subject: 'Поръчка ' + o.orderNo + ' — ' + o.bugs + ' бръмбара (' + o.pack + ')' + tag,
-        from_name: 'Жук Терапия', to: ORDER_EMAIL,
+        from_name: 'Знахарницата', to: ORDER_EMAIL,
         message: orderText(o) + payMsg,
         order_no: o.orderNo,
         pack: o.pack, qty_packs: o.qtyPacks, bugs: o.bugs,

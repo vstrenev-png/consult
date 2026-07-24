@@ -1,5 +1,5 @@
 /*
- * Жук Терапия — платежен бекенд (Cloudflare Worker)
+ * Знахарницата — платежен бекенд (Cloudflare Worker)
  * =================================================
  * Стъпка 1: проверка на връзката със SumUp.
  *
@@ -83,7 +83,7 @@ export default {
             amount: 1.0,
             currency: CURRENCY,
             merchant_code: MERCHANT_CODE,
-            description: "Тестова поръчка (Жук Терапия) " + ref,
+            description: "Тестова поръчка (Знахарницата) " + ref,
           }),
         });
         data = await r.json();
@@ -113,7 +113,7 @@ export default {
             amount: amount,
             currency: CURRENCY,
             merchant_code: MERCHANT_CODE,
-            description: body.pack + " — Жук Терапия (" + ref + ")",
+            description: body.pack + " — Знахарницата (" + ref + ")",
           }),
         });
         data = await r.json();
