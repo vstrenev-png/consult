@@ -258,17 +258,6 @@
   .sources b{color:var(--ink-soft);display:block;margin-bottom:6px;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase}
 
   /* Testimonials */
-  .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-  @media(max-width:840px){.quotes{grid-template-columns:1fr}}
-  .quote{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column}
-  .quote .stars{color:var(--amber);letter-spacing:2px;font-size:1.05rem;margin-bottom:12px}
-  .quote p{margin:0 0 18px;color:var(--ink-soft);font-size:1.02rem}
-  .quote p::before{content:"„"}
-  .quote p::after{content:"“"}
-  .quote .who{display:flex;align-items:center;gap:12px;margin-top:auto}
-  .quote .av{width:42px;height:42px;border-radius:50%;flex:none;display:grid;place-items:center;font-family:var(--serif);font-weight:600;color:#f4efe0;background:var(--forest-2)}
-  .quote .who b{display:block;font-size:.98rem}
-  .quote .who span{font-size:.84rem;color:var(--muted)}
 
   footer{border-top:1px solid var(--line);padding:40px 0;color:var(--muted);font-size:.92rem;margin-top:24px}
   .foot-inner{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:center}
@@ -305,7 +294,6 @@
       <a href="#dose">Дозиране</a>
       <a href="#prices">Пакети</a>
       <a href="#how">Как работи</a>
-      <a href="#reviews">Отзиви</a>
       <a href="#faq">Въпроси</a>
     </nav>
     <a class="btn btn-primary" href="#order">Поръчай</a>
@@ -668,33 +656,6 @@
   </section>
 
   <!-- TESTIMONIALS -->
-  <section id="reviews">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <p class="eyebrow">Отзиви</p>
-        <h2>Какво казват клиентите</h2>
-        <p>Хиляди довършени курсове от по 930 бръмбара. Ето част от споделеното.</p>
-      </div>
-      <div class="quotes">
-        <div class="quote reveal">
-          <div class="stars">★★★★★</div>
-          <p>Бръмбарите пристигнаха живи и бодри още на другия ден. Калкулаторът ми помогна да разпиша схемата до пълната доза.</p>
-          <div class="who"><span class="av">М</span><div><b>Мария Г.</b><span>София</span></div></div>
-        </div>
-        <div class="quote reveal">
-          <div class="stars">★★★★★</div>
-          <p>Взех пълния курс от 930. Опаковката с трици е много добре направена, нито един не беше загинал.</p>
-          <div class="who"><span class="av">Д</span><div><b>Димитър П.</b><span>Пловдив</span></div></div>
-        </div>
-        <div class="quote reveal">
-          <div class="stars">★★★★★</div>
-          <p>Поръчах двоен курс за мен и съпруга ми. Доставката беше бърза, а инструкцията — ясна. Препоръчвам.</p>
-          <div class="who"><span class="av">Е</span><div><b>Елена В.</b><span>Варна</span></div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- FAQ + DISCLAIMER -->
   <section id="faq" style="padding-top:32px">
     <div class="wrap">
