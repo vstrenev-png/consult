@@ -235,6 +235,30 @@
   .disclaimer{background:rgba(168,83,31,.07);border:1px solid rgba(168,83,31,.28);border-radius:14px;padding:20px 22px;color:#6a4526;font-size:.94rem}
   .disclaimer b{color:var(--rust)}
 
+  /* Reviews */
+  .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-bottom:34px}
+  @media(max-width:840px){.quotes{grid-template-columns:1fr}}
+  .quote{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column}
+  .quote .stars{color:var(--amber);letter-spacing:2px;font-size:1.05rem;margin-bottom:12px}
+  .quote p{margin:0 0 18px;color:var(--ink-soft);font-size:1.02rem}
+  .quote p::before{content:"„"} .quote p::after{content:"“"}
+  .quote .who{display:flex;align-items:center;gap:12px;margin-top:auto}
+  .quote .av{width:42px;height:42px;border-radius:50%;flex:none;display:grid;place-items:center;font-family:var(--serif);font-weight:600;color:#f4efe0;background:var(--forest-2)}
+  .quote .who b{display:block;font-size:.98rem} .quote .who span{font-size:.84rem;color:var(--muted)}
+  .reviews-empty{background:var(--card);border:1px dashed var(--line-strong,#cfccbe);border-radius:var(--radius);padding:32px 24px;text-align:center;color:var(--ink-soft);margin-bottom:34px}
+  .reviews-empty b{color:var(--ink)}
+  .review-form{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px;box-shadow:var(--shadow-sm);max-width:640px}
+  .review-form h3{margin:0 0 4px;font-family:var(--serif);font-size:1.3rem}
+  .review-form .rf-sub{margin:0 0 18px;color:var(--muted);font-size:.92rem}
+  .review-form .rf-row{display:flex;gap:14px;flex-wrap:wrap}
+  .review-form .rf-row > div{flex:1 1 160px;margin-bottom:14px}
+  .review-form label{display:block;font-weight:700;margin:0 0 7px;font-size:.92rem}
+  .review-form .rf-note{margin:10px 0 0;font-weight:600;font-size:.92rem;min-height:1.1em}
+  .stars-input{display:inline-flex;flex-direction:row-reverse;gap:4px}
+  .stars-input input{position:absolute;opacity:0;width:0;height:0}
+  .stars-input label{cursor:pointer;font-size:1.7rem;line-height:1;color:var(--line-strong,#cfccbe);margin:0}
+  .stars-input input:checked ~ label,.stars-input label:hover,.stars-input label:hover ~ label{color:var(--amber)}
+
   /* Science / research */
   .compounds{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:34px}
   .compound{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:.5rem 1rem;font-size:.9rem;box-shadow:var(--shadow-sm)}
@@ -294,6 +318,7 @@
       <a href="#dose">Дозиране</a>
       <a href="#prices">Пакети</a>
       <a href="#how">Как работи</a>
+      <a href="#reviews">Отзиви</a>
       <a href="#faq">Въпроси</a>
     </nav>
     <a class="btn btn-primary" href="#order">Поръчай</a>
@@ -656,6 +681,55 @@
   </section>
 
   <!-- TESTIMONIALS -->
+  <!-- REVIEWS -->
+  <section id="reviews">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Отзиви</p>
+        <h2>Мнения на клиенти</h2>
+        <p>Истински отзиви от хора, поръчали от Знахарницата. Вашето мнение помага на другите.</p>
+      </div>
+
+      <!-- Одобрените отзиви се показват тук (пълнят се от масива REVIEWS в скрипта). -->
+      <div class="quotes" id="reviewsList"></div>
+      <div class="reviews-empty" id="reviewsEmpty">
+        <b>Все още няма публикувани отзиви.</b><br>
+        Бъдете първият, който ще сподели мнение — попълнете формата по-долу.
+      </div>
+
+      <form class="review-form reveal" id="reviewForm">
+        <h3>Оставете отзив</h3>
+        <p class="rf-sub">Мнението се преглежда и се публикува след одобрение. Благодарим!</p>
+        <div class="rf-row">
+          <div>
+            <label for="revName">Име (или инициали)</label>
+            <input type="text" id="revName" name="revName" required placeholder="Напр. Мария Г.">
+          </div>
+          <div>
+            <label for="revCity">Град (по избор)</label>
+            <input type="text" id="revCity" name="revCity" placeholder="Напр. София">
+          </div>
+        </div>
+        <div>
+          <label>Оценка</label>
+          <div class="stars-input" role="radiogroup" aria-label="Оценка от 1 до 5 звезди">
+            <input type="radio" id="star5" name="revRating" value="5" checked><label for="star5" title="5 звезди">★</label>
+            <input type="radio" id="star4" name="revRating" value="4"><label for="star4" title="4 звезди">★</label>
+            <input type="radio" id="star3" name="revRating" value="3"><label for="star3" title="3 звезди">★</label>
+            <input type="radio" id="star2" name="revRating" value="2"><label for="star2" title="2 звезди">★</label>
+            <input type="radio" id="star1" name="revRating" value="1"><label for="star1" title="1 звезда">★</label>
+          </div>
+        </div>
+        <div style="margin-top:14px">
+          <label for="revText">Вашият отзив</label>
+          <textarea id="revText" name="revText" rows="4" required placeholder="Споделете вашето мнение…"></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit" style="margin-top:16px">Изпрати отзив</button>
+        <p class="rf-note" id="revNote"></p>
+      </form>
+    </div>
+  </section>
+
   <!-- FAQ + DISCLAIMER -->
   <section id="faq" style="padding-top:32px">
     <div class="wrap">
@@ -1157,6 +1231,77 @@
     // Оставяме линка да се покаже, после опитваме автоматично пренасочване
     // (в същия таб — надеждно и на телефон, и на компютър).
     setTimeout(function(){ window.location.assign(payUrl); }, 80);
+  });
+
+  /* ---- Отзиви ----
+     Тук се добавят САМО реални, одобрени отзиви. Всеки е обект:
+     { name:'Мария Г.', city:'София', rating:5, text:'…' }
+     Празен масив → показва се поканата „бъдете първият". */
+  var REVIEWS = [
+    // Пример (изтрит): { name:'Име', city:'Град', rating:5, text:'Отзив…' },
+  ];
+  (function renderReviews(){
+    var list = document.getElementById('reviewsList');
+    var empty = document.getElementById('reviewsEmpty');
+    if (!list) return;
+    if (!REVIEWS.length){ list.style.display = 'none'; return; }
+    empty.style.display = 'none';
+    list.innerHTML = '';
+    REVIEWS.forEach(function(r){
+      var n = Math.max(1, Math.min(5, parseInt(r.rating,10) || 5));
+      var initial = (r.name || '?').trim().charAt(0).toUpperCase();
+      var el = document.createElement('div');
+      el.className = 'quote';
+      var stars = document.createElement('div'); stars.className = 'stars'; stars.textContent = '★★★★★'.slice(0, n);
+      var p = document.createElement('p'); p.textContent = r.text || '';
+      var who = document.createElement('div'); who.className = 'who';
+      var av = document.createElement('span'); av.className = 'av'; av.textContent = initial;
+      var meta = document.createElement('div');
+      var b = document.createElement('b'); b.textContent = r.name || '';
+      var c = document.createElement('span'); c.textContent = r.city || '';
+      meta.appendChild(b); if (r.city) meta.appendChild(c);
+      who.appendChild(av); who.appendChild(meta);
+      el.appendChild(stars); el.appendChild(p); el.appendChild(who);
+      list.appendChild(el);
+    });
+  })();
+
+  // Форма за нов отзив → праща на пощата на собственика за одобрение.
+  var reviewForm = document.getElementById('reviewForm');
+  if (reviewForm) reviewForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    var revNote = document.getElementById('revNote');
+    var val = function(id){ return (document.getElementById(id).value || '').trim(); };
+    var rating = (document.querySelector('input[name="revRating"]:checked') || {}).value || '5';
+    var data = { name: val('revName'), city: val('revCity'), rating: rating, text: val('revText') };
+    revNote.style.color = 'var(--forest)';
+    revNote.textContent = 'Изпращане…';
+    if (USE_ENDPOINT) {
+      fetch(ORDER_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          access_key: ORDER_ACCESS_KEY,
+          subject: 'Нов отзив за Знахарницата — ' + data.rating + '★ от ' + data.name,
+          from_name: 'Знахарницата (отзив)', to: ORDER_EMAIL,
+          message: 'Оценка: ' + data.rating + '/5\nИме: ' + data.name + '\nГрад: ' + (data.city || '—') + '\n\nОтзив:\n' + data.text,
+          type: 'review', rating: data.rating, name: data.name, city: data.city, review: data.text
+        })
+      }).then(function(r){
+        if (!r.ok) throw new Error();
+        revNote.style.color = 'var(--forest)';
+        revNote.textContent = 'Благодарим! Отзивът е изпратен и ще се публикува след преглед.';
+        reviewForm.reset();
+      }).catch(function(){
+        revNote.style.color = 'var(--rust)';
+        revNote.textContent = 'Възникна проблем. Опитайте пак или ни пишете на ' + ORDER_EMAIL + '.';
+      });
+    } else {
+      var href = 'mailto:' + ORDER_EMAIL + '?subject=' + encodeURIComponent('Нов отзив — ' + data.name) +
+        '&body=' + encodeURIComponent('Оценка: ' + data.rating + '/5\nГрад: ' + data.city + '\n\n' + data.text);
+      window.location.href = href;
+      revNote.textContent = 'Отваря се пощата ви с готов отзив — натиснете „Изпрати".';
+    }
   });
 </script>
 </body>
